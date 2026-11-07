@@ -550,6 +550,9 @@ export default function ContentManager({ kind, entries, onChanged }) {
   const [wizardStep, setWizardStep] = useState(0);
   const baseUrl = `/api/admin/content/${kind}`;
   const occupiedStages = new Set(entries.map((entry) => entry.stage));
+  const hasAvailableLegacyStage = [1, 2, 3, 4].some(
+    (stage) => !occupiedStages.has(stage),
+  );
 
   async function editEntry(code) {
     setBusy(true);
@@ -681,16 +684,21 @@ export default function ContentManager({ kind, entries, onChanged }) {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="font-mono text-xs tracking-[0.14em] text-white">
-            {isProfile ? "QUẢN LÝ HỒ SƠ NHÂN VẬT" : "QUẢN LÝ CÂU HỎI VÀ ĐÁP ÁN"}
+            {isProfile ? "QUẢN LÝ HỒ SƠ NHÂN VẬT" : "NHIỆM VỤ LEGACY · 4 STAGE"}
           </h2>
           <p className="mt-1 text-[10px] text-slate-500">
             {isProfile
               ? "Hồ sơ chỉ chứa nhân vật hư cấu; hồ sơ đang được phiên chơi dùng sẽ không xóa được."
-              : "Tối đa 4 nhiệm vụ theo cấu trúc game hiện tại. Có thể thêm lựa chọn và đánh dấu đáp án đúng."}
+              : "Chỉ phục vụ các phiên Legacy đã tồn tại. Phiên mới dùng ngân hàng câu hỏi ngẫu nhiên bên dưới."}
           </p>
         </div>
-        <button className="inline-flex min-h-10 items-center gap-2 bg-cyan-300 px-3 font-mono text-[9px] font-bold text-slate-950" onClick={addEntry} type="button">
-          <Plus size={14} /> THÊM {isProfile ? "HỒ SƠ" : "CÂU HỎI"}
+        <button
+          className="inline-flex min-h-10 items-center gap-2 bg-cyan-300 px-3 font-mono text-[9px] font-bold text-slate-950 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled={!isProfile && !hasAvailableLegacyStage}
+          onClick={addEntry}
+          type="button"
+        >
+          <Plus size={14} /> {isProfile ? "THÊM HỒ SƠ" : hasAvailableLegacyStage ? "THÊM NHIỆM VỤ LEGACY" : "ĐỦ 4 NHIỆM VỤ LEGACY"}
         </button>
       </div>
 

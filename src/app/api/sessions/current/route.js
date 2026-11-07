@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import GameSession from "@/models/GameSession";
 import Player from "@/models/Player";
+import GameSettings from "@/models/GameSettings";
 import connectToDatabase from "@/lib/mongodb";
 import { getSessionCharacter } from "@/lib/game/session-access";
 import { hashSessionToken } from "@/lib/utils/session-token";
+import { DEFAULT_QUIZ_QUESTION_COUNT } from "@/lib/game/quiz";
 
 function unauthorized() {
   return NextResponse.json(
@@ -48,7 +50,7 @@ export async function GET(request) {
       return unauthorized();
     }
 
-    const [player, character] = await Promise.all([
+    const [player, character, settings] = await Promise.all([
       Player.findOne({
         _id: gameSession.playerId,
         expiresAt: { $gt: new Date() },
@@ -56,6 +58,11 @@ export async function GET(request) {
         .select("fullName className")
         .lean(),
       getSessionCharacter(gameSession),
+      gameSession.gameVersion === "quiz-v3"
+        ? GameSettings.findById("default")
+            .select("questionCount")
+            .lean()
+        : Promise.resolve(null),
     ]);
 
     if (!player || !character) {
@@ -69,6 +76,12 @@ export async function GET(request) {
           className: player.className,
         },
         gameVersion: gameSession.gameVersion ?? "legacy-v1",
+        questionCount:
+          gameSession.gameVersion === "quiz-v3"
+            ? gameSession.quizProgress?.questionCount ??
+              settings?.questionCount ??
+              DEFAULT_QUIZ_QUESTION_COUNT
+            : undefined,
         character: {
           characterCode: character.characterCode,
           characterName: character.characterName,

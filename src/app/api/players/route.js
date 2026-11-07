@@ -10,7 +10,6 @@ import {
 } from "@/lib/utils/data-retention";
 import {
   createCharacterSnapshot,
-  getInitialRpgProgress,
 } from "@/lib/game/rpg";
 import {
   createSessionToken,
@@ -99,8 +98,7 @@ export async function POST(request) {
         playerId: player._id,
         characterId: character._id,
         characterSnapshot: createCharacterSnapshot(character),
-        gameVersion: "rpg-v2",
-        rpgProgress: getInitialRpgProgress(character),
+        gameVersion: "quiz-v3",
         status: "registered",
         startedAt: now,
         expiresAt: sessionExpiresAt,

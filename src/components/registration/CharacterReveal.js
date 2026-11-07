@@ -159,7 +159,7 @@ export default function CharacterReveal() {
       <div aria-hidden="true" className="grid-overlay" />
       <header className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between">
         <Link
-          aria-label="DATA TRAP trang chủ"
+          aria-label="Không gian 2 trang chủ"
           className="flex items-center gap-3"
           href="/"
         >
@@ -167,7 +167,7 @@ export default function CharacterReveal() {
             <Fingerprint aria-hidden="true" size={20} strokeWidth={1.4} />
           </span>
           <span className="font-mono text-sm font-bold tracking-[0.2em] text-white">
-            DATA<span className="text-cyan-300">TRAP</span>
+            KHÔNG GIAN <span className="text-cyan-300">2</span>
           </span>
         </Link>
         <span className="hidden items-center gap-2 font-mono text-[10px] tracking-[0.14em] text-emerald-200/70 sm:flex">

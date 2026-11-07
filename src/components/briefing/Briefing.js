@@ -29,10 +29,17 @@ const LEGACY_STAGES = [
   ["04", "MISSION 04", "Chọn cách bảo vệ danh tính.", Fingerprint],
 ];
 
+const QUIZ_STEPS = [
+  ["01", "LỰA CHỌN NGẪU NHIÊN", "Mỗi ván rút câu hỏi khác nhau từ ngân hàng đang bật.", Sparkles],
+  ["02", "QUYẾT ĐỊNH CỦA BẠN", "Đọc tình huống, chọn phương án và xem giải thích.", FileSearch],
+  ["03", "TỔNG KẾT KIẾN THỨC", "Nhận điểm, bài học và căn cứ tham khảo sau mỗi câu.", ShieldCheck],
+];
+
 export default function Briefing() {
   const router = useRouter();
   const [playerName, setPlayerName] = useState("");
   const [gameVersion, setGameVersion] = useState("legacy-v1");
+  const [questionCount, setQuestionCount] = useState(4);
   const [errorMessage, setErrorMessage] = useState("");
   const [isStarting, setIsStarting] = useState(false);
 
@@ -48,6 +55,7 @@ export default function Briefing() {
         if (active) {
           setPlayerName(`${result.player.fullName} — ${result.player.className}`);
           setGameVersion(result.gameVersion ?? "legacy-v1");
+          setQuestionCount(result.questionCount ?? 4);
         }
       })
       .catch((error) => {
@@ -87,10 +95,10 @@ export default function Briefing() {
           <span className="grid h-9 w-9 place-items-center border border-fuchsia-300/45 bg-fuchsia-300/[0.07] text-fuchsia-200">
             <ShieldAlert aria-hidden="true" size={19} />
           </span>
-          DATA<span className="text-cyan-300">TRAP</span>
+          KHÔNG GIAN <span className="text-cyan-300">2</span>
         </Link>
         <span className="font-mono text-[8px] tracking-[0.15em] text-cyan-100/60 sm:text-[9px]">
-          MISSION BRIEFING / {gameVersion === "rpg-v2" ? "RPG V2" : "LEGACY"}
+          MISSION BRIEFING / {gameVersion === "rpg-v2" ? "RPG V2" : gameVersion === "quiz-v3" ? "QUESTION RUN" : "LEGACY"}
         </span>
       </header>
 
@@ -107,9 +115,9 @@ export default function Briefing() {
             </span>
           </h1>
           <p className="mt-5 text-xs leading-6 text-slate-300 sm:text-sm sm:leading-7">
-            Bạn sẽ đồng hành cùng nhân vật và khám phá cách những dấu vết số có
-            thể bị ghép lại thành một danh tính. Mỗi lựa chọn đều để lại hậu quả
-            cho chặng tiếp theo.
+            {gameVersion === "quiz-v3"
+              ? `Cùng ${questionCount} tình huống được rút ngẫu nhiên từ ngân hàng câu hỏi, bạn sẽ thực hành cách bảo vệ danh tính số. Nhân vật và dữ liệu trong game đều là mô phỏng.`
+              : "Bạn sẽ đồng hành cùng nhân vật và khám phá cách những dấu vết số có thể bị ghép lại thành một danh tính. Mỗi lựa chọn đều để lại hậu quả cho chặng tiếp theo."}
           </p>
 
           <div className="mt-6 flex items-start gap-3 border-l-2 border-blue-300/50 bg-blue-300/[0.04] p-4">
@@ -119,8 +127,9 @@ export default function Briefing() {
                 AI GUARDIAN // BRIEFING
               </p>
               <p className="mt-2 text-xs leading-5 text-slate-300">
-                Hãy quan sát kỹ, kiểm tra trước khi chia sẻ và dùng bằng chứng
-                để chọn cách xử lý.
+                {gameVersion === "quiz-v3"
+                  ? "Đọc kỹ tình huống, cân nhắc mục đích sử dụng dữ liệu và kiểm tra căn cứ trước khi quyết định."
+                  : "Hãy quan sát kỹ, kiểm tra trước khi chia sẻ và dùng bằng chứng để chọn cách xử lý."}
               </p>
             </div>
           </div>
@@ -141,9 +150,9 @@ export default function Briefing() {
           </div>
           <div className="mt-5 flex items-center gap-2 font-mono text-[8px] tracking-[0.13em] text-slate-500">
             <Clock3 aria-hidden="true" size={13} />
-            KHOẢNG 3–5 PHÚT
+            {gameVersion === "quiz-v3" ? "SỐ CÂU DO ADMIN CÀI ĐẶT" : "KHOẢNG 3–5 PHÚT"}
             <span className="px-1 text-cyan-300/50">/</span>
-            {gameVersion === "rpg-v2" ? "3 STAGE LIÊN KẾT" : "4 NHIỆM VỤ LEGACY"}
+            {gameVersion === "quiz-v3" ? `${questionCount} CÂU NGẪU NHIÊN` : gameVersion === "rpg-v2" ? "3 STAGE LIÊN KẾT" : "4 NHIỆM VỤ LEGACY"}
           </div>
         </div>
 
@@ -151,18 +160,18 @@ export default function Briefing() {
           <div className="mb-4 flex items-center justify-between border-b border-cyan-200/15 pb-4">
             <div>
               <p className="font-mono text-[8px] tracking-[0.17em] text-cyan-200/60">
-                {gameVersion === "rpg-v2" ? "YOUR DECISIONS SHAPE THE STORY" : "PRESERVED LEGACY FLOW"}
+                {gameVersion === "quiz-v3" ? "RANDOMIZED QUESTION BANK" : gameVersion === "rpg-v2" ? "YOUR DECISIONS SHAPE THE STORY" : "PRESERVED LEGACY FLOW"}
               </p>
               <h2 className="mt-1 font-mono text-sm font-bold tracking-[0.12em] text-white sm:text-base">
-                {gameVersion === "rpg-v2" ? "MISSION STAGES" : "MISSION BRIEFING"}
+                {gameVersion === "quiz-v3" ? "QUESTION BRIEFING" : gameVersion === "rpg-v2" ? "MISSION STAGES" : "MISSION BRIEFING"}
               </h2>
             </div>
             <span className="font-mono text-[9px] text-slate-500">
-              {gameVersion === "rpg-v2" ? "01—03" : "01—04"}
+              {gameVersion === "quiz-v3" ? `01—${String(questionCount).padStart(2, "0")}` : gameVersion === "rpg-v2" ? "01—03" : "01—04"}
             </span>
           </div>
           <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-            {(gameVersion === "rpg-v2" ? RPG_STAGES : LEGACY_STAGES).map(
+            {(gameVersion === "quiz-v3" ? QUIZ_STEPS : gameVersion === "rpg-v2" ? RPG_STAGES : LEGACY_STAGES).map(
               ([number, title, detail, Icon]) => (
                 <article
                   className="relative overflow-hidden border border-cyan-100/10 bg-[linear-gradient(110deg,rgba(14,32,62,0.78),rgba(5,13,28,0.9))] p-4"
@@ -178,6 +187,13 @@ export default function Briefing() {
                       </p>
                       {gameVersion === "rpg-v2" && (
                         <h3 className="mt-1 text-xs font-semibold text-white">{title}</h3>
+                      )}
+                      {gameVersion === "quiz-v3" && (
+                        <p className="mt-4 border-l border-cyan-200/35 pl-3 text-[10px] leading-5 text-slate-400">
+                          Mỗi ván chọn {questionCount} câu không lặp. Căn cứ pháp luật chỉ
+                          mang tính tham khảo và các câu còn được đánh dấu rà soát sẽ cần
+                          chuyên gia kiểm tra.
+                        </p>
                       )}
                       <p className="mt-2 text-[10px] leading-5 text-slate-400">{detail}</p>
                     </div>

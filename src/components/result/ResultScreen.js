@@ -70,9 +70,11 @@ export default function ResultScreen() {
   }
 
   const isRpg = result.gameVersion === "rpg-v2";
+  const isQuiz = result.gameVersion === "quiz-v3";
+  const questionCount = result.quiz?.questionCount ?? 4;
   const isComplete =
     result.status === "completed" &&
-    result.completedStages === (isRpg ? 3 : 4);
+    result.completedStages === (isRpg ? 3 : isQuiz ? questionCount : 4);
   const stats = isRpg
     ? [
         [Target, "DATA RISK", `${result.rpg.dataRisk}/100`],
@@ -80,6 +82,13 @@ export default function ResultScreen() {
         [Fingerprint, "EVIDENCE", String(result.rpg.evidence.length)],
         [Clock3, "THỜI GIAN", formatDuration(result.duration)],
       ]
+    : isQuiz
+      ? [
+          [Target, "CÂU ĐÃ TRẢ LỜI", `${result.completedStages}/${questionCount}`],
+          [CheckCircle2, "ĐÚNG", `${result.correctAnswers}/${result.completedStages}`],
+          [ShieldCheck, "CHÍNH XÁC", `${result.accuracy}%`],
+          [Clock3, "THỜI GIAN", formatDuration(result.duration)],
+        ]
     : [
         [Target, "NHIỆM VỤ", `${result.completedStages}/4`],
         [CheckCircle2, "QUYẾT ĐỊNH ĐÚNG", `${result.correctAnswers}/${result.completedStages}`],
@@ -93,7 +102,7 @@ export default function ResultScreen() {
       <div aria-hidden="true" className="grid-overlay" />
       <section className="relative z-10 mx-auto w-full max-w-3xl pb-12 pt-6">
         <p className="text-center font-mono text-[10px] tracking-[0.2em] text-cyan-200/65">
-          DATA TRAP / MISSION DEBRIEF
+          KHÔNG GIAN 2 / MISSION DEBRIEF
         </p>
         <div className="identity-core mx-auto mt-7 grid h-24 w-24 place-items-center rounded-full border border-cyan-100/35 bg-cyan-200/[0.04] text-cyan-100">
           {isComplete ? (

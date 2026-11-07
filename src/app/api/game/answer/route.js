@@ -6,32 +6,10 @@ import {
 } from "@/lib/game/session-access";
 import Mission from "@/models/Mission";
 import GameSession from "@/models/GameSession";
-
-function isValidChoice(choice, options, answerMode) {
-  return (
-    Array.isArray(choice) &&
-    choice.length > 0 &&
-    choice.length <= options.length &&
-    (answerMode !== "single" || choice.length === 1) &&
-    choice.every((item) => typeof item === "string") &&
-    new Set(choice).size === choice.length &&
-    choice.every((item) => options.some((option) => option.id === item))
-  );
-}
-
-function calculatePoints(choice, expected, answerMode) {
-  const expectedSet = new Set(expected);
-  if (answerMode === "single") {
-    return choice.length === 1 && expectedSet.has(choice[0]) ? 100 : 0;
-  }
-  const correctCount = choice.filter((item) => expectedSet.has(item)).length;
-  const incorrectCount = choice.length - correctCount;
-  return Math.max(
-    0,
-    Math.round((80 * correctCount) / expected.length) - 10 * incorrectCount +
-      (incorrectCount === 0 && correctCount === expected.length ? 20 : 0),
-  );
-}
+import {
+  calculateAnswerPoints,
+  isValidAnswerChoice,
+} from "@/lib/game/answers";
 
 export async function POST(request) {
   const token = getSessionToken(request);
@@ -62,6 +40,8 @@ export async function POST(request) {
 
     if (
       !gameSession ||
+      (gameSession.gameVersion &&
+        gameSession.gameVersion !== "legacy-v1") ||
       gameSession.status !== "in_progress" ||
       gameSession.expiresAt <= new Date()
     ) {
@@ -81,7 +61,7 @@ export async function POST(request) {
       );
     }
 
-    if (!isValidChoice(payload.choice, mission.options, mission.answerMode)) {
+    if (!isValidAnswerChoice(payload.choice, mission.options, mission.answerMode)) {
       return NextResponse.json(
         { error: "Hãy chọn một hoặc nhiều phương án hợp lệ." },
         { status: 400, headers: { "Cache-Control": "no-store" } },
@@ -95,7 +75,7 @@ export async function POST(request) {
         ? choice.length === 1 && expected.includes(choice[0])
         : choice.length === expected.length &&
           choice.every((answer, index) => answer === expected[index]);
-    const points = calculatePoints(choice, expected, mission.answerMode);
+    const points = calculateAnswerPoints(choice, expected, mission.answerMode);
     const now = new Date();
     const finalStage = payload.stage === 4;
     const updatedSession = await GameSession.findOneAndUpdate(

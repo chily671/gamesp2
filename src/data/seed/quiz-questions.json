@@ -1,0 +1,422 @@
+[
+  {
+    "questionCode": "QUESTION-001",
+    "title": "BỘ QUYỀN CỦA ỨNG DỤNG ẢNH",
+    "story": "Trong hồ sơ của {characterName}, một ứng dụng chỉnh ảnh đang xin quyền trên điện thoại.",
+    "scenario": "Ứng dụng cần chụp ảnh mới hoặc chọn một ảnh có sẵn. Màn hình xin quyền còn đề nghị truy cập micro và danh bạ nhưng không giải thích lý do.",
+    "interactionPrompt": "Chọn phạm vi quyền phù hợp nhất với chức năng đã mô tả.",
+    "answerMode": "multiple",
+    "options": [
+      { "id": "camera", "label": "Camera khi cần chụp", "detail": "Chỉ phục vụ thao tác chụp ảnh mới." },
+      { "id": "selected-photo", "label": "Chọn ảnh cụ thể", "detail": "Chỉ đưa ảnh người chơi chọn vào ứng dụng." },
+      { "id": "microphone", "label": "Microphone liên tục", "detail": "Không liên quan đến chức năng chỉnh ảnh đang nêu." },
+      { "id": "contacts", "label": "Toàn bộ danh bạ", "detail": "Ứng dụng chưa giải thích mục đích cần danh bạ." }
+    ],
+    "correctAnswer": ["camera", "selected-photo"],
+    "explanation": "Chỉ cấp quyền gắn với thao tác cần dùng và chọn phạm vi hẹp nhất có thể. Việc một ứng dụng xin quyền không tự nó chứng minh đã có vi phạm; cần xem mục đích, thông báo và căn cứ xử lý.",
+    "lesson": "Đối chiếu quyền ứng dụng với chức năng thực tế; giới hạn hoặc từ chối quyền không cần thiết.",
+    "legalArticles": [3, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3 và Điều 16. Câu hỏi đánh giá cách giảm phạm vi dữ liệu trên môi trường mạng, không kết luận vi phạm trong tình huống cụ thể.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-002",
+    "title": "BIỂU MẪU NHẬN HÓA ĐƠN",
+    "story": "Một dịch vụ hư cấu gửi hóa đơn điện tử cho {characterName} qua email.",
+    "scenario": "Biểu mẫu yêu cầu thêm ngày sinh đầy đủ và danh sách bạn bè, nhưng không nêu vì sao các thông tin đó cần cho việc gửi hóa đơn.",
+    "interactionPrompt": "Bạn nên làm gì trước khi gửi biểu mẫu?",
+    "answerMode": "single",
+    "options": [
+      { "id": "fill-everything", "label": "Điền tất cả để dùng dịch vụ nhanh hơn", "detail": "Không cần hỏi nếu biểu mẫu đánh dấu bắt buộc." },
+      { "id": "ask-purpose", "label": "Hỏi mục đích và xem trường nào thật sự bắt buộc", "detail": "Chỉ cung cấp thông tin phù hợp sau khi hiểu yêu cầu." },
+      { "id": "fake-data", "label": "Nhập dữ liệu bịa đặt vào mọi trường", "detail": "Có thể làm sai lệch hồ sơ và không xử lý được yêu cầu." },
+      { "id": "post-form", "label": "Đăng ảnh biểu mẫu lên mạng để hỏi", "detail": "Ảnh có thể làm lộ email hoặc thông tin tài khoản." }
+    ],
+    "correctAnswer": ["ask-purpose"],
+    "explanation": "Hãy tìm hiểu mục đích, phạm vi và tính cần thiết của từng trường; nếu chưa rõ, hỏi dịch vụ hoặc bỏ qua trường tùy chọn. Không thể kết luận một yêu cầu là trái luật chỉ từ mô tả ngắn này.",
+    "lesson": "Trước khi chia sẻ dữ liệu, cần hiểu thông tin được yêu cầu để làm gì và có lựa chọn phù hợp hay không.",
+    "legalArticles": [3, 9],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3 và Điều 9. Căn cứ xử lý và yêu cầu về sự đồng ý cần được đối chiếu theo toàn bộ bối cảnh.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-003",
+    "title": "MÀN HÌNH XIN ĐỒNG Ý MƠ HỒ",
+    "story": "{characterName} mở một dịch vụ mới và thấy lời mời chấp thuận xử lý dữ liệu.",
+    "scenario": "Nút chấp thuận xuất hiện ngay, nhưng phần thông tin về dữ liệu và mục đích chưa được đọc hoặc chưa rõ.",
+    "interactionPrompt": "Chọn phản ứng an toàn và có trách nhiệm nhất.",
+    "answerMode": "single",
+    "options": [
+      { "id": "accept-now", "label": "Chấp thuận ngay", "detail": "Có thể xem lại sau nếu có vấn đề." },
+      { "id": "review-first", "label": "Đọc thông tin, hỏi điểm chưa rõ rồi mới quyết định", "detail": "Kiểm tra nội dung và lựa chọn khả dụng trước khi tiếp tục." },
+      { "id": "assume-illegal", "label": "Kết luận dịch vụ chắc chắn vi phạm luật", "detail": "Chưa đủ dữ kiện để kết luận như vậy." },
+      { "id": "share-password", "label": "Gửi mật khẩu cho người hỗ trợ", "detail": "Không cần chia sẻ thông tin xác thực để đọc thông báo." }
+    ],
+    "correctAnswer": ["review-first"],
+    "explanation": "Cần đọc thông tin và hiểu lựa chọn trước khi quyết định. Câu hỏi không khẳng định mọi xử lý đều phải dựa trên sự đồng ý; luật có thể quy định các căn cứ hoặc trường hợp khác.",
+    "lesson": "Không biến thao tác nhanh thành đồng ý chưa hiểu; kiểm tra thông tin và căn cứ áp dụng.",
+    "legalArticles": [3, 9, 19],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 9 và Điều 19. Điều 19 cần được áp dụng theo đúng điều kiện luật định, không suy đoán từ giao diện.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-004",
+    "title": "RÚT LẠI LỰA CHỌN",
+    "story": "{characterName} muốn thay đổi lựa chọn đã đưa ra cho một tính năng tùy chọn.",
+    "scenario": "Dịch vụ có mục quản lý quyền riêng tư. Người chơi chưa biết việc rút lại ảnh hưởng thế nào đến tính năng và dữ liệu đã xử lý trước đó.",
+    "interactionPrompt": "Chọn bước tiếp theo phù hợp nhất.",
+    "answerMode": "single",
+    "options": [
+      { "id": "withdraw-channel", "label": "Dùng kênh chính thức để gửi yêu cầu và đọc hệ quả được thông báo", "detail": "Lưu lại xác nhận và hỏi nếu phạm vi chưa rõ." },
+      { "id": "delete-account", "label": "Xóa tài khoản ngay mà không kiểm tra lựa chọn", "detail": "Có thể không giải quyết đúng yêu cầu." },
+      { "id": "public-complaint", "label": "Đăng dữ liệu tài khoản lên mạng để gây chú ý", "detail": "Có thể làm lộ thêm thông tin." },
+      { "id": "assume-erasure", "label": "Cho rằng mọi dữ liệu lập tức bị xóa", "detail": "Không thể suy ra hệ quả pháp lý chỉ từ việc rút lựa chọn." }
+    ],
+    "correctAnswer": ["withdraw-channel"],
+    "explanation": "Gửi yêu cầu qua kênh chính thức và đọc thông tin về phạm vi, hệ quả. Không mặc định việc rút lại tự động xóa mọi dữ liệu hoặc loại trừ mọi căn cứ xử lý khác.",
+    "lesson": "Biết cách thực hiện và xác nhận yêu cầu; phân biệt việc rút lại sự đồng ý với các xử lý có căn cứ khác.",
+    "legalArticles": [4, 10, 19],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 4, Điều 10 và Điều 19. Hệ quả cụ thể cần rà soát theo căn cứ và tình huống xử lý.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-005",
+    "title": "HỒ SƠ CÓ THÔNG TIN SAI",
+    "story": "Trong hồ sơ dịch vụ của {characterName}, một thông tin liên hệ đã cũ.",
+    "scenario": "Người chơi muốn kiểm tra và yêu cầu cập nhật thông tin qua dịch vụ, nhưng không biết nên gửi giấy tờ cho ai.",
+    "interactionPrompt": "Chọn cách xử lý an toàn nhất.",
+    "answerMode": "single",
+    "options": [
+      { "id": "official-request", "label": "Dùng mục hỗ trợ hoặc kênh chính thức để yêu cầu kiểm tra/cập nhật", "detail": "Chỉ cung cấp thông tin xác minh cần thiết qua kênh đó." },
+      { "id": "public-post", "label": "Đăng giấy tờ lên trang công khai", "detail": "Làm tăng nguy cơ lộ thông tin." },
+      { "id": "send-everywhere", "label": "Gửi giấy tờ cho mọi tài khoản tự xưng hỗ trợ", "detail": "Không xác minh được người nhận." },
+      { "id": "ignore", "label": "Bỏ qua vì người dùng không thể yêu cầu sửa", "detail": "Không nên mặc định như vậy." }
+    ],
+    "correctAnswer": ["official-request"],
+    "explanation": "Kiểm tra quy trình chính thức và chỉ cung cấp phần thông tin cần thiết cho việc xác minh. Quyền và cách thực hiện cần được đối chiếu theo nội dung luật và quy trình của dịch vụ.",
+    "lesson": "Yêu cầu xem xét hoặc chỉnh sửa dữ liệu qua kênh đã xác minh; tránh gửi giấy tờ tùy thân công khai.",
+    "legalArticles": [4],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 4 về quyền và nghĩa vụ của chủ thể dữ liệu. Cần chuyên gia xác minh phạm vi và thủ tục áp dụng.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-006",
+    "title": "DANH BẠ ĐỂ MỜI BẠN",
+    "story": "{characterName} cài một ứng dụng tạo thiệp mời.",
+    "scenario": "Ứng dụng đề nghị tải toàn bộ danh bạ lên máy chủ để gửi lời mời, nhưng người chơi chỉ muốn mời một người bạn.",
+    "interactionPrompt": "Lựa chọn nào giảm phạm vi dữ liệu chia sẻ tốt nhất?",
+    "answerMode": "single",
+    "options": [
+      { "id": "upload-all", "label": "Cho phép tải toàn bộ danh bạ", "detail": "Nhanh hơn dù chỉ cần liên hệ một người." },
+      { "id": "manual-invite", "label": "Tự nhập một liên hệ hoặc dùng chức năng chia sẻ có chọn lọc", "detail": "Giới hạn dữ liệu ở mục đích cần thiết." },
+      { "id": "borrow-list", "label": "Dùng danh bạ của người khác", "detail": "Không giải quyết vấn đề phạm vi và quyền riêng tư." },
+      { "id": "fake-contact", "label": "Tải danh bạ giả để qua bước", "detail": "Có thể tạo dữ liệu sai và rủi ro mới." }
+    ],
+    "correctAnswer": ["manual-invite"],
+    "explanation": "Chọn cách chỉ sử dụng thông tin liên hệ cần cho lời mời. Việc ứng dụng đề nghị quyền rộng cần được xem xét theo mục đích và thông tin đã cung cấp, không tự động là kết luận vi phạm.",
+    "lesson": "Ưu tiên chia sẻ có chọn lọc thay vì cấp quyền truy cập toàn bộ danh bạ.",
+    "legalArticles": [3, 9, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 9 và Điều 16. Căn cứ áp dụng phụ thuộc chức năng, thông báo và bối cảnh.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-007",
+    "title": "CÔNG CỤ PHÂN TÍCH BÊN THỨ BA",
+    "story": "Một dịch vụ mà {characterName} đang dùng đề nghị bật tính năng phân tích.",
+    "scenario": "Màn hình chưa nói rõ dữ liệu nào được gửi, gửi cho ai và lựa chọn tắt ở đâu.",
+    "interactionPrompt": "Bạn nên làm gì trước khi bật tính năng?",
+    "answerMode": "single",
+    "options": [
+      { "id": "enable", "label": "Bật vì tính năng được đề xuất", "detail": "Không cần biết dữ liệu nào được chia sẻ." },
+      { "id": "inspect", "label": "Đọc thông báo, tìm phạm vi chia sẻ và lựa chọn cài đặt", "detail": "Hỏi dịch vụ nếu thông tin quan trọng còn thiếu." },
+      { "id": "assume-breach", "label": "Kết luận chắc chắn có vi phạm", "detail": "Mô tả chưa đủ để đưa ra kết luận." },
+      { "id": "send-password", "label": "Gửi mật khẩu cho bộ phận phân tích", "detail": "Không phải cách xác minh phù hợp." }
+    ],
+    "correctAnswer": ["inspect"],
+    "explanation": "Tìm hiểu loại dữ liệu, mục đích, bên nhận và các lựa chọn trước khi quyết định. Tình huống chưa đủ thông tin để kết luận về tính hợp pháp.",
+    "lesson": "Khi dữ liệu có thể được chia sẻ cho bên khác, kiểm tra mục đích, phạm vi và lựa chọn kiểm soát.",
+    "legalArticles": [3, 9, 19],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 9 và Điều 19. Không suy diễn rằng mọi chia sẻ đều cần cùng một căn cứ.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-008",
+    "title": "BÀI ĐĂNG ĐANG Ở CHẾ ĐỘ CÔNG KHAI",
+    "story": "{characterName} tìm thấy một bài đăng cũ có ảnh và thông tin liên hệ.",
+    "scenario": "Một người lạ xin lấy lại bài đăng để quảng bá dịch vụ. Người chơi chưa biết họ sẽ dùng ảnh và thông tin vào đâu.",
+    "interactionPrompt": "Cách phản hồi nào thận trọng nhất?",
+    "answerMode": "single",
+    "options": [
+      { "id": "send-original", "label": "Gửi lại ảnh gốc và toàn bộ thông tin", "detail": "Bài đăng từng ở chế độ công khai." },
+      { "id": "check-purpose", "label": "Hỏi mục đích, phạm vi dùng và cân nhắc không chia sẻ", "detail": "Kiểm tra quyền riêng tư và gỡ thông tin không cần thiết." },
+      { "id": "publish-id", "label": "Đăng thêm giấy tờ để chứng minh quyền sở hữu", "detail": "Tạo thêm nguy cơ lộ dữ liệu." },
+      { "id": "accuse", "label": "Tuyên bố người xin ảnh chắc chắn phạm luật", "detail": "Chưa đủ bối cảnh để kết luận." }
+    ],
+    "correctAnswer": ["check-purpose"],
+    "explanation": "Thông tin từng được công khai không có nghĩa mọi mục đích sử dụng tiếp theo đều giống nhau. Hãy xem xét bối cảnh và tránh chia sẻ thêm dữ liệu khi chưa rõ.",
+    "lesson": "Cân nhắc mục đích mới trước khi tái sử dụng hoặc phát tán dữ liệu.",
+    "legalArticles": [3, 7, 19],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 7 và Điều 19. Việc áp dụng quy định với dữ liệu đã công khai cần được chuyên gia xác minh theo trường hợp cụ thể.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-009",
+    "title": "THÔNG TIN SỨC KHỎE TRONG NHÓM CHAT",
+    "story": "Một ảnh chụp màn hình trong cuộc trò chuyện của {characterName} có nội dung sức khỏe của một người khác.",
+    "scenario": "Người gửi nhờ chuyển ảnh vào nhóm đông người để xin lời khuyên. Ảnh còn tên và thông tin nhận diện.",
+    "interactionPrompt": "Bạn nên làm gì?",
+    "answerMode": "single",
+    "options": [
+      { "id": "forward", "label": "Chuyển tiếp nguyên ảnh", "detail": "Nhóm đông có thể giúp nhanh hơn." },
+      { "id": "pause", "label": "Không phát tán; xin phép và tìm kênh hỗ trợ phù hợp", "detail": "Nếu cần hỏi, loại bỏ thông tin nhận diện và chỉ chia sẻ tối thiểu." },
+      { "id": "save-cloud", "label": "Tải ảnh lên kho công khai", "detail": "Tăng số người có thể truy cập." },
+      { "id": "guess-diagnosis", "label": "Đoán bệnh rồi đăng tên người đó", "detail": "Không có căn cứ và làm lộ thông tin." }
+    ],
+    "correctAnswer": ["pause"],
+    "explanation": "Thông tin sức khỏe có thể cần mức bảo vệ cao; không phát tán ảnh có định danh khi chưa có căn cứ và mục đích rõ ràng. Câu hỏi không tự phân loại một dữ liệu cụ thể theo luật.",
+    "lesson": "Với thông tin riêng tư, đặc biệt thông tin nhạy cảm về đời sống cá nhân, giảm người nhận và loại bỏ định danh khi phù hợp.",
+    "legalArticles": [3, 4, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 4 và Điều 16. Phân loại dữ liệu cụ thể và điều kiện chia sẻ cần chuyên gia rà soát.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-010",
+    "title": "XÁC MINH BẰNG KHUÔN MẶT",
+    "story": "Một liên kết trong tin nhắn yêu cầu {characterName} tải ảnh chân dung để nhận quà.",
+    "scenario": "Người gửi không thuộc kênh chính thức và không giải thích nơi lưu ảnh hoặc mục đích sử dụng.",
+    "interactionPrompt": "Chọn cách bảo vệ phù hợp nhất.",
+    "answerMode": "single",
+    "options": [
+      { "id": "upload", "label": "Tải ảnh lên để nhận quà", "detail": "Không cần xác minh người nhận." },
+      { "id": "verify", "label": "Không mở liên kết; tự vào kênh chính thức để kiểm tra", "detail": "Không gửi ảnh định danh qua yêu cầu chưa xác thực." },
+      { "id": "forward", "label": "Chuyển liên kết cho bạn bè thử trước", "detail": "Có thể làm lộ thêm dữ liệu của người khác." },
+      { "id": "send-otp", "label": "Gửi mã xác thực để xác nhận ảnh", "detail": "Mã xác thực không nên chia sẻ qua tin nhắn." }
+    ],
+    "correctAnswer": ["verify"],
+    "explanation": "Xác minh yêu cầu độc lập qua ứng dụng hoặc trang chính thức. Không đủ dữ kiện để phân loại pháp lý ảnh hoặc kết luận liên kết đã gây ra vi phạm.",
+    "lesson": "Không gửi ảnh có khả năng nhận diện cho tài khoản chưa xác minh; kiểm tra mục đích và bên nhận.",
+    "legalArticles": [7, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 7 và Điều 16. Bài học xác minh yêu cầu là hướng dẫn an toàn; cần rà soát pháp lý riêng cho từng hành vi.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-011",
+    "title": "ẢNH CHỤP MÀN HÌNH CÓ TÊN BẠN",
+    "story": "Trong nhóm học của {characterName}, một ảnh chụp màn hình có tên, số điện thoại và lịch học.",
+    "scenario": "Người chơi muốn đăng ảnh lên mạng để hỏi ý kiến về một sự cố.",
+    "interactionPrompt": "Chọn cách giảm lộ dữ liệu trước khi xin trợ giúp.",
+    "answerMode": "multiple",
+    "options": [
+      { "id": "crop", "label": "Cắt bỏ phần không liên quan", "detail": "Chỉ giữ nội dung cần thiết cho câu hỏi." },
+      { "id": "redact", "label": "Che tên, số liên hệ và thông tin nhận diện", "detail": "Kiểm tra kỹ ảnh sau khi che." },
+      { "id": "public-full", "label": "Đăng nguyên ảnh công khai", "detail": "Có thể làm lộ dữ liệu của nhiều người." },
+      { "id": "tag", "label": "Gắn thẻ mọi người trong ảnh", "detail": "Làm dữ liệu dễ tìm và liên kết hơn." }
+    ],
+    "correctAnswer": ["crop", "redact"],
+    "explanation": "Chỉ chia sẻ phần cần thiết và loại bỏ thông tin nhận diện khi có thể. Nếu sự cố cần xử lý, ưu tiên kênh hỗ trợ phù hợp thay vì đăng dữ liệu ra công khai.",
+    "lesson": "Tối thiểu hóa dữ liệu trong ảnh chụp màn hình trước khi gửi hoặc đăng.",
+    "legalArticles": [3, 4, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 4 và Điều 16. Việc chia sẻ cụ thể cần được đánh giá theo mục đích và bối cảnh.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-012",
+    "title": "THIẾT BỊ THẤT LẠC",
+    "story": "Điện thoại của {characterName} bị thất lạc khi vẫn còn đăng nhập một số dịch vụ.",
+    "scenario": "Thiết bị có thể chứa email, ảnh và các phiên đăng nhập đang hoạt động.",
+    "interactionPrompt": "Chọn các bước nên ưu tiên.",
+    "answerMode": "multiple",
+    "options": [
+      { "id": "lock-device", "label": "Dùng chức năng khóa hoặc tìm thiết bị chính thức", "detail": "Thực hiện từ thiết bị khác an toàn." },
+      { "id": "revoke-sessions", "label": "Đăng xuất phiên lạ và đổi thông tin xác thực qua kênh chính thức", "detail": "Ưu tiên tài khoản quan trọng." },
+      { "id": "notify-service", "label": "Báo dịch vụ liên quan khi cần bảo vệ tài khoản", "detail": "Dùng trang hoặc số hỗ trợ đã xác minh." },
+      { "id": "post-password", "label": "Đăng mật khẩu lên mạng để nhờ tìm máy", "detail": "Làm tăng nguy cơ chiếm tài khoản." }
+    ],
+    "correctAnswer": ["lock-device", "revoke-sessions", "notify-service"],
+    "explanation": "Khóa thiết bị, thu hồi phiên đăng nhập và liên hệ dịch vụ qua kênh xác thực giúp giảm nguy cơ truy cập trái phép. Đây là hướng dẫn an toàn; nghĩa vụ pháp lý cụ thể phụ thuộc vai trò và tình huống.",
+    "lesson": "Khi mất thiết bị, ưu tiên bảo vệ tài khoản và hạn chế truy cập dữ liệu từ xa.",
+    "legalArticles": [3, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3 và Điều 16. Các bước xử lý sự cố là hướng dẫn thực hành, không thay thế quy trình pháp lý.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-013",
+    "title": "GỬI TỆP CÓ THÔNG TIN CÁ NHÂN",
+    "story": "{characterName} cần gửi một tệp có thông tin liên hệ cho bộ phận hỗ trợ đã xác minh.",
+    "scenario": "Dịch vụ cung cấp kênh tải tệp an toàn và có tùy chọn bảo vệ tệp bằng mật khẩu.",
+    "interactionPrompt": "Chọn các bước bảo vệ phù hợp khi gửi.",
+    "answerMode": "multiple",
+    "options": [
+      { "id": "confirm-recipient", "label": "Xác minh người nhận và kênh gửi", "detail": "Tránh gửi nhầm hoặc qua đường dẫn không rõ." },
+      { "id": "minimize-file", "label": "Chỉ giữ trường dữ liệu cần cho yêu cầu", "detail": "Loại bỏ thông tin thừa." },
+      { "id": "encrypt-file", "label": "Dùng tính năng mã hóa phù hợp nếu có", "detail": "Gửi mật khẩu qua kênh khác đã xác minh." },
+      { "id": "public-link", "label": "Tạo liên kết công khai không thời hạn", "detail": "Ai có liên kết đều có thể truy cập." }
+    ],
+    "correctAnswer": ["confirm-recipient", "minimize-file", "encrypt-file"],
+    "explanation": "Xác minh người nhận, giảm dữ liệu trong tệp và sử dụng biện pháp bảo vệ phù hợp. Mã hóa không tự thay thế việc xem xét mục đích, căn cứ xử lý hoặc phạm vi chia sẻ.",
+    "lesson": "Mã hóa là một lớp bảo vệ; kết hợp với kênh tin cậy, giới hạn người nhận và tối thiểu hóa dữ liệu.",
+    "legalArticles": [3, 12, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 12 và Điều 16. Biện pháp cụ thể cần được đối chiếu với quy định và hướng dẫn áp dụng.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-014",
+    "title": "LỜI MỜI MUA DANH SÁCH DỮ LIỆU",
+    "story": "Một tài khoản lạ mời {characterName} mua danh sách email và số điện thoại.",
+    "scenario": "Người bán không nêu nguồn thu thập hoặc quyền sử dụng dữ liệu; họ khuyến khích tải tệp và chuyển tiếp cho bạn bè.",
+    "interactionPrompt": "Bạn nên chọn cách nào?",
+    "answerMode": "single",
+    "options": [
+      { "id": "buy", "label": "Mua thử một phần danh sách", "detail": "Không cần biết nguồn dữ liệu." },
+      { "id": "decline-report", "label": "Không mua hoặc phát tán; báo cáo qua nền tảng phù hợp", "detail": "Không tải tệp có thể chứa dữ liệu bị lộ." },
+      { "id": "forward", "label": "Chuyển tệp cho nhóm chat để mọi người kiểm tra", "detail": "Làm dữ liệu lan rộng thêm." },
+      { "id": "publish-seller", "label": "Đăng thông tin cá nhân của người bán để trả đũa", "detail": "Tạo thêm nguy cơ và không phải cách xử lý an toàn." }
+    ],
+    "correctAnswer": ["decline-report"],
+    "explanation": "Không tiếp tay mua, tải hoặc lan truyền danh sách không rõ nguồn. Ghi nhận thông tin cần thiết và báo cáo qua kênh phù hợp; không tự công khai dữ liệu của người khác.",
+    "lesson": "Không thu thập hoặc phát tán dữ liệu cá nhân không rõ nguồn gốc; tránh biến xử lý sự cố thành hành vi xâm phạm mới.",
+    "legalArticles": [7, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 7 và Điều 16. Việc xác định hành vi vi phạm cụ thể cần dựa trên chứng cứ và quy định áp dụng.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-015",
+    "title": "DỊCH VỤ NÓI KHÔNG CẦN ĐỒNG Ý",
+    "story": "Một dịch vụ thông báo rằng trong một số trường hợp luật định, dữ liệu có thể được xử lý theo căn cứ khác.",
+    "scenario": "{characterName} không thấy mô tả cụ thể trường hợp nào áp dụng và không biết nơi hỏi thêm.",
+    "interactionPrompt": "Chọn cách hiểu phù hợp nhất.",
+    "answerMode": "single",
+    "options": [
+      { "id": "all-exempt", "label": "Mọi dịch vụ đều được xử lý dữ liệu không cần giải thích", "detail": "Một ngoại lệ không có nghĩa là áp dụng cho mọi tình huống." },
+      { "id": "all-consent", "label": "Mọi hoạt động xử lý đều luôn cần sự đồng ý", "detail": "Không phù hợp với việc luật có thể quy định trường hợp khác." },
+      { "id": "verify-case", "label": "Kiểm tra đúng trường hợp và điều kiện luật định", "detail": "Hỏi kênh chính thức hoặc chuyên gia khi chưa rõ." },
+      { "id": "ignore", "label": "Bỏ qua mọi thông tin về căn cứ xử lý", "detail": "Không giúp hiểu việc sử dụng dữ liệu." }
+    ],
+    "correctAnswer": ["verify-case"],
+    "explanation": "Không mặc định mọi xử lý đều cần sự đồng ý, cũng không xem ngoại lệ là giấy phép chung. Cần xác định chính xác trường hợp và điều kiện của luật.",
+    "lesson": "Đánh giá căn cứ xử lý theo từng bối cảnh; không suy rộng từ một ngoại lệ.",
+    "legalArticles": [9, 19],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 9 và Điều 19. Nội dung cần chuyên gia rà soát theo điều kiện cụ thể của trường hợp xử lý.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-016",
+    "title": "MÃ XÁC THỰC KHÔNG PHẢI MẬT KHẨU HỖ TRỢ",
+    "story": "Một tin nhắn gửi đến {characterName} tự nhận là nhân viên bảo vệ dữ liệu.",
+    "scenario": "Người nhắn yêu cầu mã OTP để xác nhận danh tính và hứa sẽ xóa thông tin khỏi hệ thống.",
+    "interactionPrompt": "Chọn phản ứng an toàn nhất.",
+    "answerMode": "single",
+    "options": [
+      { "id": "send-otp", "label": "Gửi mã vì yêu cầu liên quan dữ liệu cá nhân", "detail": "Người nhắn có thể dùng mã để truy cập tài khoản." },
+      { "id": "verify-channel", "label": "Không gửi mã; tự mở kênh chính thức để xác minh", "detail": "Dùng thông tin liên hệ đã biết, không dùng đường dẫn trong tin nhắn." },
+      { "id": "send-password", "label": "Gửi mật khẩu thay cho OTP", "detail": "Không chia sẻ thông tin xác thực." },
+      { "id": "forward-code", "label": "Chuyển mã cho bạn bè hỏi giúp", "detail": "Mã vẫn có thể bị sử dụng trong thời gian hiệu lực." }
+    ],
+    "correctAnswer": ["verify-channel"],
+    "explanation": "Không chia sẻ mã xác thực hoặc mật khẩu qua tin nhắn. Tự liên hệ dịch vụ qua kênh đã xác minh để kiểm tra yêu cầu.",
+    "lesson": "Yêu cầu nghe có vẻ hợp lý vẫn cần được xác minh; không giao thông tin xác thực cho người khác.",
+    "legalArticles": [7, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 7 và Điều 16. Đây là hướng dẫn an toàn tài khoản; không phải kết luận pháp lý về người gửi.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-017",
+    "title": "YÊU CẦU XEM DỮ LIỆU",
+    "story": "{characterName} muốn biết một dịch vụ đang hiển thị thông tin hồ sơ nào.",
+    "scenario": "Có nhiều tài khoản giả mạo bộ phận hỗ trợ đang bình luận dưới bài đăng công khai.",
+    "interactionPrompt": "Chọn cách gửi yêu cầu ít rủi ro nhất.",
+    "answerMode": "single",
+    "options": [
+      { "id": "official-privacy", "label": "Dùng mục quyền riêng tư hoặc hỗ trợ trong ứng dụng chính thức", "detail": "Kiểm tra tên miền và tài khoản trước khi cung cấp thông tin." },
+      { "id": "comment-id", "label": "Đăng giấy tờ tùy thân dưới bài bình luận", "detail": "Mọi người có thể xem hoặc sao chép." },
+      { "id": "dm-stranger", "label": "Gửi ảnh giấy tờ cho tài khoản trả lời nhanh nhất", "detail": "Chưa xác minh danh tính bên nhận." },
+      { "id": "give-up", "label": "Không hỏi vì chủ thể dữ liệu không có quyền", "detail": "Không nên khẳng định như vậy." }
+    ],
+    "correctAnswer": ["official-privacy"],
+    "explanation": "Tìm kênh chính thức để yêu cầu thông tin và chỉ cung cấp dữ liệu xác minh cần thiết. Phạm vi quyền và thủ tục cần đối chiếu với luật và quy trình áp dụng.",
+    "lesson": "Sử dụng kênh xác minh khi thực hiện quyền liên quan đến dữ liệu cá nhân.",
+    "legalArticles": [4],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 4 về quyền và nghĩa vụ của chủ thể dữ liệu. Cần rà soát thủ tục cụ thể.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-018",
+    "title": "LỊCH TRÌNH VÀ VỊ TRÍ CỦA BẠN",
+    "story": "Một bài đăng mới của {characterName} có ảnh đồng phục, bảng tên trường và vị trí đang ở.",
+    "scenario": "Người chơi muốn chia sẻ khoảnh khắc nhưng không muốn người lạ suy ra lịch trình hoặc nơi ở.",
+    "interactionPrompt": "Chọn các bước phù hợp.",
+    "answerMode": "multiple",
+    "options": [
+      { "id": "hide-location", "label": "Tắt vị trí và xóa chi tiết nhận diện không cần thiết", "detail": "Kiểm tra ảnh và thông tin đính kèm." },
+      { "id": "limit-audience", "label": "Giới hạn người xem theo nhu cầu", "detail": "Rà soát cài đặt trước khi đăng." },
+      { "id": "publish-routine", "label": "Đăng lịch trình hằng ngày công khai", "detail": "Có thể giúp người khác dự đoán thói quen." },
+      { "id": "tag-school", "label": "Gắn vị trí chính xác của trường và nhà", "detail": "Lộ thêm địa điểm có thể nhận diện." }
+    ],
+    "correctAnswer": ["hide-location", "limit-audience"],
+    "explanation": "Hạn chế thông tin vị trí và nhóm người xem để giảm khả năng ghép nối dấu vết. Việc đăng thông tin không tự động là vi phạm; cần xem dữ liệu, mục đích và bối cảnh.",
+    "lesson": "Ảnh, vị trí và lịch đăng có thể kết hợp để suy ra thói quen; cân nhắc trước khi công khai.",
+    "legalArticles": [3, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3 và Điều 16. Bài học tập trung vào giảm rủi ro trên không gian mạng.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-019",
+    "title": "VỊ TRÍ LUÔN BẬT",
+    "story": "Một ứng dụng tiện ích trên điện thoại của {characterName} yêu cầu quyền truy cập vị trí mọi lúc.",
+    "scenario": "Tính năng đang dùng chỉ cần tìm địa điểm khi người chơi chủ động mở bản đồ.",
+    "interactionPrompt": "Bạn nên lựa chọn như thế nào?",
+    "answerMode": "single",
+    "options": [
+      { "id": "always", "label": "Cho phép vị trí mọi lúc", "detail": "Ứng dụng có thể truy cập cả khi không dùng." },
+      { "id": "while-using", "label": "Chọn chỉ khi đang dùng hoặc nhập địa điểm thủ công", "detail": "Ưu tiên phạm vi đủ cho tính năng." },
+      { "id": "share-password", "label": "Gửi mật khẩu để đổi cài đặt", "detail": "Không cần cung cấp mật khẩu cho thao tác này." },
+      { "id": "assume-violation", "label": "Kết luận ứng dụng chắc chắn vi phạm luật", "detail": "Cần biết mục đích, thông báo và căn cứ xử lý." }
+    ],
+    "correctAnswer": ["while-using"],
+    "explanation": "Dùng lựa chọn giới hạn phù hợp với tính năng hiện tại và kiểm tra mục đích truy cập. Không đủ thông tin để đưa ra kết luận pháp lý tuyệt đối.",
+    "lesson": "Giới hạn quyền vị trí theo nhu cầu và xem lại quyền đã cấp.",
+    "legalArticles": [3, 9, 16],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 9 và Điều 16. Tính hợp pháp phụ thuộc bối cảnh và căn cứ xử lý cụ thể.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "questionCode": "QUESTION-020",
+    "title": "QUẢNG CÁO DỰA TRÊN HỒ SƠ",
+    "story": "{characterName} nhận thấy quảng cáo phù hợp với một số sở thích từng khai báo.",
+    "scenario": "Người chơi chưa nhớ đã bật tùy chọn cá nhân hóa nào và muốn kiểm tra cách dữ liệu được sử dụng.",
+    "interactionPrompt": "Chọn bước kiểm tra phù hợp nhất.",
+    "answerMode": "single",
+    "options": [
+      { "id": "check-settings", "label": "Xem cài đặt quyền riêng tư và thông tin về mục đích sử dụng", "detail": "Tìm lựa chọn quản lý hoặc rút lại nếu có." },
+      { "id": "assume-illegal", "label": "Kết luận mọi quảng cáo cá nhân hóa đều trái luật", "detail": "Chưa đủ dữ kiện và có thể có nhiều căn cứ xử lý." },
+      { "id": "accept-all", "label": "Chấp nhận mọi tùy chọn để tắt quảng cáo", "detail": "Không giải quyết câu hỏi về dữ liệu đang dùng." },
+      { "id": "post-profile", "label": "Đăng toàn bộ hồ sơ lên mạng để hỏi", "detail": "Làm tăng nguy cơ lộ dữ liệu." }
+    ],
+    "correctAnswer": ["check-settings"],
+    "explanation": "Kiểm tra thông báo, cài đặt và lựa chọn của tài khoản; yêu cầu làm rõ qua kênh chính thức nếu cần. Không kết luận chỉ từ việc thấy quảng cáo phù hợp.",
+    "lesson": "Khi chưa rõ dữ liệu được dùng ra sao, hãy kiểm tra mục đích, căn cứ và lựa chọn kiểm soát.",
+    "legalArticles": [3, 4, 9, 19],
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15, Điều 3, Điều 4, Điều 9 và Điều 19. Cần đánh giá căn cứ và điều kiện áp dụng theo từng trường hợp.",
+    "legalReviewRequired": true,
+    "isActive": true
+  }
+]

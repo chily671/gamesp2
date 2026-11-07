@@ -50,7 +50,7 @@ export default function Home() {
       <header className="relative z-10 border-b border-cyan-200/10 bg-[#030816]/85 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-[1500px] items-center justify-between gap-5 px-5 py-4 sm:px-8 lg:px-12">
           <Link
-            aria-label="DATA TRAP trang chủ"
+            aria-label="Không gian 2 trang chủ"
             className="flex shrink-0 items-center gap-3"
             href="#top"
           >
@@ -59,7 +59,7 @@ export default function Home() {
             </span>
             <span>
               <span className="block font-mono text-lg font-black italic tracking-[0.12em] text-white sm:text-xl">
-                DATA <span className="text-cyan-300">TRAP</span>
+                KHÔNG GIAN <span className="text-cyan-300">2</span>
               </span>
               <span className="block font-mono text-[8px] tracking-[0.23em] text-slate-500 sm:text-[9px]">
                 THE DIGITAL IDENTITY RPG
@@ -247,7 +247,7 @@ export default function Home() {
 
       <footer className="relative z-10 border-t border-cyan-200/10 bg-[#030816]/80 px-5 py-4 sm:px-8 lg:px-12">
         <div className="mx-auto flex max-w-[1500px] flex-col gap-2 font-mono text-[8px] tracking-[0.15em] text-slate-600 sm:flex-row sm:items-center sm:justify-between sm:text-[9px]">
-          <span>DATA TRAP // DIGITAL IDENTITY RPG</span>
+          <span>KHÔNG GIAN 2 // DIGITAL IDENTITY RPG</span>
           <span>SIMULATION ONLY · NO REAL CREDENTIALS</span>
         </div>
       </footer>

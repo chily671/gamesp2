@@ -12,6 +12,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import RpgConsole from "@/components/game/RpgConsole";
+import QuizConsole from "@/components/game/QuizConsole";
 
 function ChoicePanel({ mission, selected, onToggle, disabled }) {
   const singleChoice = mission.answerMode === "single";
@@ -207,6 +208,16 @@ export default function GameConsole() {
       />
     );
   }
+  if (game?.gameVersion === "quiz-v3") {
+    return (
+      <QuizConsole
+        game={game}
+        key={game.quiz.questionIndex}
+        onRefresh={refreshGame}
+        secondsLeft={secondsLeft ?? 0}
+      />
+    );
+  }
 
   const mission = game?.mission;
 
@@ -291,7 +302,7 @@ export default function GameConsole() {
       <div aria-hidden="true" className="grid-overlay" />
       <header className="relative z-10 mx-auto flex w-full max-w-5xl items-center justify-between">
         <a className="font-mono text-xs font-bold tracking-[0.2em] text-white" href="/character">
-          DATA<span className="text-cyan-300">TRAP</span>
+          KHÔNG GIAN <span className="text-cyan-300">2</span>
         </a>
         <div className={`flex items-center gap-2 border px-3 py-2 font-mono text-[10px] tracking-[0.1em] ${secondsLeft < 60 ? "border-rose-200/30 text-rose-200" : "border-white/10 text-cyan-100/80"}`}>
           <Clock3 aria-hidden="true" size={14} />

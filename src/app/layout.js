@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "DATA TRAP — The Digital Identity RPG",
+  title: "Không gian 2 — The Digital Identity RPG",
   description:
     "Bước vào thế giới dữ liệu, khám phá những chiếc bẫy kỹ thuật số và bảo vệ danh tính số của bạn.",
 };

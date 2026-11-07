@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import CharacterProfile from "@/models/CharacterProfile";
 import Mission from "@/models/Mission";
+import QuizQuestion from "@/models/QuizQuestion";
+import GameSettings from "@/models/GameSettings";
 import connectToDatabase from "@/lib/mongodb";
 import GameSession from "@/models/GameSession";
 import {
@@ -11,6 +13,7 @@ import {
 import {
   validateMission,
   validateProfile,
+  validateQuizQuestion,
 } from "@/lib/admin/content-validation";
 
 function authorize(request) {
@@ -38,6 +41,9 @@ function getContentTarget(kind) {
   }
   if (kind === "missions") {
     return { model: Mission, codeField: "missionCode" };
+  }
+  if (kind === "quiz-questions") {
+    return { model: QuizQuestion, codeField: "questionCode" };
   }
   return null;
 }
@@ -78,7 +84,9 @@ export async function GET(request, context) {
   try {
     await connectToDatabase();
     const query = target.model.findOne({ [target.codeField]: code });
-    if (kind === "missions") query.select("+correctAnswer");
+    if (kind === "missions" || kind === "quiz-questions") {
+      query.select("+correctAnswer");
+    }
     const entry = await query.lean();
     if (!entry) {
       return NextResponse.json(
@@ -127,6 +135,28 @@ export async function PATCH(request, context) {
   ) {
     try {
       await connectToDatabase();
+      if (kind === "quiz-questions" && payload.isActive === false) {
+        const [question, settings, activeCount] = await Promise.all([
+          QuizQuestion.findOne({ questionCode: code }).select("isActive").lean(),
+          GameSettings.findById("default").select("questionCount").lean(),
+          QuizQuestion.countDocuments({ isActive: true }),
+        ]);
+        if (!question) {
+          return NextResponse.json(
+            { error: "Không tìm thấy câu hỏi." },
+            { status: 404, headers: { "Cache-Control": "no-store" } },
+          );
+        }
+        if (
+          question.isActive &&
+          activeCount - 1 < (settings?.questionCount ?? 4)
+        ) {
+          return NextResponse.json(
+            { error: "Hãy giảm số câu mỗi ván trước khi tắt câu hỏi này." },
+            { status: 409, headers: { "Cache-Control": "no-store" } },
+          );
+        }
+      }
       const updated = await target.model
         .findOneAndUpdate(
           { [target.codeField]: code },
@@ -153,7 +183,11 @@ export async function PATCH(request, context) {
   }
 
   const validation =
-    kind === "profiles" ? validateProfile(payload) : validateMission(payload);
+    kind === "profiles"
+      ? validateProfile(payload)
+      : kind === "quiz-questions"
+        ? validateQuizQuestion(payload)
+        : validateMission(payload);
   if (validation.error) {
     return NextResponse.json(
       { error: validation.error },
@@ -165,14 +199,40 @@ export async function PATCH(request, context) {
     await connectToDatabase();
     const value = validation.value;
     const payloadCode =
-      kind === "profiles" ? value.characterCode : value.missionCode;
+      kind === "profiles"
+        ? value.characterCode
+        : kind === "quiz-questions"
+          ? value.questionCode
+          : value.missionCode;
     if (payloadCode !== code) {
       return NextResponse.json(
         { error: "Không thể thay đổi mã định danh hiện có." },
         { status: 400, headers: { "Cache-Control": "no-store" } },
       );
     }
-    delete value[kind === "profiles" ? "characterCode" : "missionCode"];
+    if (kind === "quiz-questions" && value.isActive === false) {
+      const [question, settings, activeCount] = await Promise.all([
+        QuizQuestion.findOne({ questionCode: code }).select("isActive").lean(),
+        GameSettings.findById("default").select("questionCount").lean(),
+        QuizQuestion.countDocuments({ isActive: true }),
+      ]);
+      if (
+        question?.isActive &&
+        activeCount - 1 < (settings?.questionCount ?? 4)
+      ) {
+        return NextResponse.json(
+          { error: "Hãy giảm số câu mỗi ván trước khi tắt câu hỏi này." },
+          { status: 409, headers: { "Cache-Control": "no-store" } },
+        );
+      }
+    }
+    delete value[
+      kind === "profiles"
+        ? "characterCode"
+        : kind === "quiz-questions"
+          ? "questionCode"
+          : "missionCode"
+    ];
     const updated = await target.model.findOneAndUpdate(
       { [target.codeField]: code },
       { $set: value },
@@ -230,7 +290,7 @@ export async function DELETE(request, context) {
           { status: 409, headers: { "Cache-Control": "no-store" } },
         );
       }
-    } else {
+    } else if (kind === "missions") {
       const activeSession = await GameSession.exists({
         status: "in_progress",
         retentionExpiresAt: { $gt: new Date() },
@@ -240,6 +300,28 @@ export async function DELETE(request, context) {
           { error: "Hãy chờ các phiên chơi đang diễn ra kết thúc trước khi xóa nhiệm vụ." },
           { status: 409, headers: { "Cache-Control": "no-store" } },
         );
+      }
+    } else {
+      const question = await QuizQuestion.findOne({
+        questionCode: code,
+      }).select("isActive");
+      if (!question) {
+        return NextResponse.json(
+          { error: "Không tìm thấy câu hỏi." },
+          { status: 404, headers: { "Cache-Control": "no-store" } },
+        );
+      }
+      if (question.isActive) {
+        const [settings, activeCount] = await Promise.all([
+          GameSettings.findById("default").select("questionCount").lean(),
+          QuizQuestion.countDocuments({ isActive: true }),
+        ]);
+        if (activeCount - 1 < (settings?.questionCount ?? 4)) {
+          return NextResponse.json(
+            { error: "Hãy giảm số câu mỗi ván hoặc tắt câu hỏi trước khi xóa." },
+            { status: 409, headers: { "Cache-Control": "no-store" } },
+          );
+        }
       }
     }
 

@@ -6,6 +6,7 @@
     "dev": "next dev",
     "seed:characters": "node scripts/seed-characters.cjs",
     "seed:missions": "node scripts/seed-missions.cjs",
+    "seed:questions": "node scripts/seed-questions.cjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

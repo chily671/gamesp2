@@ -10,8 +10,8 @@ import RegisterForm from "@/components/registration/RegisterForm";
 import { getDataRetentionDays } from "@/lib/utils/data-retention";
 
 export const metadata = {
-  title: "Kết nối người chơi — DATA TRAP",
-  description: "Kết nối vào mô phỏng điều tra danh tính số DATA TRAP.",
+  title: "Kết nối người chơi — Không gian 2",
+  description: "Kết nối vào mô phỏng điều tra danh tính số Không gian 2.",
 };
 
 function GuardianAvatar() {
@@ -113,7 +113,7 @@ export default function RegisterPage() {
 
       <header className="relative z-10 mx-auto flex w-full max-w-[1500px] items-center justify-between border-b border-cyan-100/10 px-4 py-3 sm:px-7 sm:py-4 lg:px-10">
         <Link
-          aria-label="DATA TRAP trang chủ"
+          aria-label="Không gian 2 trang chủ"
           className="flex items-center gap-2 sm:gap-3"
           href="/"
         >
@@ -122,7 +122,7 @@ export default function RegisterPage() {
           </span>
           <span>
             <span className="block font-mono text-sm font-black italic tracking-[0.14em] text-white sm:text-base">
-              DATA <span className="text-cyan-300">TRAP</span>
+              KHÔNG GIAN <span className="text-cyan-300">2</span>
             </span>
             <span className="hidden font-mono text-[8px] tracking-[0.18em] text-slate-500 sm:block">
               THE DIGITAL IDENTITY RPG
@@ -243,7 +243,7 @@ export default function RegisterPage() {
         <RegisterForm retentionDays={retentionDays} />
 
         <footer className="relative order-4 col-span-full flex items-center justify-between border-t border-cyan-100/10 pt-3 font-mono text-[7px] tracking-[0.12em] text-slate-600 sm:text-[8px]">
-          <span>DATA TRAP // SECURE TRAINING ENVIRONMENT</span>
+          <span>KHÔNG GIAN 2 // SECURE TRAINING ENVIRONMENT</span>
           <span className="hidden items-center gap-2 sm:flex">
             <Signal aria-hidden="true" size={12} />
             NO REAL CHARACTER DATA

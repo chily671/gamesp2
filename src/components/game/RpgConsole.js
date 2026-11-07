@@ -104,7 +104,7 @@ function BaitStage({
           <span className="grid h-8 w-8 place-items-center border border-fuchsia-300/50 bg-fuchsia-300/[0.07] text-fuchsia-200 shadow-[0_0_18px_rgba(217,70,239,0.2)] sm:h-9 sm:w-9">
             <ShieldAlert aria-hidden="true" size={19} />
           </span>
-          DATA <span className="text-cyan-300">TRAP</span>
+          KHÔNG GIAN <span className="text-cyan-300">2</span>
           <span className="ml-1 hidden border-l border-white/15 pl-3 font-mono text-[8px] font-normal not-italic tracking-[0.16em] text-slate-500 sm:block">
             THE DIGITAL IDENTITY RPG
           </span>
@@ -313,7 +313,7 @@ function BaitStage({
         </div>
 
         <footer className="relative mt-3 flex items-center justify-between border-t border-blue-200/15 pt-3 font-mono text-[8px] tracking-[0.13em] text-slate-600">
-          <span>DATA TRAP // SECURITY SIMULATION</span>
+          <span>KHÔNG GIAN 2 // SECURITY SIMULATION</span>
           <span className="hidden items-center gap-2 sm:flex">
             <ShieldCheck aria-hidden="true" size={12} />
             FICTIONAL CHARACTER · TRAINING ENVIRONMENT
@@ -426,7 +426,7 @@ export default function RpgConsole({ game, onRefresh, secondsLeft }) {
           <span className="grid h-9 w-9 place-items-center border border-fuchsia-300/45 bg-fuchsia-300/[0.07] text-fuchsia-200">
             <ShieldAlert aria-hidden="true" size={20} />
           </span>
-          DATA <span className="text-cyan-300">TRAP</span>
+          KHÔNG GIAN <span className="text-cyan-300">2</span>
         </a>
         <div className="hidden items-center gap-2 font-mono text-[9px] tracking-[0.15em] text-slate-500 sm:flex">
           <span className="status-dot" />

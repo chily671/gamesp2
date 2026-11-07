@@ -43,12 +43,16 @@ export async function GET(request) {
     }
 
     const isRpg = gameSession.gameVersion === "rpg-v2";
+    const isQuiz = gameSession.gameVersion === "quiz-v3";
+    const quizAnswers = gameSession.quizProgress?.answers ?? [];
     const completedStages = isRpg
       ? gameSession.status === "completed"
         ? 3
         : Math.max(0, gameSession.rpgProgress.currentStage - 1)
-      : gameSession.answers.length;
-    const correctAnswers = gameSession.answers.filter(
+      : isQuiz
+        ? quizAnswers.length
+        : gameSession.answers.length;
+    const correctAnswers = (isQuiz ? quizAnswers : gameSession.answers).filter(
       (answer) => answer.isCorrect,
     ).length;
     const evidence = isRpg
@@ -86,6 +90,14 @@ export async function GET(request) {
         persona: character.persona,
         score: gameSession.score,
         completedStages,
+        ...(isQuiz
+          ? {
+              quiz: {
+                questionCount:
+                  gameSession.quizProgress?.questionCount ?? completedStages,
+              },
+            }
+          : {}),
         correctAnswers,
         accuracy: completedStages
           ? Math.round((correctAnswers / completedStages) * 100)

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import CharacterProfile from "@/models/CharacterProfile";
 import Mission from "@/models/Mission";
+import QuizQuestion from "@/models/QuizQuestion";
 import connectToDatabase from "@/lib/mongodb";
 import {
   getAdminCookieName,
@@ -10,11 +11,13 @@ import {
 import {
   validateMission,
   validateProfile,
+  validateQuizQuestion,
 } from "@/lib/admin/content-validation";
 
 function getModel(kind) {
   if (kind === "profiles") return CharacterProfile;
   if (kind === "missions") return Mission;
+  if (kind === "quiz-questions") return QuizQuestion;
   return null;
 }
 
@@ -69,10 +72,13 @@ export async function GET(request, context) {
 
   try {
     await connectToDatabase();
-    const query =
-      kind === "missions"
-        ? model.find().select("+correctAnswer").sort({ stage: 1 })
-        : model.find().sort({ characterCode: 1 });
+    const query = model.find();
+    if (kind === "missions" || kind === "quiz-questions") {
+      query.select("+correctAnswer");
+    }
+    if (kind === "missions") query.sort({ stage: 1 });
+    else if (kind === "quiz-questions") query.sort({ questionCode: 1 });
+    else query.sort({ characterCode: 1 });
     const entries = await query.lean();
     return NextResponse.json(
       { entries },
@@ -107,7 +113,11 @@ export async function POST(request, context) {
   }
 
   const validation =
-    kind === "profiles" ? validateProfile(payload) : validateMission(payload);
+    kind === "profiles"
+      ? validateProfile(payload)
+      : kind === "quiz-questions"
+        ? validateQuizQuestion(payload)
+        : validateMission(payload);
   if (validation.error) {
     return NextResponse.json(
       { error: validation.error },
@@ -121,7 +131,11 @@ export async function POST(request, context) {
     return NextResponse.json(
       {
         code:
-          kind === "profiles" ? entry.characterCode : entry.missionCode,
+          kind === "profiles"
+            ? entry.characterCode
+            : kind === "quiz-questions"
+              ? entry.questionCode
+              : entry.missionCode,
       },
       { status: 201, headers: { "Cache-Control": "no-store" } },
     );

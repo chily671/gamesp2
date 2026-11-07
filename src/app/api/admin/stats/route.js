@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 import CharacterProfile from "@/models/CharacterProfile";
 import GameSession from "@/models/GameSession";
+import GameSettings from "@/models/GameSettings";
 import Mission from "@/models/Mission";
 import Player from "@/models/Player";
+import QuizQuestion from "@/models/QuizQuestion";
 import connectToDatabase from "@/lib/mongodb";
+import { DEFAULT_QUIZ_QUESTION_COUNT } from "@/lib/game/quiz";
 import {
   getAdminCookieName,
   isAdminAuthConfigured,
@@ -33,7 +36,15 @@ export async function GET(request) {
 
   try {
     await connectToDatabase();
-    const [players, sessions, profiles, missions, commonMisses] =
+    const [
+      players,
+      sessions,
+      profiles,
+      missions,
+      quizQuestions,
+      gameSettings,
+      commonMisses,
+    ] =
       await Promise.all([
         Player.countDocuments({ expiresAt: { $gt: new Date() } }),
         GameSession.aggregate([
@@ -53,6 +64,25 @@ export async function GET(request) {
                   $cond: [{ $eq: ["$gameVersion", "rpg-v2"] }, 1, 0],
                 },
               },
+              quizSessions: {
+                $sum: {
+                  $cond: [{ $eq: ["$gameVersion", "quiz-v3"] }, 1, 0],
+                },
+              },
+              quizCompleted: {
+                $sum: {
+                  $cond: [
+                    {
+                      $and: [
+                        { $eq: ["$gameVersion", "quiz-v3"] },
+                        { $eq: ["$status", "completed"] },
+                      ],
+                    },
+                    1,
+                    0,
+                  ],
+                },
+              },
               rpgCompleted: {
                 $sum: {
                   $cond: [
@@ -64,6 +94,71 @@ export async function GET(request) {
                     },
                     1,
                     0,
+                  ],
+                },
+              },
+              quizTotalAnswers: {
+                $sum: {
+                  $size: {
+                    $ifNull: ["$quizProgress.answers", []],
+                  },
+                },
+              },
+              quizCorrectAnswers: {
+                $sum: {
+                  $size: {
+                    $filter: {
+                      input: { $ifNull: ["$quizProgress.answers", []] },
+                      as: "answer",
+                      cond: { $eq: ["$$answer.isCorrect", true] },
+                    },
+                  },
+                },
+              },
+              quizAverageAccuracy: {
+                $avg: {
+                  $cond: [
+                    {
+                      $and: [
+                        { $eq: ["$gameVersion", "quiz-v3"] },
+                        {
+                          $gt: [
+                            {
+                              $size: {
+                                $ifNull: ["$quizProgress.answers", []],
+                              },
+                            },
+                            0,
+                          ],
+                        },
+                      ],
+                    },
+                    {
+                      $multiply: [
+                        100,
+                        {
+                          $divide: [
+                            {
+                              $size: {
+                                $filter: {
+                                  input: {
+                                    $ifNull: ["$quizProgress.answers", []],
+                                  },
+                                  as: "answer",
+                                  cond: { $eq: ["$$answer.isCorrect", true] },
+                                },
+                              },
+                            },
+                            {
+                              $size: {
+                                $ifNull: ["$quizProgress.answers", []],
+                              },
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                    null,
                   ],
                 },
               },
@@ -170,6 +265,13 @@ export async function GET(request) {
           .select("missionCode stage title isActive legalReviewRequired")
           .sort({ stage: 1 })
           .lean(),
+        QuizQuestion.find()
+          .select("questionCode title isActive legalReviewRequired legalArticles")
+          .sort({ questionCode: 1 })
+          .lean(),
+        GameSettings.findById("default")
+          .select("questionCount")
+          .lean(),
         GameSession.aggregate([
           { $match: { retentionExpiresAt: { $gt: new Date() } } },
           { $unwind: "$answers" },
@@ -191,6 +293,11 @@ export async function GET(request) {
           averageDuration: 0,
           rpgSessions: 0,
           rpgCompleted: 0,
+          quizSessions: 0,
+          quizCompleted: 0,
+          quizTotalAnswers: 0,
+          quizCorrectAnswers: 0,
+          quizAverageAccuracy: 0,
           averageDataRisk: 0,
           averageProtectionScore: 0,
           averageEvidenceCount: 0,
@@ -207,8 +314,23 @@ export async function GET(request) {
           averageEvidenceCount: sessions[0]?.averageEvidenceCount ?? 0,
           stages: 3,
         },
+        quiz: {
+          sessions: sessions[0]?.quizSessions ?? 0,
+          completed: sessions[0]?.quizCompleted ?? 0,
+          totalAnswers: sessions[0]?.quizTotalAnswers ?? 0,
+          correctAnswers: sessions[0]?.quizCorrectAnswers ?? 0,
+          averageAccuracy: sessions[0]?.quizAverageAccuracy ?? 0,
+          activeQuestions: quizQuestions.filter((question) => question.isActive)
+            .length,
+          legalReviewRequired: quizQuestions.filter(
+            (question) => question.legalReviewRequired,
+          ).length,
+          questionCount:
+            gameSettings?.questionCount ?? DEFAULT_QUIZ_QUESTION_COUNT,
+        },
         profiles,
         missions,
+        quizQuestions,
         questions: {
           total: missions.length,
           legalReviewRequired: missions.filter(

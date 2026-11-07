@@ -8,6 +8,7 @@ import {
 } from "@/lib/game/session-access";
 import Mission from "@/models/Mission";
 import { getPublicRpgState } from "@/lib/game/rpg";
+import { getPublicQuizQuestion } from "@/lib/game/quiz";
 
 export async function GET(request) {
   const token = getSessionToken(request);
@@ -81,6 +82,55 @@ export async function GET(request) {
             persona: character.persona,
           },
           rpg: getPublicRpgState(gameSession, character),
+        },
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
+    if (gameSession.gameVersion === "quiz-v3") {
+      if (gameSession.status === "registered") {
+        return NextResponse.json(
+          {
+            status: gameSession.status,
+            gameVersion: gameSession.gameVersion,
+            expiresAt: gameSession.expiresAt,
+          },
+          { headers: { "Cache-Control": "no-store" } },
+        );
+      }
+
+      const progress = gameSession.quizProgress;
+      const question =
+        progress?.questionSnapshots?.[progress.currentQuestionIndex];
+      const character = await getSessionCharacter(gameSession);
+      if (
+        !progress ||
+        !character ||
+        !question ||
+        progress.questionSnapshots.length !== progress.questionCount
+      ) {
+        return NextResponse.json(
+          { error: "Không tìm thấy câu hỏi hiện tại của phiên chơi." },
+          { status: 503, headers: { "Cache-Control": "no-store" } },
+        );
+      }
+
+      return NextResponse.json(
+        {
+          status: gameSession.status,
+          gameVersion: gameSession.gameVersion,
+          currentStage: progress.currentQuestionIndex,
+          score: gameSession.score,
+          expiresAt: gameSession.expiresAt,
+          character: {
+            name: character.characterName,
+            persona: character.persona,
+          },
+          quiz: {
+            questionIndex: progress.currentQuestionIndex,
+            questionCount: progress.questionCount,
+            question: getPublicQuizQuestion(question, character.characterName),
+          },
         },
         { headers: { "Cache-Control": "no-store" } },
       );

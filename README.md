@@ -1,6 +1,6 @@
-# DATA TRAP — The Digital Identity RPG
+# Không gian 2 — The Digital Identity RPG
 
-DATA TRAP is a touch-first educational RPG about protecting a fictional digital
+Không gian 2 is a touch-first educational RPG about protecting a fictional digital
 identity. Player registration details and in-game character data are separate;
 all profile values shown in the game are simulated.
 
@@ -12,7 +12,7 @@ all profile values shown in the game are simulated.
 - **Tailwind CSS v4** handles component layout, with a small global stylesheet
   for the visual system, motion, and reduced-motion support.
 - **MongoDB and Mongoose** store event players, fictional character profiles,
-  mission content, and independent game sessions.
+  legacy mission content, quiz questions, settings, and independent sessions.
 - **Lucide React** supplies interface icons.
 -   Server-side session and scoring logic validates submitted decisions; correct
   answers are not sent to a player before a decision is submitted.
@@ -23,8 +23,10 @@ all profile values shown in the game are simulated.
 | --- | --- |
 | `Player` | Event participant name, class, and opaque player code; never used as a public leaderboard identity. |
 | `CharacterProfile` | Fictional identity and persona-specific opening, three-stage storyline, evidence, incident, endings, and Guardian prompts. |
-| `Mission` | The four legacy question stages and their server-side answer evaluation; retained for sessions created before RPG v2. |
-| `GameSession` | Versioned run state. Legacy sessions keep their old answers; RPG v2 sessions store decisions, deterministic risk/protection scores, evidence, and a character snapshot. |
+| `Mission` | The four legacy question stages and their server-side answer evaluation; retained for existing legacy sessions. |
+| `QuizQuestion` | Independently managed question bank used by new quiz sessions; answer keys are server-only. |
+| `GameSettings` | Admin-configured number of questions per new game; defaults to four. |
+| `GameSession` | Versioned run state. Legacy and RPG v2 sessions retain their flow; Quiz v3 sessions snapshot a random question set and answers. |
 
 Game sessions reference a player and a fictional character. Admin access and participant data access are restricted to a separately
 configured event administrator.
@@ -41,12 +43,13 @@ src/
     scoring/           Server-side score evaluation
     utils/             Shared utilities
   models/              Mongoose models
-  data/seed/           Fictional profile and mission seed data
+  data/seed/           Fictional profile, legacy mission, and quiz seed data
 ```
 
-Mission and character seed data are stored separately. RPG v2 registrations
-use the new storylines; sessions without that version continue using the
-legacy four-mission flow.
+Legacy missions, the quiz bank, and character profiles are stored separately.
+New registrations use Quiz v3, which draws the admin-configured number of
+questions at random from active questions (four by default). Existing Legacy
+and RPG v2 sessions continue with their original flow and stored progress.
 
 ## Local setup
 
@@ -78,9 +81,12 @@ personalized storylines:
 ```bash
 npm run seed:characters
 npm run seed:missions
+npm run seed:questions
 ```
 
-Registration asks only for a participant name and class. A short notice
+The quiz import inserts 20 starter questions screened against the supplied
+article list without overwriting existing admin edits; all remain flagged for
+expert review. Registration asks only for a participant name and class. A short notice
 explains why these details are stored; `DATA_RETENTION_DAYS` controls their
 retention (default: 30 days, valid range: 1–3650). MongoDB TTL cleanup runs
 asynchronously. `SESSION_DURATION_MINUTES` controls the active session length
@@ -98,15 +104,24 @@ them, so old sessions keep their character and four-stage flow. The migration
 is versioned and safe to rerun; after completion it leaves administrator edits
 unchanged.
 
+## Legal question content
+
+The starter question bank references Articles 3, 4, 7, 9, 10, 12, 16, and 19
+of Vietnam's Personal Data Protection Law No. 91/2025/QH15, following the
+articles supplied in the project brief. Question explanations avoid treating
+all data processing as consent-based or declaring conduct unlawful without
+context. Every starter question remains marked for legal expert review.
+
 ## Delivery phases
 
 1. **Project setup:** shared layout, database connection, and landing experience.
 2. **Registration and profiles:** isolated player sessions and 20 persona-specific profiles.
 3. **Legacy gameplay:** existing sessions continue through four connected missions.
-4. **RPG v2 gameplay:** new sessions explore three linked stages with personalized content and evidence.
-5. **Scoring and results:** server-side decisions, deterministic Data Risk/Protection Score, evidence inventory, and outcomes.
-6. **Admin and event operations:** version-aware analytics, profile/storyline editing, timeout, reset, and retention.
-7. **Verification:** production build, responsive checks, seed integrity, and MongoDB-backed legacy/RPG flows.
+4. **RPG v2 gameplay:** existing sessions continue three linked stages with personalized content and evidence.
+5. **Quiz v3 gameplay:** new sessions receive a random, snapshotted subset of active questions.
+6. **Scoring and results:** server-side answers, configurable question count, and version-aware results.
+7. **Admin and event operations:** question/profile CRUD, quiz settings, analytics, timeout, reset, and retention.
+8. **Verification:** production build, responsive checks, seed integrity, and versioned gameplay checks.
 
 ### Admin setup
 

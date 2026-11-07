@@ -21,9 +21,32 @@ const gameSessionSchema = new mongoose.Schema(
     },
     gameVersion: {
       type: String,
-      enum: ["legacy-v1", "rpg-v2"],
+      enum: ["legacy-v1", "rpg-v2", "quiz-v3"],
       default: "legacy-v1",
       immutable: true,
+    },
+    quizProgress: {
+      currentQuestionIndex: { type: Number, min: 0, max: 1000 },
+      questionCount: { type: Number, min: 1, max: 1000 },
+      questionSnapshots: {
+        type: [mongoose.Schema.Types.Mixed],
+        default: undefined,
+      },
+      answers: {
+        type: [
+          new mongoose.Schema(
+            {
+              questionCode: { type: String, required: true },
+              choice: { type: [String], required: true },
+              isCorrect: { type: Boolean, required: true },
+              points: { type: Number, required: true, min: 0 },
+              answeredAt: { type: Date, required: true },
+            },
+            { _id: false },
+          ),
+        ],
+        default: undefined,
+      },
     },
     rpgProgress: {
       currentStage: { type: Number, min: 1, max: 3 },

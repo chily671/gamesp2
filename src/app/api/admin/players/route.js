@@ -38,7 +38,7 @@ export async function GET(request) {
       retentionExpiresAt: { $gt: new Date() },
     })
       .populate("characterId", "characterName persona")
-    .select("playerId status score answers duration startedAt gameVersion rpgProgress characterSnapshot")
+    .select("playerId status score answers quizProgress duration startedAt gameVersion rpgProgress characterSnapshot")
       .lean();
     const sessionByPlayer = new Map(
       sessions.map((session) => [String(session.playerId), session]),
@@ -48,9 +48,13 @@ export async function GET(request) {
       {
         players: players.map((player) => {
           const session = sessionByPlayer.get(String(player._id));
-          const answered = session?.answers?.length ?? 0;
+          const isQuiz = session?.gameVersion === "quiz-v3";
+          const answers = isQuiz
+            ? session?.quizProgress?.answers ?? []
+            : session?.answers ?? [];
+          const answered = answers.length;
           const correct =
-            session?.answers?.filter((answer) => answer.isCorrect).length ?? 0;
+            answers.filter((answer) => answer.isCorrect).length;
           return {
             playerCode: player.playerCode,
             fullName: player.fullName,

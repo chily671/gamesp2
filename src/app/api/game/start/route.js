@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { findCurrentSession, getSessionToken, unauthorizedResponse } from "@/lib/game/session-access";
 import Mission from "@/models/Mission";
+import QuizQuestion from "@/models/QuizQuestion";
+import GameSettings from "@/models/GameSettings";
 import { getSessionExpirationDate } from "@/lib/utils/data-retention";
+import { DEFAULT_QUIZ_QUESTION_COUNT, selectRandomQuizQuestions } from "@/lib/game/quiz";
 
 export async function POST(request) {
   const token = getSessionToken(request);
@@ -19,6 +22,31 @@ export async function POST(request) {
 
     if (gameSession.status === "registered") {
       const now = new Date();
+      if (gameSession.gameVersion === "quiz-v3") {
+        const [settings, questions] = await Promise.all([
+          GameSettings.findById("default").select("questionCount").lean(),
+          QuizQuestion.find({ isActive: true })
+            .select("+correctAnswer")
+            .sort({ questionCode: 1 })
+            .lean(),
+        ]);
+        const questionCount =
+          settings?.questionCount ?? DEFAULT_QUIZ_QUESTION_COUNT;
+        if (questions.length < questionCount) {
+          return NextResponse.json(
+            {
+              error: `Cần ít nhất ${questionCount} câu hỏi đang hoạt động để bắt đầu.`,
+            },
+            { status: 503, headers: { "Cache-Control": "no-store" } },
+          );
+        }
+        gameSession.quizProgress = {
+          currentQuestionIndex: 0,
+          questionCount,
+          questionSnapshots: selectRandomQuizQuestions(questions, questionCount),
+          answers: [],
+        };
+      }
       gameSession.status = "in_progress";
       gameSession.currentStage = 0;
       gameSession.startedAt = now;
@@ -50,6 +78,27 @@ export async function POST(request) {
         {
           startedAt: gameSession.startedAt,
           expiresAt: gameSession.expiresAt,
+        },
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
+    if (gameSession.gameVersion === "quiz-v3") {
+      if (
+        !gameSession.quizProgress ||
+        gameSession.quizProgress.questionSnapshots?.length !==
+          gameSession.quizProgress.questionCount
+      ) {
+        return NextResponse.json(
+          { error: "Phiên chơi chưa có đủ câu hỏi để bắt đầu." },
+          { status: 503, headers: { "Cache-Control": "no-store" } },
+        );
+      }
+      return NextResponse.json(
+        {
+          startedAt: gameSession.startedAt,
+          expiresAt: gameSession.expiresAt,
+          questionCount: gameSession.quizProgress.questionCount,
         },
         { headers: { "Cache-Control": "no-store" } },
       );

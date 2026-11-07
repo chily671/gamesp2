@@ -1,4 +1,34 @@
 export function getAchievement(score, completedStages, gameVersion = "legacy-v1") {
+  if (gameVersion === "quiz-v3") {
+    const averagePoints = completedStages > 0 ? score / completedStages : 0;
+    if (completedStages > 0 && averagePoints >= 85) {
+      return {
+        code: "PRIVACY_ANALYST",
+        title: "PRIVACY ANALYST",
+        description: "Đã nhận diện tín hiệu rủi ro và chọn cách xử lý phù hợp.",
+      };
+    }
+    if (completedStages > 0 && averagePoints >= 60) {
+      return {
+        code: "DATA_GUARDIAN",
+        title: "DATA GUARDIAN",
+        description: "Đã vận dụng nhiều lớp bảo vệ dữ liệu cá nhân.",
+      };
+    }
+    if (completedStages > 0) {
+      return {
+        code: "RISK_SCOUT",
+        title: "RISK SCOUT",
+        description: "Đã bắt đầu phân tích các tình huống dữ liệu số.",
+      };
+    }
+    return {
+      code: "DATA_OBSERVER",
+      title: "DATA OBSERVER",
+      description: "Mỗi quyết định đều giúp hiểu rõ hơn về dữ liệu.",
+    };
+  }
+
   if (gameVersion === "rpg-v2") {
     if (completedStages === 3 && score >= 40) {
       return {

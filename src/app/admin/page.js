@@ -1,8 +1,8 @@
 import AdminDashboard from "@/components/admin/AdminDashboard";
 
 export const metadata = {
-  title: "Event control — DATA TRAP",
-  description: "Bảng quản trị sự kiện DATA TRAP.",
+  title: "Quản trị — Không gian 2",
+  description: "Bảng quản trị Không gian 2.",
   robots: { index: false, follow: false },
 };
 

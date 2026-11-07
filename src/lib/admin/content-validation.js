@@ -1,5 +1,6 @@
 const INTERACTION_TYPES = ["permissions", "data-review", "chat", "final-plan"];
 const ANSWER_MODES = ["single", "multiple"];
+const LEGAL_ARTICLES = [3, 4, 7, 9, 10, 12, 16, 19];
 
 function isText(value, maxLength = 4000) {
   return (
@@ -257,6 +258,83 @@ export function validateMission(payload) {
       legalBasis: payload.legalBasis.trim(),
       legalReviewRequired: payload.legalReviewRequired,
       isActive: payload.isActive !== false,
+    },
+  };
+}
+
+export function validateQuizQuestion(payload) {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return { error: "Dữ liệu câu hỏi không hợp lệ." };
+  }
+
+  const textFields = [
+    "title",
+    "story",
+    "scenario",
+    "interactionPrompt",
+    "explanation",
+    "lesson",
+    "legalBasis",
+  ];
+  const options = payload.options;
+  const optionIds = Array.isArray(options) ? options.map((option) => option?.id) : [];
+  const correctAnswers = payload.correctAnswer;
+  const legalArticles = payload.legalArticles;
+
+  if (
+    !isText(payload.questionCode, 40) ||
+    !/^[A-Z0-9-]{1,40}$/.test(payload.questionCode) ||
+    textFields.some((field) => !isText(payload[field])) ||
+    !ANSWER_MODES.includes(payload.answerMode) ||
+    !Array.isArray(options) ||
+    options.length < 2 ||
+    options.length > 30 ||
+    options.some(
+      (option) =>
+        !option ||
+        !/^[a-zA-Z0-9_-]{1,50}$/.test(option.id) ||
+        !isText(option.label, 300) ||
+        !isText(option.detail, 1000),
+    ) ||
+    new Set(optionIds).size !== optionIds.length ||
+    !Array.isArray(correctAnswers) ||
+    correctAnswers.length === 0 ||
+    new Set(correctAnswers).size !== correctAnswers.length ||
+    correctAnswers.some((answer) => !optionIds.includes(answer)) ||
+    (payload.answerMode === "single" && correctAnswers.length !== 1) ||
+    !Array.isArray(legalArticles) ||
+    legalArticles.length === 0 ||
+    new Set(legalArticles).size !== legalArticles.length ||
+    legalArticles.some((article) => !LEGAL_ARTICLES.includes(article)) ||
+    typeof payload.legalReviewRequired !== "boolean" ||
+    typeof payload.isActive !== "boolean"
+  ) {
+    return {
+      error:
+        "Kiểm tra nội dung, đáp án và căn cứ. Mỗi câu cần ít nhất một điều luật trong danh sách đã đối chiếu.",
+    };
+  }
+
+  return {
+    value: {
+      questionCode: payload.questionCode,
+      title: payload.title.trim(),
+      story: payload.story.trim(),
+      scenario: payload.scenario.trim(),
+      interactionPrompt: payload.interactionPrompt.trim(),
+      answerMode: payload.answerMode,
+      options: options.map((option) => ({
+        id: option.id,
+        label: option.label.trim(),
+        detail: option.detail.trim(),
+      })),
+      correctAnswer: correctAnswers,
+      explanation: payload.explanation.trim(),
+      lesson: payload.lesson.trim(),
+      legalArticles: [...legalArticles].sort((a, b) => a - b),
+      legalBasis: payload.legalBasis.trim(),
+      legalReviewRequired: payload.legalReviewRequired,
+      isActive: payload.isActive,
     },
   };
 }

@@ -9,6 +9,7 @@ import {
   UsersRound,
 } from "lucide-react";
 import ContentManager from "@/components/admin/ContentManager";
+import QuestionBankManager from "@/components/admin/QuestionBankManager";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -132,7 +133,7 @@ export default function AdminDashboard() {
     return (
       <main className="min-h-screen bg-[#050a13] px-5 py-10 text-slate-100">
         <header className="mx-auto max-w-6xl font-mono text-xs font-bold tracking-[0.18em] text-white">
-          DATA<span className="text-cyan-300">TRAP</span>{" "}
+          KHÔNG GIAN <span className="text-cyan-300">2</span>{" "}
           <span className="text-slate-600">{"// ADMIN"}</span>
         </header>
         <LoginForm onLogin={() => loadData().catch((error) => setErrorMessage(error.message))} />
@@ -159,6 +160,10 @@ export default function AdminDashboard() {
     ["DATA RISK TB · RPG", `${Math.round(stats.rpg.averageDataRisk)}/100`],
     ["PROTECTION TB · RPG", `${Math.round(stats.rpg.averageProtectionScore)}/100`],
     ["EVIDENCE TB / VÁN · RPG", Number(stats.rpg.averageEvidenceCount).toFixed(1)],
+    ["PHIÊN QUIZ", stats.quiz.sessions],
+    ["ĐỘ CHÍNH XÁC · QUIZ", `${Math.round(stats.quiz.averageAccuracy)}%`],
+    ["CÂU MỖI VÁN · QUIZ", stats.quiz.questionCount],
+    ["NGÂN HÀNG ĐANG BẬT", stats.quiz.activeQuestions],
     ["CÂU HỎI FLOW CŨ", stats.questions.total],
     ["CÂU TRẢ LỜI FLOW CŨ", stats.sessions.totalAnswers],
     ["XP TRUNG BÌNH", Math.round(stats.sessions.averageScore ?? 0)],
@@ -168,7 +173,7 @@ export default function AdminDashboard() {
     <main className="min-h-screen bg-[#050a13] px-5 py-7 text-slate-100 sm:px-8">
       <header className="mx-auto flex max-w-7xl items-center justify-between">
         <div className="font-mono text-xs font-bold tracking-[0.18em] text-white">
-          DATA<span className="text-cyan-300">TRAP</span>{" "}
+          KHÔNG GIAN <span className="text-cyan-300">2</span>{" "}
           <span className="text-slate-600">{"// EVENT CONTROL"}</span>
         </div>
         <button className="flex min-h-10 items-center gap-2 border border-white/10 px-3 font-mono text-[9px] tracking-[0.1em] text-slate-400 hover:text-white" onClick={logout}>
@@ -198,7 +203,7 @@ export default function AdminDashboard() {
           ))}
         </div>
         <p className="mt-2 text-[10px] leading-5 text-slate-500">
-          Độ chính xác và câu trả lời chỉ áp dụng cho session 4 nhiệm vụ cũ. RPG v2 hiển thị risk, protection và evidence tính từ hành động đã lưu.
+          Độ chính xác của flow cũ và Quiz được thống kê riêng. RPG v2 giữ nguyên risk, protection và evidence của các phiên đã tạo trước đó.
         </p>
 
         <section className="mt-4 border border-amber-200/20 bg-amber-200/[0.035] p-4 sm:p-5">
@@ -206,7 +211,7 @@ export default function AdminDashboard() {
             MỨC ĐỘ ĐỐI CHIẾU PHÁP LUẬT
           </p>
           <p className="mt-2 text-sm font-semibold text-amber-100">
-            Chưa được thẩm định — {stats.questions.legalReviewRequired}/{stats.questions.total} nhiệm vụ cần chuyên gia rà soát
+            Chưa được thẩm định — {stats.quiz.legalReviewRequired}/{stats.quizQuestions.length} câu quiz cần chuyên gia rà soát
           </p>
           <p className="mt-1 text-xs leading-5 text-slate-400">
             Trò chơi đề cập các nguyên tắc quyền riêng tư nhưng chưa xác nhận tuân thủ theo từng điều khoản. Không xem chỉ số này là chứng nhận pháp lý.
@@ -234,7 +239,7 @@ export default function AdminDashboard() {
           <ol className="mt-3 grid gap-3 text-xs leading-5 text-slate-400 md:grid-cols-2">
             <li><span className="font-semibold text-white">1. Dùng 20 persona hiện có.</span> Mỗi hồ sơ gắn tình huống mở đầu, ứng dụng Stage 01, evidence Stage 02, sự cố/kết cục Stage 03 và lời thoại Guardian.</li>
             <li><span className="font-semibold text-white">2. Tùy biến cốt truyện theo persona.</span> Nếu thêm hồ sơ, điền dấu vết/rủi ro cùng các trường cốt truyện ba Stage; email dùng `.invalid`, điện thoại phải là DEMO hoặc được che bằng x.</li>
-            <li><span className="font-semibold text-white">3. Giữ bộ câu hỏi cho session cũ.</span> Bốn nhiệm vụ trắc nghiệm vẫn phục vụ session legacy; session đăng ký mới chạy RPG ba Stage và không cần chỉnh đáp án.</li>
+            <li><span className="font-semibold text-white">3. Câu hỏi cho phiên mới.</span> Người chơi mới nhận ngẫu nhiên số câu do admin cấu hình; mặc định 4 câu từ ngân hàng đang bật. Các phiên Legacy/RPG đã tạo vẫn giữ nguyên flow.</li>
             <li><span className="font-semibold text-white">4. Rà soát nội dung và pháp lý.</span> Bảo đảm lựa chọn sau phụ thuộc quyết định/bằng chứng trước; chỉ bật cảnh báo rà soát pháp lý cho tới khi căn cứ được chuyên gia xác minh.</li>
           </ol>
           <p className="mt-3 border-t border-white/[0.07] pt-3 text-[10px] leading-5 text-slate-500">
@@ -245,6 +250,12 @@ export default function AdminDashboard() {
         <div className="mt-5 grid gap-4">
           <ContentManager kind="profiles" entries={stats.profiles} onChanged={loadData} />
           <ContentManager kind="missions" entries={stats.missions} onChanged={loadData} />
+          <QuestionBankManager
+            activeQuestionCount={stats.quiz.activeQuestions}
+            entries={stats.quizQuestions}
+            onChanged={loadData}
+            questionCount={stats.quiz.questionCount}
+          />
         </div>
 
         <section className="mt-5 border border-white/[0.08] bg-white/[0.02] p-5">
@@ -268,7 +279,7 @@ export default function AdminDashboard() {
                     <td className="px-3 py-3">{player.fullName}</td>
                     <td className="px-3 py-3">{player.className}</td>
                     <td className="px-3 py-3">{player.character?.characterName ?? "—"}</td>
-                    <td className="px-3 py-3">{player.gameVersion === "rpg-v2" ? "RPG v2" : "Legacy"}</td>
+                    <td className="px-3 py-3">{player.gameVersion === "rpg-v2" ? "RPG v2" : player.gameVersion === "quiz-v3" ? "Quiz v3" : "Legacy"}</td>
                     <td className="px-3 py-3">{player.status}</td>
                     <td className="px-3 py-3">{player.score}</td>
                     <td className="px-3 py-3">{player.dataRisk == null ? "—" : `${player.dataRisk}/100`}</td>
