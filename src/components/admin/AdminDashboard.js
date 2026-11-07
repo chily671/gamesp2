@@ -8,6 +8,7 @@ import {
   Shield,
   UsersRound,
 } from "lucide-react";
+import ContentManager from "@/components/admin/ContentManager";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -72,36 +73,6 @@ function LoginForm({ onLogin }) {
   );
 }
 
-function ToggleList({ title, kind, entries, onToggle, busyCode }) {
-  return (
-    <section className="border border-white/[0.08] bg-white/[0.02] p-5">
-      <h2 className="font-mono text-xs tracking-[0.14em] text-white">{title}</h2>
-      <div className="mt-4 divide-y divide-white/[0.06]">
-        {entries.map((entry) => {
-          const code = entry.characterCode ?? entry.missionCode;
-          return (
-            <div className="flex items-center justify-between gap-4 py-3" key={code}>
-              <div className="min-w-0">
-                <p className="truncate text-sm text-slate-200">{entry.characterName ?? entry.title}</p>
-                <p className="mt-1 font-mono text-[9px] text-slate-600">{entry.persona ?? `STAGE ${entry.stage}`} · {code}</p>
-              </div>
-              <button
-                aria-pressed={entry.isActive}
-                className={`min-h-10 shrink-0 border px-3 font-mono text-[9px] tracking-[0.1em] transition ${entry.isActive ? "border-emerald-200/25 text-emerald-200" : "border-rose-200/25 text-rose-200"}`}
-                disabled={busyCode === code}
-                onClick={() => onToggle(kind, code, !entry.isActive)}
-                type="button"
-              >
-                {busyCode === code ? "..." : entry.isActive ? "ACTIVE" : "INACTIVE"}
-              </button>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-  );
-}
-
 function formatAverageDuration(seconds) {
   if (!Number.isFinite(seconds)) return "—";
   const totalSeconds = Math.round(seconds);
@@ -115,7 +86,6 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
   const [players, setPlayers] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-  const [busyCode, setBusyCode] = useState("");
 
   const loadData = useCallback(async () => {
     const [statsResponse, playersResponse] = await Promise.all([
@@ -150,25 +120,6 @@ export default function AdminDashboard() {
       active = false;
     };
   }, [loadData]);
-
-  async function toggleContent(kind, code, isActive) {
-    setBusyCode(code);
-    setErrorMessage("");
-    try {
-      const response = await fetch(`/api/admin/content/${kind}/${code}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ isActive }),
-      });
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error ?? "Cập nhật thất bại.");
-      await loadData();
-    } catch (error) {
-      setErrorMessage(error.message);
-    } finally {
-      setBusyCode("");
-    }
-  }
 
   async function logout() {
     await fetch("/api/admin/logout", { method: "POST" });
@@ -264,9 +215,9 @@ export default function AdminDashboard() {
           </p>
         </section>
 
-        <div className="mt-5 grid gap-4 lg:grid-cols-2">
-          <ToggleList title="CHARACTER PROFILES" kind="profiles" entries={stats.profiles} onToggle={toggleContent} busyCode={busyCode} />
-          <ToggleList title="MISSION CONTENT" kind="missions" entries={stats.missions} onToggle={toggleContent} busyCode={busyCode} />
+        <div className="mt-5 grid gap-4">
+          <ContentManager kind="profiles" entries={stats.profiles} onChanged={loadData} />
+          <ContentManager kind="missions" entries={stats.missions} onChanged={loadData} />
         </div>
 
         <section className="mt-5 border border-white/[0.08] bg-white/[0.02] p-5">

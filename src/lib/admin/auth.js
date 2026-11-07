@@ -6,16 +6,16 @@ const COOKIE_NAME = "data-trap-admin";
 const ADMIN_COOKIE_SECONDS = 8 * 60 * 60;
 const JWT_ISSUER = "data-trap";
 const JWT_AUDIENCE = "data-trap-admin";
+let configuredPasswordHash;
 
 export function isAdminAuthConfigured() {
   return (
     typeof process.env.ADMIN_USERNAME === "string" &&
     process.env.ADMIN_USERNAME.length > 0 &&
     process.env.ADMIN_USERNAME.length <= 64 &&
-    typeof process.env.ADMIN_PASSWORD_HASH === "string" &&
-    /^\$2[aby]\$\d{2}\$[./A-Za-z0-9]{53}$/.test(
-      process.env.ADMIN_PASSWORD_HASH,
-    ) &&
+    typeof process.env.ADMIN_PASSWORD === "string" &&
+    Buffer.byteLength(process.env.ADMIN_PASSWORD) >= 8 &&
+    Buffer.byteLength(process.env.ADMIN_PASSWORD) <= 72 &&
     typeof process.env.ADMIN_JWT_SECRET === "string" &&
     Buffer.byteLength(process.env.ADMIN_JWT_SECRET) >= 32
   );
@@ -57,7 +57,16 @@ export function safeSecretMatch(provided, expected) {
 }
 
 export function verifyAdminPassword(password) {
-  return bcrypt.compare(password, process.env.ADMIN_PASSWORD_HASH);
+  if (typeof password !== "string" || password.length > 128) {
+    return Promise.resolve(false);
+  }
+
+  if (!configuredPasswordHash) {
+    configuredPasswordHash = bcrypt.hash(process.env.ADMIN_PASSWORD, 12);
+  }
+  return configuredPasswordHash.then((passwordHash) =>
+    bcrypt.compare(password, passwordHash),
+  );
 }
 
 export function createAdminCookieValue() {

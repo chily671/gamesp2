@@ -22,7 +22,10 @@ export async function POST(request) {
 
   if (!isAdminAuthConfigured()) {
     return NextResponse.json(
-      { error: "Khu vực quản trị chưa được cấu hình đầy đủ." },
+      {
+        error:
+          "Thiếu cấu hình quản trị. Hãy đặt ADMIN_USERNAME, ADMIN_PASSWORD và ADMIN_JWT_SECRET trong biến môi trường production.",
+      },
       { status: 503, headers: { "Cache-Control": "no-store" } },
     );
   }
