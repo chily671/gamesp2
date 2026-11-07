@@ -1,0 +1,222 @@
+[
+  {
+    "characterCode": "CHAR-001",
+    "characterName": "Nguyễn Minh Anh",
+    "persona": "THE SOCIAL STAR",
+    "age": 16,
+    "gender": "Nữ",
+    "className": "10X-01 (hư cấu)",
+    "school": "Học viện Ánh Dương (hư cấu)",
+    "address": "Khu phố mô phỏng Pixel-03, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại khu Neo Garden",
+    "familyMembers": ["Mẹ — nhân vật mô phỏng", "Anh trai — nhân vật mô phỏng"],
+    "contact": {
+      "phone": "000-000-0000 (DEMO ONLY)",
+      "email": "minhanh.profile@example.invalid",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "minhanh.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "financialInfo": {
+      "simulatedBalance": 125000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "lifestyle": {
+      "hobbies": ["Chụp ảnh", "Sáng tạo nội dung"],
+      "habits": ["Đăng ảnh công khai", "Check-in khi đi chơi"],
+      "frequentPlaces": ["Quảng trường Pixel", "Thư viện Mây — địa điểm hư cấu"],
+      "summary": "Thường chia sẻ hình ảnh, trường học và địa điểm yêu thích lên mạng."
+    },
+    "riskFactors": [
+      "Bài đăng công khai có thể để lộ lịch trình.",
+      "Ảnh có thể vô tình tiết lộ trường hoặc vị trí thường lui tới."
+    ],
+    "digitalFootprint": [
+      "Album ảnh công khai trong mạng xã hội mô phỏng.",
+      "Check-in tại Quảng trường Pixel vào mỗi cuối tuần."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-002",
+    "characterName": "Trần Gia Huy",
+    "persona": "THE ONLINE SHOPPER",
+    "age": 16,
+    "gender": "Nam",
+    "className": "10X-02 (hư cấu)",
+    "school": "Trường Liên cấp Sao Băng (hư cấu)",
+    "address": "Dãy nhà mô phỏng Cloud-12, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng tại khu Cloud Town",
+    "familyMembers": ["Bố — nhân vật mô phỏng", "Mẹ — nhân vật mô phỏng"],
+    "contact": {
+      "phone": "000-000-0000 (DEMO ONLY)",
+      "email": "giahuy.profile@example.invalid",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "giahuy.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "financialInfo": {
+      "simulatedBalance": 87000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "lifestyle": {
+      "hobbies": ["Sưu tầm mô hình", "Săn ưu đãi"],
+      "habits": ["Đăng ký nhận voucher", "Lưu địa chỉ giao hàng giả lập"],
+      "frequentPlaces": ["Chợ Mây Online — dịch vụ hư cấu", "Khu Arcade Pixel"],
+      "summary": "Dùng nhiều dịch vụ mua sắm mô phỏng và thường đăng ký nhận khuyến mãi."
+    },
+    "riskFactors": [
+      "Biểu mẫu nhận voucher có thể yêu cầu dữ liệu không cần thiết.",
+      "Thông tin giao dịch có thể bị lợi dụng cho tin nhắn lừa đảo."
+    ],
+    "digitalFootprint": [
+      "Lịch sử đơn hàng tại Chợ Mây Online — dữ liệu mô phỏng.",
+      "Nhiều lần đăng ký chương trình ưu đãi bằng biểu mẫu hư cấu."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-003",
+    "characterName": "Lê Hoàng Nam",
+    "persona": "THE GAMER",
+    "age": 15,
+    "gender": "Nam",
+    "className": "10X-03 (hư cấu)",
+    "school": "Học viện Ánh Dương (hư cấu)",
+    "address": "Cụm nhà mô phỏng Nova-08, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại khu Nova",
+    "familyMembers": ["Bà — nhân vật mô phỏng", "Em gái — nhân vật mô phỏng"],
+    "contact": {
+      "phone": "000-000-0000 (DEMO ONLY)",
+      "email": "hoangnam.profile@example.invalid",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "hoangnam.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "financialInfo": {
+      "simulatedBalance": 42000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Không công khai (nhân vật mô phỏng)",
+    "lifestyle": {
+      "hobbies": ["Trò chơi điện tử", "Thiết kế bản đồ game"],
+      "habits": ["Tham gia cộng đồng game", "Dùng nhiều dịch vụ đăng nhập"],
+      "frequentPlaces": ["Đấu trường Pixel — game hư cấu", "Phòng máy Sao Chổi — địa điểm hư cấu"],
+      "summary": "Tham gia nhiều cộng đồng trực tuyến và thích nhận vật phẩm trong game."
+    },
+    "riskFactors": [
+      "Lời mời nhận vật phẩm miễn phí có thể dụ người chơi chia sẻ thông tin.",
+      "Dùng lại mật khẩu giữa các dịch vụ làm tăng rủi ro cho tài khoản."
+    ],
+    "digitalFootprint": [
+      "Bài đăng tìm đồng đội trong cộng đồng game mô phỏng.",
+      "Hồ sơ game hiển thị tên nhân vật và khung giờ hoạt động."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-004",
+    "characterName": "Phạm Ngọc Hà",
+    "persona": "THE QUIET STUDENT",
+    "age": 16,
+    "gender": "Nữ",
+    "className": "10X-04 (hư cấu)",
+    "school": "Trường Liên cấp Sao Băng (hư cấu)",
+    "address": "Khu dân cư mô phỏng Lumen-05, Thành phố Hư Cấu",
+    "housing": "Nhà vườn mô phỏng tại khu Lumen",
+    "familyMembers": ["Bố — nhân vật mô phỏng", "Mẹ — nhân vật mô phỏng"],
+    "contact": {
+      "phone": "000-000-0000 (DEMO ONLY)",
+      "email": "ngocha.profile@example.invalid",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "ngocha.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "financialInfo": {
+      "simulatedBalance": 59000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "lifestyle": {
+      "hobbies": ["Đọc truyện", "Vẽ minh họa"],
+      "habits": ["Cài nhiều ứng dụng", "Thường bấm cho phép nhanh"],
+      "frequentPlaces": ["Vườn Ánh Trăng — địa điểm hư cấu", "Thư viện Mây — địa điểm hư cấu"],
+      "summary": "Ít đăng công khai nhưng đã cấp nhiều quyền ứng dụng mà chưa xem kỹ."
+    },
+    "riskFactors": [
+      "Quyền truy cập ứng dụng có thể vượt quá chức năng cần dùng.",
+      "Biểu mẫu và ứng dụng lưu dữ liệu ở nhiều nơi khó theo dõi."
+    ],
+    "digitalFootprint": [
+      "Một số ứng dụng mô phỏng được cấp quyền vị trí liên tục.",
+      "Biểu mẫu sở thích được lưu trong dịch vụ hư cấu."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-005",
+    "characterName": "Võ Đức Minh",
+    "persona": "THE DIGITAL BANKER",
+    "age": 17,
+    "gender": "Nam",
+    "className": "11X-05 (hư cấu)",
+    "school": "Học viện Ánh Dương (hư cấu)",
+    "address": "Cụm căn hộ mô phỏng Aurora-11, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại khu Aurora",
+    "familyMembers": ["Mẹ — nhân vật mô phỏng", "Chị gái — nhân vật mô phỏng"],
+    "contact": {
+      "phone": "000-000-0000 (DEMO ONLY)",
+      "email": "ducminh.profile@example.invalid",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "ducminh.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "financialInfo": {
+      "simulatedBalance": 245000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Không công khai (nhân vật mô phỏng)",
+    "lifestyle": {
+      "hobbies": ["Lắp ráp robot", "Theo dõi công nghệ"],
+      "habits": ["Dùng ứng dụng tài chính mô phỏng", "Mua sắm trực tuyến"],
+      "frequentPlaces": ["Trung tâm Kỹ thuật Số — địa điểm hư cấu", "Chợ Mây Online — dịch vụ hư cấu"],
+      "summary": "Nhận thông báo giao dịch mô phỏng và dùng nhiều dịch vụ trực tuyến."
+    },
+    "riskFactors": [
+      "Thông báo giao dịch giả mạo có thể tạo cảm giác khẩn cấp.",
+      "Thông tin ở nhiều dịch vụ có thể bị ghép lại để mạo danh."
+    ],
+    "digitalFootprint": [
+      "Lịch sử mua sắm và thông báo giao dịch giả lập.",
+      "Tài khoản demo tại Ngân hàng Pixel — dịch vụ hư cấu."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  }
+]

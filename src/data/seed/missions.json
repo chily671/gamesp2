@@ -1,0 +1,100 @@
+[
+  {
+    "missionCode": "MISSION-01",
+    "stage": 1,
+    "title": "THE APP TRAP",
+    "subtitle": "A NEW DIGITAL WORLD",
+    "story": "Một ứng dụng chỉnh sửa ảnh mới xuất hiện trên thiết bị của nhân vật. DATA TRAP đang theo dõi những quyền ứng dụng được cấp.",
+    "scenario": "Ứng dụng cần chụp ảnh mới và chọn ảnh để chỉnh sửa. Các quyền khác không được giải thích và chưa cần cho chức năng này.",
+    "interactionType": "permissions",
+    "answerMode": "multiple",
+    "interactionPrompt": "Chọn quyền phù hợp với chức năng đã mô tả. Bạn có thể giới hạn quyền chỉ khi đang dùng ứng dụng.",
+    "options": [
+      { "id": "camera", "label": "Camera", "detail": "Chụp ảnh mới để chỉnh sửa." },
+      { "id": "photos", "label": "Ảnh", "detail": "Chọn ảnh có sẵn từ thiết bị." },
+      { "id": "microphone", "label": "Microphone", "detail": "Thu âm, dù ứng dụng chỉ chỉnh sửa ảnh." },
+      { "id": "location", "label": "Vị trí", "detail": "Ghi nhận vị trí, không cần cho chỉnh sửa ảnh." },
+      { "id": "contacts", "label": "Danh bạ", "detail": "Đọc danh bạ, không cần cho chỉnh sửa ảnh." },
+      { "id": "always-camera", "label": "Camera mọi lúc", "detail": "Cho phép truy cập liên tục cả khi không dùng ứng dụng." }
+    ],
+    "correctAnswer": ["camera", "photos"],
+    "explanation": "Camera và quyền chọn ảnh phù hợp với chức năng được mô tả. Microphone, vị trí và danh bạ không có mục đích rõ ràng ở đây; quyền truy cập liên tục cũng vượt quá nhu cầu. Một quyền phù hợp có thể được cấp giới hạn khi sử dụng.",
+    "lesson": "Đánh giá quyền theo chức năng và mục đích cụ thể; có thể giới hạn hoặc thu hồi quyền không cần thiết.",
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 — đối chiếu nguyên tắc xử lý, mục đích và phạm vi dữ liệu với văn bản chính thức.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "missionCode": "MISSION-02",
+    "stage": 2,
+    "title": "THE DATA TRAP",
+    "subtitle": "YOUR DATA IS THE PRICE",
+    "story": "Nhân vật muốn nhận voucher điện tử từ Chợ Mây Online, dịch vụ hư cấu. Biểu mẫu đưa ra nhiều trường, nhưng mục đích một số trường chưa được nêu.",
+    "scenario": "Voucher sẽ gửi tới tài khoản email đã đăng nhập. Biểu mẫu vẫn yêu cầu thêm thông tin ngoài việc nhận voucher.",
+    "interactionType": "data-review",
+    "answerMode": "multiple",
+    "interactionPrompt": "Đánh dấu các trường cần hỏi lại vì chưa thấy cần thiết để gửi voucher hoặc chưa có mục đích giải thích.",
+    "options": [
+      { "id": "name", "label": "Tên hiển thị", "detail": "Dùng để cá nhân hóa lời chào; có thể không bắt buộc." },
+      { "id": "email", "label": "Email tài khoản", "detail": "Kênh gửi voucher đã được nêu trong tình huống." },
+      { "id": "birthday", "label": "Ngày sinh đầy đủ", "detail": "Chưa giải thích vì sao cần để gửi voucher." },
+      { "id": "phone", "label": "Số điện thoại", "detail": "Đã có email nhận voucher; mục đích số điện thoại chưa rõ." },
+      { "id": "school", "label": "Trường học", "detail": "Không liên quan rõ ràng đến việc gửi voucher." },
+      { "id": "friends", "label": "Danh sách bạn bè", "detail": "Chưa giải thích mục đích thu thập danh sách này." },
+      { "id": "interests", "label": "Sở thích", "detail": "Có thể phục vụ gợi ý, nhưng chưa nói rõ và có thể là tùy chọn." }
+    ],
+    "correctAnswer": ["birthday", "phone", "school", "friends", "interests"],
+    "explanation": "Tên hiển thị có thể là tùy chọn và email là kênh gửi đã nêu. Với các trường còn lại, hãy hỏi mục đích, phạm vi sử dụng, nơi nhận và lựa chọn không cung cấp nếu chưa rõ. Thu thập dữ liệu cần đánh giá theo ngữ cảnh; không phải mọi yêu cầu đều tự động sai.",
+    "lesson": "Xem thông báo mục đích và phạm vi trước khi chia sẻ. Phân biệt rủi ro riêng tư với kết luận một hành vi vi phạm pháp luật.",
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 — đối chiếu quy định áp dụng cho mục đích, thông báo và căn cứ xử lý.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "missionCode": "MISSION-03",
+    "stage": 3,
+    "title": "THE SOCIAL ENGINEERING TRAP",
+    "subtitle": "SOMEONE WANTS YOUR IDENTITY",
+    "story": "Một tài khoản tự xưng là hỗ trợ nhắn cho {characterName}. Họ biết tên, lớp và trường từ những dấu vết công khai trong hồ sơ.",
+    "scenario": "Người nhắn nói tài khoản sẽ bị khóa và yêu cầu gửi mật khẩu cùng mã xác thực để nhận vật phẩm. Đây là hộp thư mô phỏng; không có liên kết thật.",
+    "interactionType": "chat",
+    "answerMode": "single",
+    "interactionPrompt": "Bạn sẽ phản hồi thế nào với tin nhắn này?",
+    "options": [
+      { "id": "send-code", "label": "Gửi mã và mật khẩu", "detail": "Làm theo yêu cầu để tránh bị khóa tài khoản." },
+      { "id": "verify-channel", "label": "Dừng lại, tự mở kênh chính thức", "detail": "Không dùng thông tin liên hệ do người nhắn cung cấp." },
+      { "id": "ask-more", "label": "Hỏi thêm để chắc chắn", "detail": "Tiếp tục trò chuyện và cân nhắc gửi một phần thông tin." },
+      { "id": "report", "label": "Không chia sẻ; chặn/báo cáo", "detail": "Không gửi mã hoặc mật khẩu, báo cáo tin nhắn đáng ngờ." }
+    ],
+    "correctAnswer": ["verify-channel", "report"],
+    "explanation": "Việc kẻ nhắn biết thông tin cá nhân không chứng minh họ là nhân viên hỗ trợ. Không gửi mật khẩu hay mã xác thực; tự mở ứng dụng hoặc kênh chính thức để kiểm tra, đồng thời chặn/báo cáo nếu cần.",
+    "lesson": "Xác minh yêu cầu độc lập qua kênh tin cậy. Không chia sẻ thông tin xác thực qua tin nhắn.",
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 — tình huống minh họa rủi ro; căn cứ pháp lý cụ thể cần được chuyên gia đối chiếu theo bối cảnh.",
+    "legalReviewRequired": true,
+    "isActive": true
+  },
+  {
+    "missionCode": "MISSION-04",
+    "stage": 4,
+    "title": "FINAL ESCAPE",
+    "subtitle": "YOUR IDENTITY IS UNDER ATTACK",
+    "story": "DATA TRAP ghép các dấu vết công khai, quyền ứng dụng và tin nhắn giả mạo để dựng hồ sơ của nhân vật. Đây là lượt cuối để giảm nguy cơ.",
+    "scenario": "Bạn có thể chọn các bước bảo vệ ngay. Chọn hành động thiết thực nhất cho các dấu hiệu trong câu chuyện.",
+    "interactionType": "final-plan",
+    "answerMode": "multiple",
+    "interactionPrompt": "Chọn tất cả hành động giúp bảo vệ nhân vật trong tình huống này.",
+    "options": [
+      { "id": "limit-public", "label": "Hạn chế bài đăng công khai", "detail": "Rà soát ảnh, check-in và thông tin lịch trình đang công khai." },
+      { "id": "review-permissions", "label": "Rà soát quyền ứng dụng", "detail": "Thu hồi hoặc giới hạn quyền không cần cho chức năng." },
+      { "id": "unique-password", "label": "Dùng mật khẩu riêng và xác thực bổ sung", "detail": "Đổi mật khẩu bị dùng lại qua kênh chính thức; bật xác thực đa yếu tố nếu có." },
+      { "id": "verify-messages", "label": "Xác minh yêu cầu qua kênh chính thức", "detail": "Không dùng đường dẫn hay số liên hệ trong tin nhắn đáng ngờ." },
+      { "id": "share-code", "label": "Gửi mã xác thực để kiểm tra", "detail": "Chia sẻ mã tạm thời với người tự nhận là hỗ trợ." }
+    ],
+    "correctAnswer": ["limit-public", "review-permissions", "unique-password", "verify-messages"],
+    "explanation": "Bốn hành động đầu giảm các rủi ro đã xuất hiện trong câu chuyện. Không chia sẻ mã xác thực. Chỉ thay đổi thông tin đăng nhập qua dịch vụ chính thức và không tái sử dụng mật khẩu.",
+    "lesson": "Bảo vệ danh tính là nhiều lớp: giảm dấu vết công khai, giới hạn quyền, bảo vệ tài khoản và xác minh yêu cầu.",
+    "legalBasis": "Luật Bảo vệ dữ liệu cá nhân số 91/2025/QH15 — bài học giáo dục, không phải kết luận pháp lý; cần chuyên gia rà soát điều khoản áp dụng.",
+    "legalReviewRequired": true,
+    "isActive": true
+  }
+]

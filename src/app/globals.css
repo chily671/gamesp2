@@ -1,26 +1,219 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
+  --background: #050a13;
+  --foreground: #e2e8f0;
+  --cyan: #67e8f9;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: "Courier New", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: rgb(103 232 249 / 85%);
+  color: #06101b;
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(103 232 249 / 3%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(103 232 249 / 3%) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.ambient {
+  position: absolute;
+  z-index: 0;
+  width: min(60vw, 680px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  border-radius: 9999px;
+  filter: blur(100px);
+}
+
+.ambient-left {
+  top: 8%;
+  left: -30%;
+  background: rgb(8 145 178 / 12%);
+}
+
+.ambient-right {
+  top: 14%;
+  right: -34%;
+  background: rgb(30 64 175 / 12%);
+}
+
+.brand-mark {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid rgb(103 232 249 / 40%);
+  color: var(--cyan);
+  background: rgb(34 211 238 / 6%);
+}
+
+.status-dot {
+  position: relative;
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  flex: 0 0 auto;
+  border-radius: 9999px;
+  background: #67e8a5;
+  box-shadow: 0 0 10px rgb(103 232 165 / 70%);
+}
+
+.status-dot::after {
+  position: absolute;
+  inset: -4px;
+  border: 1px solid rgb(103 232 165 / 35%);
+  border-radius: inherit;
+  content: "";
+  animation: status-pulse 2.2s ease-out infinite;
+}
+
+.text-glow {
+  text-shadow: 0 0 34px rgb(34 211 238 / 24%);
+}
+
+.scanner-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  aspect-ratio: 1;
+  border: 1px solid rgb(103 232 249 / 8%);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+}
+
+.scanner-ring-outer {
+  width: 108%;
+}
+
+.scanner-ring-inner {
+  width: 95%;
+  border-color: rgb(103 232 249 / 10%);
+  border-style: dashed;
+  animation: orbit-spin 48s linear infinite;
+}
+
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 84%;
+  aspect-ratio: 1;
+  border: 1px solid transparent;
+  border-top-color: rgb(103 232 249 / 65%);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.orbit-one {
+  animation: orbit-spin 19s linear infinite;
+}
+
+.orbit-two {
+  width: 95%;
+  border-top-color: rgb(96 165 250 / 45%);
+  animation: orbit-spin 31s linear infinite reverse;
+}
+
+.orbit span {
+  position: absolute;
+  top: 10%;
+  left: 8%;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: #a5f3fc;
+  box-shadow: 0 0 12px rgb(103 232 249 / 90%);
+}
+
+.scan-beam {
+  animation: scan 5s ease-in-out infinite;
+}
+
+.identity-core {
+  animation: core-breathe 5s ease-in-out infinite;
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
+@keyframes scan {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(-38px);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translateY(60px);
+  }
+}
+
+@keyframes core-breathe {
+  0%,
+  100% {
+    box-shadow: 0 0 50px rgb(6 182 212 / 12%);
+  }
+
+  50% {
+    box-shadow: 0 0 78px rgb(6 182 212 / 26%);
+  }
+}
+
+@keyframes status-pulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.65);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
