@@ -69,7 +69,23 @@ export default function ResultScreen() {
     );
   }
 
-  const isComplete = result.status === "completed" && result.completedStages === 4;
+  const isRpg = result.gameVersion === "rpg-v2";
+  const isComplete =
+    result.status === "completed" &&
+    result.completedStages === (isRpg ? 3 : 4);
+  const stats = isRpg
+    ? [
+        [Target, "DATA RISK", `${result.rpg.dataRisk}/100`],
+        [ShieldCheck, "PROTECTION SCORE", `${result.rpg.protectionScore}/100`],
+        [Fingerprint, "EVIDENCE", String(result.rpg.evidence.length)],
+        [Clock3, "THỜI GIAN", formatDuration(result.duration)],
+      ]
+    : [
+        [Target, "NHIỆM VỤ", `${result.completedStages}/4`],
+        [CheckCircle2, "QUYẾT ĐỊNH ĐÚNG", `${result.correctAnswers}/${result.completedStages}`],
+        [ShieldCheck, "CHÍNH XÁC", `${result.accuracy}%`],
+        [Clock3, "THỜI GIAN", formatDuration(result.duration)],
+      ];
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#050a13] px-5 py-8 text-slate-100 sm:px-8 sm:py-12">
@@ -87,7 +103,13 @@ export default function ResultScreen() {
           )}
         </div>
         <h1 className="mt-7 text-center text-4xl font-black tracking-[-0.06em] text-white sm:text-6xl">
-          {isComplete ? "IDENTITY SECURED." : "MISSION ENDED."}
+          {isRpg && result.rpg.ending?.id === "contained"
+            ? "RISK CONTAINED."
+            : isRpg && result.rpg.ending?.id === "partial"
+              ? "PARTIAL RESPONSE."
+              : isComplete
+                ? "IDENTITY SECURED."
+                : "MISSION ENDED."}
         </h1>
         <p className="mt-3 text-center text-sm text-slate-400">
           {isComplete
@@ -114,12 +136,7 @@ export default function ResultScreen() {
         </div>
 
         <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {[
-            [Target, "NHIỆM VỤ", `${result.completedStages}/4`],
-            [CheckCircle2, "QUYẾT ĐỊNH ĐÚNG", `${result.correctAnswers}/${result.completedStages}`],
-            [ShieldCheck, "CHÍNH XÁC", `${result.accuracy}%`],
-            [Clock3, "THỜI GIAN", formatDuration(result.duration)],
-          ].map(([Icon, label, value]) => (
+          {stats.map(([Icon, label, value]) => (
             <article className="border border-white/[0.08] bg-white/[0.025] p-4" key={label}>
               <Icon aria-hidden="true" className="text-cyan-200/70" size={17} />
               <p className="mt-4 font-mono text-[8px] tracking-[0.1em] text-slate-600">{label}</p>
@@ -127,6 +144,32 @@ export default function ResultScreen() {
             </article>
           ))}
         </div>
+
+        {isRpg && (
+          <div className="mt-5 space-y-3">
+            {result.rpg.ending && (
+              <section className="border border-cyan-200/20 bg-[#091321]/90 p-5">
+                <p className="font-mono text-[9px] tracking-[0.15em] text-cyan-200/60">KẾT QUẢ THEO QUYẾT ĐỊNH CỦA BẠN</p>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{result.rpg.ending.narrative}</p>
+              </section>
+            )}
+            <section className="border border-white/[0.08] bg-white/[0.025] p-5">
+              <p className="font-mono text-[9px] tracking-[0.15em] text-cyan-200/60">EVIDENCE ĐÃ THU THẬP</p>
+              {result.rpg.evidence.length ? (
+                <ul className="mt-3 space-y-3">
+                  {result.rpg.evidence.map((item) => (
+                    <li className="border-l border-cyan-200/30 pl-3" key={item.evidenceId}>
+                      <p className="text-xs font-semibold text-slate-200">{item.title}</p>
+                      <p className="mt-1 text-xs leading-5 text-slate-500">{item.body}</p>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-3 text-xs text-slate-500">Chưa thu thập bằng chứng.</p>
+              )}
+            </section>
+          </div>
+        )}
 
         <div className="mt-5 border-l border-cyan-200/30 px-4 py-2">
           <p className="text-sm leading-6 text-slate-300">

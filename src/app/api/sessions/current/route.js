@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import CharacterProfile from "@/models/CharacterProfile";
 import GameSession from "@/models/GameSession";
 import Player from "@/models/Player";
 import connectToDatabase from "@/lib/mongodb";
+import { getSessionCharacter } from "@/lib/game/session-access";
 import { hashSessionToken } from "@/lib/utils/session-token";
 
 function unauthorized() {
@@ -55,10 +55,7 @@ export async function GET(request) {
       })
         .select("fullName className")
         .lean(),
-      CharacterProfile.findOne({
-        _id: gameSession.characterId,
-        isDemoOnly: true,
-      }).lean(),
+      getSessionCharacter(gameSession),
     ]);
 
     if (!player || !character) {
@@ -71,6 +68,7 @@ export async function GET(request) {
           fullName: player.fullName,
           className: player.className,
         },
+        gameVersion: gameSession.gameVersion ?? "legacy-v1",
         character: {
           characterCode: character.characterCode,
           characterName: character.characterName,

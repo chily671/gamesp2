@@ -2,7 +2,66 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  Check,
+  Fingerprint,
+  LockKeyhole,
+  ShieldCheck,
+  UserRound,
+} from "lucide-react";
+
+function LinkField({
+  autoComplete,
+  icon: Icon,
+  label,
+  maxLength,
+  name,
+  onChange,
+  placeholder,
+  value,
+}) {
+  const hasValue = value.trim().length > 0;
+
+  return (
+    <label className="block">
+      <span className="mb-1.5 flex items-center justify-between gap-3 font-mono text-[8px] tracking-[0.15em] text-cyan-100/70 sm:text-[9px]">
+        <span>{label}</span>
+        <span className={hasValue ? "flex items-center gap-1 text-emerald-200/75" : "text-slate-600"}>
+          {hasValue ? (
+            <>
+              <Check aria-hidden="true" size={11} />
+              READY
+            </>
+          ) : (
+            "REQUIRED"
+          )}
+        </span>
+      </span>
+      <span className="group flex min-h-12 items-center gap-3 border border-blue-100/15 bg-[#050a18]/90 px-3 transition focus-within:border-cyan-200/65 focus-within:shadow-[0_0_20px_rgba(34,211,238,0.12)] sm:min-h-[52px]">
+        <Icon
+          aria-hidden="true"
+          className={`shrink-0 ${hasValue ? "text-cyan-100" : "text-slate-600"} transition`}
+          size={16}
+        />
+        <input
+          autoComplete={autoComplete}
+          className="h-full min-w-0 flex-1 bg-transparent py-3 text-sm text-white outline-none placeholder:text-slate-600"
+          maxLength={maxLength}
+          name={name}
+          onChange={onChange}
+          placeholder={placeholder}
+          required
+          value={value}
+        />
+        <span aria-hidden="true" className="h-4 w-px bg-cyan-100/15" />
+        <span className="font-mono text-[8px] text-slate-600">
+          {value.length}/{maxLength}
+        </span>
+      </span>
+    </label>
+  );
+}
 
 export default function RegisterForm({ retentionDays }) {
   const router = useRouter();
@@ -16,7 +75,7 @@ export default function RegisterForm({ retentionDays }) {
     setErrorMessage("");
 
     if (!fullName.trim() || !className.trim()) {
-      setErrorMessage("Vui lòng nhập họ tên và lớp để tiếp tục.");
+      setErrorMessage("Cần xác lập cả tên người chơi và lớp để tiếp tục.");
       return;
     }
 
@@ -38,7 +97,7 @@ export default function RegisterForm({ retentionDays }) {
       router.replace("/character");
     } catch {
       setErrorMessage(
-        "Không thể kết nối đến máy chủ. Hãy kiểm tra kết nối và thử lại.",
+        "Mất kết nối với máy chủ mô phỏng. Hãy kiểm tra mạng và thử lại.",
       );
     } finally {
       setIsSubmitting(false);
@@ -47,104 +106,103 @@ export default function RegisterForm({ retentionDays }) {
 
   return (
     <form
-      className="panel-frame mx-auto w-full max-w-xl border border-cyan-200/15 bg-[#091321]/90 p-6 shadow-[0_24px_100px_rgba(0,0,0,0.28)] backdrop-blur sm:p-9"
+      className="relative order-3 mx-auto w-full max-w-[410px] border border-cyan-200/30 bg-[linear-gradient(150deg,rgba(8,25,51,0.94),rgba(4,9,22,0.97))] p-4 shadow-[0_18px_70px_rgba(0,0,0,0.48),0_0_35px_rgba(34,211,238,0.09)] backdrop-blur-md sm:p-5 lg:order-3 lg:p-5"
       onSubmit={handleSubmit}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p className="font-mono text-[10px] tracking-[0.18em] text-cyan-200/65">
-            PLAYER REGISTRATION
+      <span aria-hidden="true" className="absolute left-0 top-0 h-7 w-7 border-l-2 border-t-2 border-cyan-100/85" />
+      <span aria-hidden="true" className="absolute bottom-0 right-0 h-7 w-7 border-b-2 border-r-2 border-blue-200/70" />
+
+      <div className="flex items-start gap-3 border-b border-cyan-100/15 pb-3">
+        <span className="grid h-9 w-9 shrink-0 place-items-center border border-cyan-200/35 bg-cyan-200/[0.06] text-cyan-100">
+          <Fingerprint aria-hidden="true" size={19} />
+        </span>
+        <div className="min-w-0">
+          <p className="font-mono text-[8px] tracking-[0.17em] text-cyan-100/60">
+            SECURE UPLINK // PLAYER ID
           </p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white">
-            Bạn là ai trong lượt chơi này?
+          <h2 className="mt-1 text-sm font-bold tracking-wide text-white sm:text-base">
+            Xác lập liên kết
           </h2>
         </div>
-        <ShieldCheck
-          aria-hidden="true"
-          className="mt-1 shrink-0 text-cyan-200/75"
-          size={21}
-          strokeWidth={1.5}
+        <span className="ml-auto flex items-center gap-1.5 border border-emerald-200/20 bg-emerald-200/[0.04] px-2 py-1 font-mono text-[7px] text-emerald-100/70">
+          <span className="status-dot" />
+          ENCRYPTED
+        </span>
+      </div>
+
+      <p className="mt-3 text-[10px] leading-5 text-slate-400">
+        AI Guardian cần thông tin cơ bản để mở phiên mô phỏng và chào bạn trong
+        nhiệm vụ.
+      </p>
+
+      <div className="mt-4 space-y-3">
+        <LinkField
+          autoComplete="name"
+          icon={UserRound}
+          label="TÊN NGƯỜI CHƠI"
+          maxLength={80}
+          name="fullName"
+          onChange={(event) => setFullName(event.target.value)}
+          placeholder="Nhập họ tên"
+          value={fullName}
+        />
+        <LinkField
+          autoComplete="off"
+          icon={Fingerprint}
+          label="LỚP / ĐỘI"
+          maxLength={20}
+          name="className"
+          onChange={(event) => setClassName(event.target.value)}
+          placeholder="Ví dụ: 10A3"
+          value={className}
         />
       </div>
 
-      <div className="mt-8 space-y-5">
-        <label className="block">
-          <span className="mb-2 block font-mono text-[10px] tracking-[0.13em] text-slate-300">
-            HỌ VÀ TÊN <span className="text-cyan-200">*</span>
-          </span>
-          <input
-            autoComplete="name"
-            className="min-h-14 w-full border border-white/[0.12] bg-[#050b14] px-4 text-base text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-200/70 focus:ring-2 focus:ring-cyan-300/10"
-            maxLength={80}
-            name="fullName"
-            onChange={(event) => setFullName(event.target.value)}
-            placeholder="Nhập họ tên của bạn"
-            required
-            value={fullName}
-          />
-        </label>
-
-        <label className="block">
-          <span className="mb-2 block font-mono text-[10px] tracking-[0.13em] text-slate-300">
-            LỚP <span className="text-cyan-200">*</span>
-          </span>
-          <input
-            autoComplete="off"
-            className="min-h-14 w-full border border-white/[0.12] bg-[#050b14] px-4 text-base text-white outline-none transition placeholder:text-slate-600 focus:border-cyan-200/70 focus:ring-2 focus:ring-cyan-300/10"
-            maxLength={20}
-            name="className"
-            onChange={(event) => setClassName(event.target.value)}
-            placeholder="Ví dụ: 10A3"
-            required
-            value={className}
-          />
-        </label>
-      </div>
-
-      <div className="mt-6 border border-cyan-200/15 bg-cyan-200/[0.035] p-4">
-        <p className="font-mono text-[10px] tracking-[0.13em] text-cyan-100/85">
-          THÔNG TIN ĐƯỢC THU THẬP
+      <div className="mt-3 border border-blue-200/15 bg-blue-200/[0.035] p-3">
+        <p className="flex items-center gap-2 font-mono text-[8px] tracking-[0.12em] text-blue-100/75">
+          <LockKeyhole aria-hidden="true" size={12} />
+          DATA TRANSMISSION NOTICE
         </p>
-        <p className="mt-2 text-xs leading-6 text-slate-400">
-          Họ tên và lớp chỉ dùng để chào bạn trong lượt chơi và lưu kết quả cho
-          ban tổ chức. Dữ liệu được tự động xóa sau{" "}
+        <p className="mt-2 text-[9px] leading-[1.65] text-slate-400">
+          Chỉ lưu tên và lớp để nhận diện lượt chơi, chào bạn và lưu kết quả cho
+          ban tổ chức. Tự động xóa sau{" "}
           <strong className="font-semibold text-slate-200">
             {retentionDays ? `${retentionDays} ngày` : "thời hạn đã cấu hình"}
           </strong>
-          {!retentionDays && " (hãy hỏi ban tổ chức để biết thời hạn cụ thể)"}
-          . Hồ sơ nhân vật trong game là dữ liệu hư cấu, không liên quan đến bạn.
+          {!retentionDays && " (liên hệ ban tổ chức để biết thời hạn cụ thể)"}.
+          Không nhập mật khẩu hay thông tin nhạy cảm thật.
         </p>
-        <p className="mt-2 text-xs leading-6 text-slate-400">
-          Không nhập số điện thoại, địa chỉ, mật khẩu hoặc thông tin cá nhân
-          khác. Tên và lớp không được hiển thị công khai trên bảng xếp hạng.
+        <p className="mt-1.5 text-[9px] leading-[1.65] text-slate-500">
+          Nhân vật và toàn bộ dữ liệu trong game là hư cấu, tách biệt với bạn.
         </p>
       </div>
 
       <p
         aria-live="polite"
-        className="min-h-6 pt-3 text-sm text-rose-300"
+        className="min-h-5 pt-2 text-[10px] text-rose-300"
         role="status"
       >
         {errorMessage}
       </p>
 
       <button
-        className="group mt-3 flex min-h-14 w-full items-center justify-center gap-3 bg-cyan-300 px-5 font-mono text-xs font-bold tracking-[0.15em] text-[#06101b] transition hover:bg-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-100 disabled:cursor-wait disabled:opacity-60"
+        className="group flex min-h-12 w-full items-center justify-center gap-2 border border-amber-100 bg-[linear-gradient(180deg,#ffe975_0%,#ffc21c_55%,#f59e0b_100%)] px-4 font-mono text-[9px] font-black tracking-[0.1em] text-[#191006] shadow-[0_0_24px_rgba(251,191,36,0.2),inset_0_1px_0_rgba(255,255,255,0.7)] transition hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-100 disabled:cursor-wait disabled:opacity-65 sm:text-[10px]"
         disabled={isSubmitting}
         type="submit"
       >
-        {isSubmitting ? "ĐANG TẠO PHIÊN..." : "TẠO PHIÊN CỦA TÔI"}
+        {isSubmitting ? "ĐANG THIẾT LẬP UPLINK..." : "KẾT NỐI & MỞ HỒ SƠ"}
         {!isSubmitting && (
           <ArrowRight
             aria-hidden="true"
             className="transition-transform group-hover:translate-x-1"
-            size={16}
+            size={15}
           />
         )}
       </button>
-      <p className="mt-4 text-center font-mono text-[9px] tracking-[0.1em] text-slate-600">
-        SESSION ISOLATED <span className="px-2 text-cyan-300/50">/</span>{" "}
-        SIMULATED IDENTITY ONLY
+
+      <p className="mt-3 flex items-center justify-center gap-1.5 font-mono text-[7px] tracking-[0.1em] text-slate-600">
+        <ShieldCheck aria-hidden="true" size={11} />
+        PLAYER LINK ONLY // CHARACTER PROFILE IS FICTIONAL
       </p>
     </form>
   );

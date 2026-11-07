@@ -48,6 +48,56 @@ export async function GET(request) {
               expired: {
                 $sum: { $cond: [{ $eq: ["$status", "expired"] }, 1, 0] },
               },
+              rpgSessions: {
+                $sum: {
+                  $cond: [{ $eq: ["$gameVersion", "rpg-v2"] }, 1, 0],
+                },
+              },
+              rpgCompleted: {
+                $sum: {
+                  $cond: [
+                    {
+                      $and: [
+                        { $eq: ["$gameVersion", "rpg-v2"] },
+                        { $eq: ["$status", "completed"] },
+                      ],
+                    },
+                    1,
+                    0,
+                  ],
+                },
+              },
+              averageDataRisk: {
+                $avg: {
+                  $cond: [
+                    { $eq: ["$gameVersion", "rpg-v2"] },
+                    "$rpgProgress.dataRisk",
+                    null,
+                  ],
+                },
+              },
+              averageProtectionScore: {
+                $avg: {
+                  $cond: [
+                    { $eq: ["$gameVersion", "rpg-v2"] },
+                    "$rpgProgress.protectionScore",
+                    null,
+                  ],
+                },
+              },
+              averageEvidenceCount: {
+                $avg: {
+                  $cond: [
+                    { $eq: ["$gameVersion", "rpg-v2"] },
+                    {
+                      $size: {
+                        $ifNull: ["$rpgProgress.evidenceInventory", []],
+                      },
+                    },
+                    null,
+                  ],
+                },
+              },
               averageScore: { $avg: "$score" },
               averageDuration: {
                 $avg: {
@@ -58,12 +108,14 @@ export async function GET(request) {
                   ],
                 },
               },
-              totalAnswers: { $sum: { $size: "$answers" } },
+              totalAnswers: {
+                $sum: { $size: { $ifNull: ["$answers", []] } },
+              },
               correctAnswers: {
                 $sum: {
                   $size: {
                     $filter: {
-                      input: "$answers",
+                      input: { $ifNull: ["$answers", []] },
                       as: "answer",
                       cond: { $eq: ["$$answer.isCorrect", true] },
                     },
@@ -76,7 +128,12 @@ export async function GET(request) {
                     {
                       $and: [
                         { $eq: ["$status", "completed"] },
-                        { $gt: [{ $size: "$answers" }, 0] },
+                        {
+                          $gt: [
+                            { $size: { $ifNull: ["$answers", []] } },
+                            0,
+                          ],
+                        },
                       ],
                     },
                     {
@@ -87,13 +144,13 @@ export async function GET(request) {
                             {
                               $size: {
                                 $filter: {
-                                  input: "$answers",
+                                  input: { $ifNull: ["$answers", []] },
                                   as: "answer",
                                   cond: { $eq: ["$$answer.isCorrect", true] },
                                 },
                               },
                             },
-                            { $size: "$answers" },
+                            { $size: { $ifNull: ["$answers", []] } },
                           ],
                         },
                       ],
@@ -132,9 +189,23 @@ export async function GET(request) {
           expired: 0,
           averageScore: 0,
           averageDuration: 0,
+          rpgSessions: 0,
+          rpgCompleted: 0,
+          averageDataRisk: 0,
+          averageProtectionScore: 0,
+          averageEvidenceCount: 0,
           totalAnswers: 0,
           correctAnswers: 0,
           averageAccuracy: 0,
+        },
+        rpg: {
+          sessions: sessions[0]?.rpgSessions ?? 0,
+          completed: sessions[0]?.rpgCompleted ?? 0,
+          averageDataRisk: sessions[0]?.averageDataRisk ?? 0,
+          averageProtectionScore:
+            sessions[0]?.averageProtectionScore ?? 0,
+          averageEvidenceCount: sessions[0]?.averageEvidenceCount ?? 0,
+          stages: 3,
         },
         profiles,
         missions,

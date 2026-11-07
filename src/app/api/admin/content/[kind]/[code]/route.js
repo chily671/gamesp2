@@ -131,7 +131,7 @@ export async function PATCH(request, context) {
         .findOneAndUpdate(
           { [target.codeField]: code },
           { $set: { isActive: payload.isActive } },
-          { new: true, runValidators: true },
+          { returnDocument: "after", runValidators: true },
         )
         .select(`${target.codeField} isActive`)
         .lean();
@@ -176,7 +176,7 @@ export async function PATCH(request, context) {
     const updated = await target.model.findOneAndUpdate(
       { [target.codeField]: code },
       { $set: value },
-      { new: true, runValidators: true },
+      { returnDocument: "after", runValidators: true },
     );
 
     if (!updated) {

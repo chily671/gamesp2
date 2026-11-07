@@ -1,4 +1,5 @@
 import GameSession from "@/models/GameSession";
+import CharacterProfile from "@/models/CharacterProfile";
 import connectToDatabase from "@/lib/mongodb";
 import { hashSessionToken } from "@/lib/utils/session-token";
 
@@ -31,6 +32,14 @@ export async function findCurrentSession(token) {
     sessionCodeHash: hashSessionToken(token),
     retentionExpiresAt: { $gt: new Date() },
   });
+}
+
+export async function getSessionCharacter(gameSession) {
+  if (gameSession.characterSnapshot) {
+    return gameSession.characterSnapshot;
+  }
+
+  return CharacterProfile.findById(gameSession.characterId).lean();
 }
 
 export function publicMission(mission) {

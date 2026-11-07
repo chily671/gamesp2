@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import CharacterProfile from "@/models/CharacterProfile";
 import Player from "@/models/Player";
 import {
   findCurrentSession,
+  getSessionCharacter,
   getSessionToken,
   unauthorizedResponse,
 } from "@/lib/game/session-access";
@@ -35,23 +35,50 @@ export async function GET(request) {
       })
         .select("playerCode fullName className")
         .lean(),
-      CharacterProfile.findById(gameSession.characterId)
-        .select("characterName persona isDemoOnly")
-        .lean(),
+      getSessionCharacter(gameSession),
     ]);
 
     if (!player || !character || character.isDemoOnly !== true) {
       return unauthorizedResponse(NextResponse);
     }
 
-    const completedStages = gameSession.answers.length;
+    const isRpg = gameSession.gameVersion === "rpg-v2";
+    const completedStages = isRpg
+      ? gameSession.status === "completed"
+        ? 3
+        : Math.max(0, gameSession.rpgProgress.currentStage - 1)
+      : gameSession.answers.length;
     const correctAnswers = gameSession.answers.filter(
       (answer) => answer.isCorrect,
     ).length;
+    const evidence = isRpg
+      ? character.storyline.stage02.artifacts
+          .filter((artifact) =>
+            gameSession.rpgProgress.evidenceInventory.includes(
+              artifact.evidenceId,
+            ),
+          )
+          .map(({ title, body, evidenceId }) => ({
+            title,
+            body,
+            evidenceId,
+          }))
+      : undefined;
+    const ending =
+      isRpg && gameSession.rpgProgress.endingId
+        ? {
+            id: gameSession.rpgProgress.endingId,
+            narrative:
+              gameSession.rpgProgress.endingId === "contained"
+                ? character.storyline.stage03.safeEnding
+                : character.storyline.stage03.exposedEnding,
+          }
+        : null;
 
     return NextResponse.json(
       {
         status: gameSession.status,
+        gameVersion: gameSession.gameVersion,
         playerCode: player.playerCode,
         fullName: player.fullName,
         className: player.className,
@@ -64,7 +91,29 @@ export async function GET(request) {
           ? Math.round((correctAnswers / completedStages) * 100)
           : 0,
         duration: gameSession.duration ?? 0,
-        achievement: getAchievement(gameSession.score, completedStages),
+        achievement: getAchievement(
+          gameSession.score,
+          completedStages,
+          gameSession.gameVersion,
+        ),
+        ...(isRpg
+          ? {
+              rpg: {
+                dataRisk: gameSession.rpgProgress.dataRisk,
+                protectionScore: gameSession.rpgProgress.protectionScore,
+                evidence,
+                ending,
+                decisions: gameSession.rpgProgress.decisions.map(
+                  ({ stage, actionId, evidenceIds, decidedAt }) => ({
+                    stage,
+                    actionId,
+                    evidenceIds,
+                    decidedAt,
+                  }),
+                ),
+              },
+            }
+          : {}),
       },
       { headers: { "Cache-Control": "no-store" } },
     );

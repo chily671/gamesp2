@@ -38,7 +38,7 @@ export async function GET(request) {
       retentionExpiresAt: { $gt: new Date() },
     })
       .populate("characterId", "characterName persona")
-      .select("playerId status score answers duration startedAt")
+    .select("playerId status score answers duration startedAt gameVersion rpgProgress characterSnapshot")
       .lean();
     const sessionByPlayer = new Map(
       sessions.map((session) => [String(session.playerId), session]),
@@ -60,8 +60,24 @@ export async function GET(request) {
             status: session?.status ?? "no-session",
             score: session?.score ?? 0,
             duration: session?.duration ?? null,
-            accuracy: answered ? Math.round((correct / answered) * 100) : 0,
-            character: session?.characterId ?? null,
+            gameVersion: session?.gameVersion ?? "legacy-v1",
+            accuracy:
+              session?.gameVersion === "rpg-v2"
+                ? null
+                : answered
+                  ? Math.round((correct / answered) * 100)
+                  : 0,
+            dataRisk: session?.rpgProgress?.dataRisk ?? null,
+            protectionScore:
+              session?.rpgProgress?.protectionScore ?? null,
+            evidenceCount:
+              session?.rpgProgress?.evidenceInventory?.length ?? 0,
+            character: session?.characterSnapshot
+              ? {
+                  characterName: session.characterSnapshot.characterName,
+                  persona: session.characterSnapshot.persona,
+                }
+              : session?.characterId ?? null,
           };
         }),
       },

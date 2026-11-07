@@ -38,6 +38,23 @@ export async function POST(request) {
       );
     }
 
+    if (gameSession.gameVersion === "rpg-v2") {
+      if (!gameSession.rpgProgress || !gameSession.characterSnapshot?.storyline) {
+        return NextResponse.json(
+          { error: "Phiên RPG chưa có đủ dữ liệu để bắt đầu." },
+          { status: 503, headers: { "Cache-Control": "no-store" } },
+        );
+      }
+
+      return NextResponse.json(
+        {
+          startedAt: gameSession.startedAt,
+          expiresAt: gameSession.expiresAt,
+        },
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
     const activeMissionCount = await Mission.countDocuments({ isActive: true });
 
     if (activeMissionCount !== 4) {

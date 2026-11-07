@@ -1,12 +1,13 @@
 import { NextResponse } from "next/server";
 import {
   findCurrentSession,
+  getSessionCharacter,
   getSessionToken,
   publicMission,
   unauthorizedResponse,
 } from "@/lib/game/session-access";
 import Mission from "@/models/Mission";
-import CharacterProfile from "@/models/CharacterProfile";
+import { getPublicRpgState } from "@/lib/game/rpg";
 
 export async function GET(request) {
   const token = getSessionToken(request);
@@ -26,6 +27,7 @@ export async function GET(request) {
       return NextResponse.json(
         {
           status: gameSession.status,
+          gameVersion: gameSession.gameVersion,
           currentStage: gameSession.currentStage,
           score: gameSession.score,
         },
@@ -47,16 +49,51 @@ export async function GET(request) {
       );
     }
 
+    if (gameSession.gameVersion === "rpg-v2") {
+      if (gameSession.status === "registered") {
+        return NextResponse.json(
+          {
+            status: gameSession.status,
+            gameVersion: gameSession.gameVersion,
+            expiresAt: gameSession.expiresAt,
+          },
+          { headers: { "Cache-Control": "no-store" } },
+        );
+      }
+
+      const character = await getSessionCharacter(gameSession);
+      if (!character?.storyline || !gameSession.rpgProgress) {
+        return NextResponse.json(
+          { error: "Không tìm thấy dữ liệu cốt truyện của phiên chơi." },
+          { status: 503, headers: { "Cache-Control": "no-store" } },
+        );
+      }
+
+      return NextResponse.json(
+        {
+          status: gameSession.status,
+          gameVersion: gameSession.gameVersion,
+          currentStage: gameSession.rpgProgress.currentStage,
+          score: gameSession.score,
+          expiresAt: gameSession.expiresAt,
+          character: {
+            name: character.characterName,
+            persona: character.persona,
+          },
+          rpg: getPublicRpgState(gameSession, character),
+        },
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
     const nextStage = gameSession.currentStage + 1;
     const [mission, character] =
       gameSession.status === "registered"
         ? [null, null]
         : await Promise.all([
-            Mission.findOne({ stage: nextStage }).lean(),
-            CharacterProfile.findById(gameSession.characterId)
-              .select("characterName persona")
-              .lean(),
-          ]);
+          Mission.findOne({ stage: nextStage }).lean(),
+          getSessionCharacter(gameSession),
+        ]);
 
     if (gameSession.status === "in_progress" && !mission) {
       return NextResponse.json(
@@ -76,6 +113,7 @@ export async function GET(request) {
     return NextResponse.json(
       {
         status: gameSession.status,
+        gameVersion: gameSession.gameVersion ?? "legacy-v1",
         currentStage: gameSession.currentStage,
         score: gameSession.score,
         expiresAt: gameSession.expiresAt,

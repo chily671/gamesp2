@@ -9,6 +9,10 @@ import {
   getSessionExpirationDate,
 } from "@/lib/utils/data-retention";
 import {
+  createCharacterSnapshot,
+  getInitialRpgProgress,
+} from "@/lib/game/rpg";
+import {
   createSessionToken,
   hashSessionToken,
 } from "@/lib/utils/session-token";
@@ -62,9 +66,7 @@ export async function POST(request) {
     const activeProfiles = await CharacterProfile.find({
       isActive: true,
       isDemoOnly: true,
-    })
-      .select("_id")
-      .lean();
+    }).lean();
 
     if (activeProfiles.length === 0) {
       return serviceUnavailable(
@@ -73,6 +75,11 @@ export async function POST(request) {
     }
 
     const character = activeProfiles[randomInt(activeProfiles.length)];
+    if (!character.storyline) {
+      return serviceUnavailable(
+        "Hồ sơ nhân vật chưa có nội dung RPG hoàn chỉnh. Vui lòng báo người quản lý sự kiện.",
+      );
+    }
     const now = new Date();
     const dataExpiresAt = getDataExpirationDate(now);
     const sessionExpiresAt = getSessionExpirationDate(now);
@@ -91,6 +98,9 @@ export async function POST(request) {
         sessionCodeHash: hashSessionToken(sessionToken),
         playerId: player._id,
         characterId: character._id,
+        characterSnapshot: createCharacterSnapshot(character),
+        gameVersion: "rpg-v2",
+        rpgProgress: getInitialRpgProgress(character),
         status: "registered",
         startedAt: now,
         expiresAt: sessionExpiresAt,
@@ -116,7 +126,6 @@ export async function POST(request) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      path: "/api/sessions",
       expires: dataExpiresAt,
       maxAge: Math.max(
         0,

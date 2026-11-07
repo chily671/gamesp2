@@ -11,6 +11,7 @@ import {
   LockKeyhole,
   ShieldCheck,
 } from "lucide-react";
+import RpgConsole from "@/components/game/RpgConsole";
 
 function ChoicePanel({ mission, selected, onToggle, disabled }) {
   const singleChoice = mission.answerMode === "single";
@@ -134,6 +135,20 @@ export default function GameConsole() {
     return result;
   }, [router]);
 
+  const refreshGame = useCallback(async () => {
+    const result = await loadGame();
+    if (result) {
+      setGame(result);
+      setSecondsLeft(
+        Math.max(
+          0,
+          Math.ceil((new Date(result.expiresAt) - Date.now()) / 1000),
+        ),
+      );
+    }
+    return result;
+  }, [loadGame]);
+
   useEffect(() => {
     let active = true;
     loadGame()
@@ -181,6 +196,17 @@ export default function GameConsole() {
     }, 1000);
     return () => window.clearInterval(timer);
   }, [game?.expiresAt, router]);
+
+  if (game?.gameVersion === "rpg-v2") {
+    return (
+      <RpgConsole
+        game={game}
+        key={game.rpg.stage}
+        onRefresh={refreshGame}
+        secondsLeft={secondsLeft ?? 0}
+      />
+    );
+  }
 
   const mission = game?.mission;
 

@@ -148,11 +148,20 @@ export default function AdminDashboard() {
       "TỶ LỆ HOÀN THÀNH",
       `${stats.sessions.total ? Math.round((stats.sessions.completed / stats.sessions.total) * 100) : 0}%`,
     ],
-    ["ĐỘ CHÍNH XÁC TRUNG BÌNH", `${Math.round(stats.sessions.averageAccuracy ?? 0)}%`],
+    ["CHÍNH XÁC FLOW CŨ", `${Math.round(stats.sessions.averageAccuracy ?? 0)}%`],
     ["THỜI GIAN TB / VÁN", formatAverageDuration(stats.sessions.averageDuration)],
-    ["CÂU HỎI / NHIỆM VỤ", stats.questions.total],
-    ["LƯỢT TRẢ LỜI ĐÃ GHI", stats.sessions.totalAnswers],
-    ["ĐIỂM TRUNG BÌNH", Math.round(stats.sessions.averageScore ?? 0)],
+    ["PHIÊN RPG V2", stats.rpg.sessions],
+    [
+      "HOÀN THÀNH · RPG",
+      `${stats.rpg.sessions ? Math.round((stats.rpg.completed / stats.rpg.sessions) * 100) : 0}%`,
+    ],
+    ["RPG STAGE", stats.rpg.stages],
+    ["DATA RISK TB · RPG", `${Math.round(stats.rpg.averageDataRisk)}/100`],
+    ["PROTECTION TB · RPG", `${Math.round(stats.rpg.averageProtectionScore)}/100`],
+    ["EVIDENCE TB / VÁN · RPG", Number(stats.rpg.averageEvidenceCount).toFixed(1)],
+    ["CÂU HỎI FLOW CŨ", stats.questions.total],
+    ["CÂU TRẢ LỜI FLOW CŨ", stats.sessions.totalAnswers],
+    ["XP TRUNG BÌNH", Math.round(stats.sessions.averageScore ?? 0)],
   ];
 
   return (
@@ -188,6 +197,9 @@ export default function AdminDashboard() {
             </article>
           ))}
         </div>
+        <p className="mt-2 text-[10px] leading-5 text-slate-500">
+          Độ chính xác và câu trả lời chỉ áp dụng cho session 4 nhiệm vụ cũ. RPG v2 hiển thị risk, protection và evidence tính từ hành động đã lưu.
+        </p>
 
         <section className="mt-4 border border-amber-200/20 bg-amber-200/[0.035] p-4 sm:p-5">
           <p className="font-mono text-[9px] tracking-[0.14em] text-amber-100/70">
@@ -215,6 +227,21 @@ export default function AdminDashboard() {
           </p>
         </section>
 
+        <section className="mt-5 border border-cyan-200/15 bg-cyan-200/[0.025] p-5">
+          <h2 className="font-mono text-xs tracking-[0.14em] text-cyan-100">
+            QUY TRÌNH SOẠN NỘI DUNG
+          </h2>
+          <ol className="mt-3 grid gap-3 text-xs leading-5 text-slate-400 md:grid-cols-2">
+            <li><span className="font-semibold text-white">1. Dùng 20 persona hiện có.</span> Mỗi hồ sơ gắn tình huống mở đầu, ứng dụng Stage 01, evidence Stage 02, sự cố/kết cục Stage 03 và lời thoại Guardian.</li>
+            <li><span className="font-semibold text-white">2. Tùy biến cốt truyện theo persona.</span> Nếu thêm hồ sơ, điền dấu vết/rủi ro cùng các trường cốt truyện ba Stage; email dùng `.invalid`, điện thoại phải là DEMO hoặc được che bằng x.</li>
+            <li><span className="font-semibold text-white">3. Giữ bộ câu hỏi cho session cũ.</span> Bốn nhiệm vụ trắc nghiệm vẫn phục vụ session legacy; session đăng ký mới chạy RPG ba Stage và không cần chỉnh đáp án.</li>
+            <li><span className="font-semibold text-white">4. Rà soát nội dung và pháp lý.</span> Bảo đảm lựa chọn sau phụ thuộc quyết định/bằng chứng trước; chỉ bật cảnh báo rà soát pháp lý cho tới khi căn cứ được chuyên gia xác minh.</li>
+          </ol>
+          <p className="mt-3 border-t border-white/[0.07] pt-3 text-[10px] leading-5 text-slate-500">
+            Thay đổi hồ sơ không sửa snapshot của session đang chạy. Bốn nhiệm vụ cũ vẫn được giữ cho các session legacy; không xóa chúng nếu còn cần tiếp tục những lượt cũ.
+          </p>
+        </section>
+
         <div className="mt-5 grid gap-4">
           <ContentManager kind="profiles" entries={stats.profiles} onChanged={loadData} />
           <ContentManager kind="missions" entries={stats.missions} onChanged={loadData} />
@@ -228,10 +255,10 @@ export default function AdminDashboard() {
             Tối đa 500 phiên còn trong thời hạn lưu giữ. Dữ liệu nhận diện người tham gia — chỉ dành cho ban tổ chức được ủy quyền.
           </p>
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full min-w-[780px] border-collapse text-left text-xs">
+            <table className="w-full min-w-[1120px] border-collapse text-left text-xs">
               <thead className="font-mono text-[9px] tracking-[0.08em] text-slate-500">
                 <tr>
-                  {["PLAYER CODE", "HỌ TÊN", "LỚP", "NHÂN VẬT", "TRẠNG THÁI", "ĐIỂM", "ĐÚNG", "THỜI GIAN"].map((item) => <th className="border-b border-white/10 px-3 py-3" key={item}>{item}</th>)}
+                  {["PLAYER CODE", "HỌ TÊN", "LỚP", "NHÂN VẬT", "FLOW", "TRẠNG THÁI", "XP", "DATA RISK", "PROTECTION", "EVIDENCE", "ĐÚNG (LEGACY)", "THỜI GIAN"].map((item) => <th className="border-b border-white/10 px-3 py-3" key={item}>{item}</th>)}
                 </tr>
               </thead>
               <tbody>
@@ -241,20 +268,24 @@ export default function AdminDashboard() {
                     <td className="px-3 py-3">{player.fullName}</td>
                     <td className="px-3 py-3">{player.className}</td>
                     <td className="px-3 py-3">{player.character?.characterName ?? "—"}</td>
+                    <td className="px-3 py-3">{player.gameVersion === "rpg-v2" ? "RPG v2" : "Legacy"}</td>
                     <td className="px-3 py-3">{player.status}</td>
                     <td className="px-3 py-3">{player.score}</td>
-                    <td className="px-3 py-3">{player.accuracy}%</td>
+                    <td className="px-3 py-3">{player.dataRisk == null ? "—" : `${player.dataRisk}/100`}</td>
+                    <td className="px-3 py-3">{player.protectionScore == null ? "—" : `${player.protectionScore}/100`}</td>
+                    <td className="px-3 py-3">{player.gameVersion === "rpg-v2" ? player.evidenceCount : "—"}</td>
+                    <td className="px-3 py-3">{player.accuracy == null ? "—" : `${player.accuracy}%`}</td>
                     <td className="px-3 py-3">{player.duration == null ? "—" : `${player.duration}s`}</td>
                   </tr>
                 ))}
-                {players.length === 0 && <tr><td className="px-3 py-5 text-slate-500" colSpan={8}>Chưa có phiên chơi.</td></tr>}
+                {players.length === 0 && <tr><td className="px-3 py-5 text-slate-500" colSpan={12}>Chưa có phiên chơi.</td></tr>}
               </tbody>
             </table>
           </div>
         </section>
 
         <section className="mt-4 border border-white/[0.08] bg-white/[0.02] p-5">
-          <h2 className="font-mono text-xs tracking-[0.14em] text-white">MOST MISSED STAGES</h2>
+          <h2 className="font-mono text-xs tracking-[0.14em] text-white">MOST MISSED LEGACY STAGES</h2>
           <div className="mt-4 flex flex-wrap gap-3">
             {stats.commonMisses.length ? stats.commonMisses.map((item) => (
               <span className="border border-amber-200/15 bg-amber-200/[0.03] px-3 py-2 font-mono text-[10px] text-amber-100/70" key={item._id}>

@@ -15,6 +15,41 @@ const gameSessionSchema = new mongoose.Schema(
       required: true,
       immutable: true,
     },
+    characterSnapshot: {
+      type: mongoose.Schema.Types.Mixed,
+      default: undefined,
+    },
+    gameVersion: {
+      type: String,
+      enum: ["legacy-v1", "rpg-v2"],
+      default: "legacy-v1",
+      immutable: true,
+    },
+    rpgProgress: {
+      currentStage: { type: Number, min: 1, max: 3 },
+      dataRisk: { type: Number, min: 0, max: 100 },
+      protectionScore: { type: Number, min: 0, max: 100 },
+      evidenceInventory: { type: [String], default: undefined },
+      discoveredInteractables: { type: [String], default: undefined },
+      storyFlags: { type: [String], default: undefined },
+      decisions: {
+        type: [
+          new mongoose.Schema(
+            {
+              stage: { type: Number, required: true, min: 1, max: 3 },
+              actionId: { type: String, required: true },
+              dataRiskDelta: { type: Number, required: true },
+              protectionDelta: { type: Number, required: true },
+              evidenceIds: { type: [String], default: [] },
+              decidedAt: { type: Date, required: true },
+            },
+            { _id: false },
+          ),
+        ],
+        default: undefined,
+      },
+      endingId: { type: String, default: undefined },
+    },
     status: {
       type: String,
       enum: ["registered", "in_progress", "completed", "expired"],

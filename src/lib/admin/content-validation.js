@@ -17,6 +17,49 @@ function isStringList(value, maxItems = 50) {
   );
 }
 
+function isValidStoryline(value) {
+  const stage01 = value?.stage01;
+  const artifacts = value?.stage02?.artifacts;
+  const stage03 = value?.stage03;
+  const guardian = value?.guardian;
+  const requiredText = [
+    value?.opening,
+    stage01?.serviceName,
+    stage01?.scene,
+    stage01?.limitedAction,
+    stage01?.broadAction,
+    stage03?.incident,
+    stage03?.safeEnding,
+    stage03?.exposedEnding,
+    guardian?.opening,
+    guardian?.stage01,
+    guardian?.stage02,
+    guardian?.stage03,
+  ];
+
+  return (
+    requiredText.every((field) => isText(field, 2000)) &&
+    Array.isArray(artifacts) &&
+    artifacts.length >= 3 &&
+    artifacts.length <= 20 &&
+    artifacts.every(
+      (artifact) =>
+        artifact &&
+        /^[a-zA-Z0-9_-]{1,60}$/.test(artifact.id) &&
+        isText(artifact.title, 200) &&
+        isText(artifact.body, 1000) &&
+        /^[a-zA-Z0-9_-]{1,80}$/.test(artifact.evidenceId) &&
+        ["always", "limited-permission", "broad-permission"].includes(
+          artifact.condition,
+        ),
+    ) &&
+    new Set(artifacts.map((artifact) => artifact.id)).size ===
+      artifacts.length &&
+    new Set(artifacts.map((artifact) => artifact.evidenceId)).size ===
+      artifacts.length
+  );
+}
+
 export function validateProfile(payload) {
   if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
     return { error: "Dữ liệu hồ sơ không hợp lệ." };
@@ -43,9 +86,13 @@ export function validateProfile(payload) {
     !payload.contact ||
     !isText(payload.contact.phone, 100) ||
     !isText(payload.contact.email, 200) ||
+    (!payload.contact.phone.toUpperCase().includes("DEMO") &&
+      !/x{2,}/i.test(payload.contact.phone)) ||
+    !payload.contact.email.toLowerCase().endsWith(".invalid") ||
     !payload.socialAccounts ||
     !isText(payload.socialAccounts.facebookUsername, 100) ||
     !isText(payload.socialAccounts.simulatedPassword, 200) ||
+    !payload.socialAccounts.simulatedPassword.toUpperCase().includes("DEMO") ||
     !payload.financialInfo ||
     !Number.isFinite(payload.financialInfo.simulatedBalance) ||
     payload.financialInfo.simulatedBalance < 0 ||
@@ -56,7 +103,10 @@ export function validateProfile(payload) {
     !isStringList(payload.lifestyle.frequentPlaces) ||
     !isText(payload.lifestyle.summary) ||
     !isStringList(payload.riskFactors) ||
-    !isStringList(payload.digitalFootprint)
+    !isStringList(payload.digitalFootprint) ||
+    !payload.riskFactors.some((item) => item.trim()) ||
+    !payload.digitalFootprint.some((item) => item.trim()) ||
+    !isValidStoryline(payload.storyline)
   ) {
     return { error: "Vui lòng kiểm tra các trường bắt buộc và định dạng hồ sơ." };
   }
@@ -97,6 +147,35 @@ export function validateProfile(payload) {
       },
       riskFactors: payload.riskFactors.map((item) => item.trim()).filter(Boolean),
       digitalFootprint: payload.digitalFootprint.map((item) => item.trim()).filter(Boolean),
+      storyline: {
+        opening: payload.storyline.opening.trim(),
+        stage01: {
+          serviceName: payload.storyline.stage01.serviceName.trim(),
+          scene: payload.storyline.stage01.scene.trim(),
+          limitedAction: payload.storyline.stage01.limitedAction.trim(),
+          broadAction: payload.storyline.stage01.broadAction.trim(),
+        },
+        stage02: {
+          artifacts: payload.storyline.stage02.artifacts.map((artifact) => ({
+            id: artifact.id,
+            title: artifact.title.trim(),
+            body: artifact.body.trim(),
+            evidenceId: artifact.evidenceId,
+            condition: artifact.condition,
+          })),
+        },
+        stage03: {
+          incident: payload.storyline.stage03.incident.trim(),
+          safeEnding: payload.storyline.stage03.safeEnding.trim(),
+          exposedEnding: payload.storyline.stage03.exposedEnding.trim(),
+        },
+        guardian: {
+          opening: payload.storyline.guardian.opening.trim(),
+          stage01: payload.storyline.guardian.stage01.trim(),
+          stage02: payload.storyline.guardian.stage02.trim(),
+          stage03: payload.storyline.guardian.stage03.trim(),
+        },
+      },
       isActive: payload.isActive !== false,
       isDemoOnly: true,
     },

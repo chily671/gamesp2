@@ -2,17 +2,24 @@
   {
     "characterCode": "CHAR-001",
     "characterName": "Nguyễn Minh Anh",
-    "persona": "THE SOCIAL STAR",
     "age": 16,
     "gender": "Nữ",
     "className": "10X-01 (hư cấu)",
     "school": "Học viện Ánh Dương (hư cấu)",
-    "address": "Khu phố mô phỏng Pixel-03, Thành phố Hư Cấu",
+    "address": "Số 18, đường Sao Băng, Khu phố Pixel-03, Thành phố Hư Cấu",
     "housing": "Căn hộ mô phỏng tại khu Neo Garden",
-    "familyMembers": ["Mẹ — nhân vật mô phỏng", "Anh trai — nhân vật mô phỏng"],
     "contact": {
-      "phone": "000-000-0000 (DEMO ONLY)",
+      "phone": "08xx-xxx-010",
       "email": "minhanh.profile@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Mẹ — nhân vật mô phỏng",
+      "Anh trai — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 125000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
       "demoOnly": true
     },
     "socialAccounts": {
@@ -20,25 +27,34 @@
       "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
       "demoOnly": true
     },
-    "financialInfo": {
-      "simulatedBalance": 125000,
-      "currencyLabel": "PIXEL COINS — SIMULATED",
-      "demoOnly": true
-    },
     "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE SOCIAL STAR",
     "lifestyle": {
-      "hobbies": ["Chụp ảnh", "Sáng tạo nội dung"],
-      "habits": ["Đăng ảnh công khai", "Check-in khi đi chơi"],
-      "frequentPlaces": ["Quảng trường Pixel", "Thư viện Mây — địa điểm hư cấu"],
+      "hobbies": [
+        "Chụp ảnh",
+        "Sáng tạo nội dung",
+        "Du lịch"
+      ],
+      "habits": [
+        "Đăng ảnh công khai",
+        "Check-in khi đi chơi"
+      ],
+      "frequentPlaces": [
+        "Quảng trường Pixel",
+        "Thư viện Mây"
+      ],
       "summary": "Thường chia sẻ hình ảnh, trường học và địa điểm yêu thích lên mạng."
     },
-    "riskFactors": [
-      "Bài đăng công khai có thể để lộ lịch trình.",
-      "Ảnh có thể vô tình tiết lộ trường hoặc vị trí thường lui tới."
-    ],
     "digitalFootprint": [
       "Album ảnh công khai trong mạng xã hội mô phỏng.",
-      "Check-in tại Quảng trường Pixel vào mỗi cuối tuần."
+      "Check-in tại Quảng trường Pixel vào mỗi cuối tuần.",
+      "Ảnh đồng phục vô tình để lộ tên trường.",
+      "Thường đăng story vào khung giờ tan học."
+    ],
+    "riskFactors": [
+      "Bài đăng công khai có thể để lộ lịch trình.",
+      "Ảnh có thể vô tình tiết lộ trường hoặc vị trí thường lui tới.",
+      "Người lạ có thể tổng hợp các bài đăng để suy đoán thói quen."
     ],
     "isActive": true,
     "isDemoOnly": true
@@ -46,43 +62,60 @@
   {
     "characterCode": "CHAR-002",
     "characterName": "Trần Gia Huy",
-    "persona": "THE ONLINE SHOPPER",
-    "age": 16,
+    "age": 17,
     "gender": "Nam",
-    "className": "10X-02 (hư cấu)",
-    "school": "Trường Liên cấp Sao Băng (hư cấu)",
-    "address": "Dãy nhà mô phỏng Cloud-12, Thành phố Hư Cấu",
-    "housing": "Nhà phố mô phỏng tại khu Cloud Town",
-    "familyMembers": ["Bố — nhân vật mô phỏng", "Mẹ — nhân vật mô phỏng"],
+    "className": "11A2 (hư cấu)",
+    "school": "Trường THPT Bình Minh (hư cấu)",
+    "address": "Số 42, đường Ánh Trăng, Khu dân cư Nova-02, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng, khu dân cư Nova",
     "contact": {
-      "phone": "000-000-0000 (DEMO ONLY)",
-      "email": "giahuy.profile@example.invalid",
+      "phone": "09xx-xxx-021",
+      "email": "giahuy.shop@example.invalid",
       "demoOnly": true
     },
-    "socialAccounts": {
-      "facebookUsername": "giahuy.demo.invalid",
-      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
-      "demoOnly": true
-    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng"
+    ],
     "financialInfo": {
-      "simulatedBalance": 87000,
+      "simulatedBalance": 2350000,
       "currencyLabel": "PIXEL COINS — SIMULATED",
       "demoOnly": true
     },
-    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
-    "lifestyle": {
-      "hobbies": ["Sưu tầm mô hình", "Săn ưu đãi"],
-      "habits": ["Đăng ký nhận voucher", "Lưu địa chỉ giao hàng giả lập"],
-      "frequentPlaces": ["Chợ Mây Online — dịch vụ hư cấu", "Khu Arcade Pixel"],
-      "summary": "Dùng nhiều dịch vụ mua sắm mô phỏng và thường đăng ký nhận khuyến mãi."
+    "socialAccounts": {
+      "facebookUsername": "huy.shopping.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
     },
-    "riskFactors": [
-      "Biểu mẫu nhận voucher có thể yêu cầu dữ liệu không cần thiết.",
-      "Thông tin giao dịch có thể bị lợi dụng cho tin nhắn lừa đảo."
-    ],
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE ONLINE SHOPPER",
+    "lifestyle": {
+      "hobbies": [
+        "Săn sale",
+        "Mua sắm trực tuyến",
+        "Xem livestream"
+      ],
+      "habits": [
+        "Đăng ký voucher",
+        "Lưu địa chỉ giao hàng",
+        "Theo dõi đơn hàng"
+      ],
+      "frequentPlaces": [
+        "Trung tâm thương mại Nova",
+        "Khu mua sắm Pixel Mall"
+      ],
+      "summary": "Thường xuyên mua hàng trực tuyến và đăng ký nhiều chương trình khuyến mãi."
+    },
     "digitalFootprint": [
-      "Lịch sử đơn hàng tại Chợ Mây Online — dữ liệu mô phỏng.",
-      "Nhiều lần đăng ký chương trình ưu đãi bằng biểu mẫu hư cấu."
+      "Nhiều bình luận hỏi về giá và sản phẩm.",
+      "Thường đăng ảnh hộp hàng mới nhận.",
+      "Có lịch sử đăng ký nhận voucher mô phỏng.",
+      "Từng chia sẻ ảnh thông báo đơn hàng."
+    ],
+    "riskFactors": [
+      "Thông tin giao hàng có thể bị khai thác.",
+      "Có thể gặp biểu mẫu thu thập dữ liệu quá mức.",
+      "Dễ trở thành mục tiêu của tin nhắn giả mạo giao hàng."
     ],
     "isActive": true,
     "isDemoOnly": true
@@ -90,43 +123,60 @@
   {
     "characterCode": "CHAR-003",
     "characterName": "Lê Hoàng Nam",
-    "persona": "THE GAMER",
-    "age": 15,
+    "age": 16,
     "gender": "Nam",
-    "className": "10X-03 (hư cấu)",
-    "school": "Học viện Ánh Dương (hư cấu)",
-    "address": "Cụm nhà mô phỏng Nova-08, Thành phố Hư Cấu",
-    "housing": "Căn hộ mô phỏng tại khu Nova",
-    "familyMembers": ["Bà — nhân vật mô phỏng", "Em gái — nhân vật mô phỏng"],
+    "className": "10C5 (hư cấu)",
+    "school": "Trường THPT Công nghệ Số (hư cấu)",
+    "address": "Số 07, đường Thiên Hà, Khu phố Cyber-05, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại khu Cyber Home",
     "contact": {
-      "phone": "000-000-0000 (DEMO ONLY)",
-      "email": "hoangnam.profile@example.invalid",
+      "phone": "08xx-xxx-032",
+      "email": "hoangnam.gamer@example.invalid",
       "demoOnly": true
     },
-    "socialAccounts": {
-      "facebookUsername": "hoangnam.demo.invalid",
-      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
-      "demoOnly": true
-    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Em gái — nhân vật mô phỏng"
+    ],
     "financialInfo": {
-      "simulatedBalance": 42000,
+      "simulatedBalance": 780000,
       "currencyLabel": "PIXEL COINS — SIMULATED",
       "demoOnly": true
     },
-    "relationshipStatus": "Không công khai (nhân vật mô phỏng)",
-    "lifestyle": {
-      "hobbies": ["Trò chơi điện tử", "Thiết kế bản đồ game"],
-      "habits": ["Tham gia cộng đồng game", "Dùng nhiều dịch vụ đăng nhập"],
-      "frequentPlaces": ["Đấu trường Pixel — game hư cấu", "Phòng máy Sao Chổi — địa điểm hư cấu"],
-      "summary": "Tham gia nhiều cộng đồng trực tuyến và thích nhận vật phẩm trong game."
+    "socialAccounts": {
+      "facebookUsername": "nam.gamezone.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
     },
-    "riskFactors": [
-      "Lời mời nhận vật phẩm miễn phí có thể dụ người chơi chia sẻ thông tin.",
-      "Dùng lại mật khẩu giữa các dịch vụ làm tăng rủi ro cho tài khoản."
-    ],
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE GAMER",
+    "lifestyle": {
+      "hobbies": [
+        "Chơi game",
+        "Livestream",
+        "Sưu tầm vật phẩm số"
+      ],
+      "habits": [
+        "Tham gia nhóm game",
+        "Chia sẻ ảnh thành tích",
+        "Đăng nhập nhiều dịch vụ"
+      ],
+      "frequentPlaces": [
+        "Cyber Arena",
+        "Game Hub Pixel"
+      ],
+      "summary": "Thường tham gia cộng đồng game và các chương trình nhận vật phẩm trực tuyến."
+    },
     "digitalFootprint": [
-      "Bài đăng tìm đồng đội trong cộng đồng game mô phỏng.",
-      "Hồ sơ game hiển thị tên nhân vật và khung giờ hoạt động."
+      "Công khai nickname game trên nhiều diễn đàn.",
+      "Đăng ảnh thành tích và thông tin tài khoản mô phỏng.",
+      "Tham gia các nhóm trao đổi vật phẩm.",
+      "Từng chia sẻ ảnh chụp màn hình có thông tin giao dịch."
+    ],
+    "riskFactors": [
+      "Có thể bị dụ cung cấp thông tin để nhận vật phẩm.",
+      "Nguy cơ lộ thông tin tài khoản qua ảnh chụp màn hình.",
+      "Dễ bị lợi dụng lòng tin trong cộng đồng trực tuyến."
     ],
     "isActive": true,
     "isDemoOnly": true
@@ -134,43 +184,60 @@
   {
     "characterCode": "CHAR-004",
     "characterName": "Phạm Ngọc Hà",
-    "persona": "THE QUIET STUDENT",
-    "age": 16,
+    "age": 15,
     "gender": "Nữ",
-    "className": "10X-04 (hư cấu)",
-    "school": "Trường Liên cấp Sao Băng (hư cấu)",
-    "address": "Khu dân cư mô phỏng Lumen-05, Thành phố Hư Cấu",
-    "housing": "Nhà vườn mô phỏng tại khu Lumen",
-    "familyMembers": ["Bố — nhân vật mô phỏng", "Mẹ — nhân vật mô phỏng"],
+    "className": "9A4 (hư cấu)",
+    "school": "Trường THCS Mặt Trời (hư cấu)",
+    "address": "Số 25, đường Hoa Mây, Khu phố Dream-01, Thành phố Hư Cấu",
+    "housing": "Nhà liền kề mô phỏng tại Dream Residence",
     "contact": {
-      "phone": "000-000-0000 (DEMO ONLY)",
-      "email": "ngocha.profile@example.invalid",
+      "phone": "09xx-xxx-043",
+      "email": "ngocha.student@example.invalid",
       "demoOnly": true
     },
-    "socialAccounts": {
-      "facebookUsername": "ngocha.demo.invalid",
-      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
-      "demoOnly": true
-    },
+    "familyMembers": [
+      "Mẹ — nhân vật mô phỏng",
+      "Bà ngoại — nhân vật mô phỏng"
+    ],
     "financialInfo": {
-      "simulatedBalance": 59000,
+      "simulatedBalance": 350000,
       "currencyLabel": "PIXEL COINS — SIMULATED",
       "demoOnly": true
     },
-    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
-    "lifestyle": {
-      "hobbies": ["Đọc truyện", "Vẽ minh họa"],
-      "habits": ["Cài nhiều ứng dụng", "Thường bấm cho phép nhanh"],
-      "frequentPlaces": ["Vườn Ánh Trăng — địa điểm hư cấu", "Thư viện Mây — địa điểm hư cấu"],
-      "summary": "Ít đăng công khai nhưng đã cấp nhiều quyền ứng dụng mà chưa xem kỹ."
+    "socialAccounts": {
+      "facebookUsername": "ha.quietlife.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
     },
-    "riskFactors": [
-      "Quyền truy cập ứng dụng có thể vượt quá chức năng cần dùng.",
-      "Biểu mẫu và ứng dụng lưu dữ liệu ở nhiều nơi khó theo dõi."
-    ],
+    "relationshipStatus": "Không công khai (nhân vật mô phỏng)",
+    "persona": "THE QUIET STUDENT",
+    "lifestyle": {
+      "hobbies": [
+        "Đọc sách",
+        "Vẽ tranh",
+        "Nghe nhạc"
+      ],
+      "habits": [
+        "Ít đăng bài",
+        "Cài nhiều ứng dụng",
+        "Thường cấp quyền nhanh"
+      ],
+      "frequentPlaces": [
+        "Thư viện Mây",
+        "Công viên Ánh Sáng"
+      ],
+      "summary": "Ít chia sẻ thông tin công khai nhưng có nhiều dữ liệu lưu trong các ứng dụng."
+    },
     "digitalFootprint": [
-      "Một số ứng dụng mô phỏng được cấp quyền vị trí liên tục.",
-      "Biểu mẫu sở thích được lưu trong dịch vụ hư cấu."
+      "Nhiều ứng dụng được cấp quyền truy cập vị trí.",
+      "Thông tin cá nhân lưu trong các biểu mẫu trực tuyến.",
+      "Từng tham gia bài kiểm tra tính cách trực tuyến.",
+      "Một số hồ sơ ứng dụng chưa được rà soát quyền riêng tư."
+    ],
+    "riskFactors": [
+      "Không nhận biết phạm vi dữ liệu ứng dụng đang truy cập.",
+      "Có thể cung cấp dữ liệu cho các biểu mẫu thiếu minh bạch.",
+      "Ít chia sẻ công khai không đồng nghĩa với không có rủi ro."
     ],
     "isActive": true,
     "isDemoOnly": true
@@ -178,43 +245,979 @@
   {
     "characterCode": "CHAR-005",
     "characterName": "Võ Đức Minh",
-    "persona": "THE DIGITAL BANKER",
     "age": 17,
     "gender": "Nam",
-    "className": "11X-05 (hư cấu)",
-    "school": "Học viện Ánh Dương (hư cấu)",
-    "address": "Cụm căn hộ mô phỏng Aurora-11, Thành phố Hư Cấu",
-    "housing": "Căn hộ mô phỏng tại khu Aurora",
-    "familyMembers": ["Mẹ — nhân vật mô phỏng", "Chị gái — nhân vật mô phỏng"],
+    "className": "11B1 (hư cấu)",
+    "school": "Học viện Kinh tế Tương Lai (hư cấu)",
+    "address": "Số 63, đường Ngân Hà, Khu phố Finance-04, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Finance Tower",
     "contact": {
-      "phone": "000-000-0000 (DEMO ONLY)",
-      "email": "ducminh.profile@example.invalid",
+      "phone": "08xx-xxx-054",
+      "email": "ducminh.finance@example.invalid",
       "demoOnly": true
     },
-    "socialAccounts": {
-      "facebookUsername": "ducminh.demo.invalid",
-      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
-      "demoOnly": true
-    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng"
+    ],
     "financialInfo": {
-      "simulatedBalance": 245000,
+      "simulatedBalance": 8750000,
       "currencyLabel": "PIXEL COINS — SIMULATED",
       "demoOnly": true
     },
-    "relationshipStatus": "Không công khai (nhân vật mô phỏng)",
-    "lifestyle": {
-      "hobbies": ["Lắp ráp robot", "Theo dõi công nghệ"],
-      "habits": ["Dùng ứng dụng tài chính mô phỏng", "Mua sắm trực tuyến"],
-      "frequentPlaces": ["Trung tâm Kỹ thuật Số — địa điểm hư cấu", "Chợ Mây Online — dịch vụ hư cấu"],
-      "summary": "Nhận thông báo giao dịch mô phỏng và dùng nhiều dịch vụ trực tuyến."
+    "socialAccounts": {
+      "facebookUsername": "minh.finance.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
     },
-    "riskFactors": [
-      "Thông báo giao dịch giả mạo có thể tạo cảm giác khẩn cấp.",
-      "Thông tin ở nhiều dịch vụ có thể bị ghép lại để mạo danh."
-    ],
+    "relationshipStatus": "Đang tìm hiểu (nhân vật mô phỏng)",
+    "persona": "THE DIGITAL BANKER",
+    "lifestyle": {
+      "hobbies": [
+        "Công nghệ tài chính",
+        "Mua sắm trực tuyến",
+        "Quản lý chi tiêu"
+      ],
+      "habits": [
+        "Kiểm tra số dư",
+        "Theo dõi thông báo giao dịch",
+        "Dùng ứng dụng thanh toán mô phỏng"
+      ],
+      "frequentPlaces": [
+        "Finance Plaza",
+        "Trung tâm thương mại Nova"
+      ],
+      "summary": "Quan tâm đến tài chính cá nhân và thường xuyên sử dụng dịch vụ thanh toán mô phỏng."
+    },
     "digitalFootprint": [
-      "Lịch sử mua sắm và thông báo giao dịch giả lập.",
-      "Tài khoản demo tại Ngân hàng Pixel — dịch vụ hư cấu."
+      "Đăng ảnh màn hình giao dịch mô phỏng.",
+      "Thường thảo luận về các ứng dụng tài chính.",
+      "Có nhiều thông báo giao dịch lưu trong thiết bị.",
+      "Từng tham gia khảo sát về thói quen chi tiêu."
+    ],
+    "riskFactors": [
+      "Thông tin giao dịch có thể bị khai thác để tạo kịch bản lừa đảo.",
+      "Có nguy cơ bị mạo danh tổ chức tài chính.",
+      "Ảnh chụp màn hình có thể tiết lộ thông tin ngoài ý muốn."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-006",
+    "characterName": "Đặng Thảo Vy",
+    "age": 16,
+    "gender": "Nữ",
+    "className": "10A6 (hư cấu)",
+    "school": "Trường THPT Hoa Sen (hư cấu)",
+    "address": "Số 11, đường Cầu Vồng, Khu phố Rainbow-02, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Rainbow Residence",
+    "contact": {
+      "phone": "09xx-xxx-065",
+      "email": "thaovy.creator@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Mẹ — nhân vật mô phỏng",
+      "Em trai — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 1680000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "vy.creator.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE CONTENT CREATOR",
+    "lifestyle": {
+      "hobbies": [
+        "Quay video",
+        "Chỉnh sửa ảnh",
+        "Làm nội dung"
+      ],
+      "habits": [
+        "Đăng video thường xuyên",
+        "Chia sẻ hậu trường",
+        "Gắn thẻ bạn bè"
+      ],
+      "frequentPlaces": [
+        "Studio Pixel",
+        "Quán cà phê Mây"
+      ],
+      "summary": "Thường xuyên tạo nội dung và chia sẻ những hoạt động thường ngày."
+    },
+    "digitalFootprint": [
+      "Video có thể xuất hiện bảng tên trường.",
+      "Ảnh hậu trường để lộ không gian sinh hoạt.",
+      "Thường gắn thẻ bạn bè trong bài đăng.",
+      "Một số video có thông tin vị trí."
+    ],
+    "riskFactors": [
+      "Nội dung hình ảnh có thể tiết lộ thông tin của người khác.",
+      "Dấu vết hình ảnh có thể tiết lộ nơi ở và lịch trình.",
+      "Việc gắn thẻ có thể làm lộ mối quan hệ cá nhân."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-007",
+    "characterName": "Bùi Quốc Bảo",
+    "age": 18,
+    "gender": "Nam",
+    "className": "12A1 (hư cấu)",
+    "school": "Trường THPT Thành Công (hư cấu)",
+    "address": "Số 39, đường Bình Minh, Khu dân cư Sunrise-06, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng tại Sunrise",
+    "contact": {
+      "phone": "08xx-xxx-076",
+      "email": "quocbao.student@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng",
+      "Em gái — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 920000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "bao.studyhard.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Đang trong mối quan hệ (nhân vật mô phỏng)",
+    "persona": "THE STUDY ACHIEVER",
+    "lifestyle": {
+      "hobbies": [
+        "Học trực tuyến",
+        "Thi thử",
+        "Đọc tài liệu"
+      ],
+      "habits": [
+        "Đăng ký nhiều khóa học",
+        "Tải tài liệu",
+        "Dùng email học tập"
+      ],
+      "frequentPlaces": [
+        "Trung tâm Tri Thức",
+        "Thư viện Mây"
+      ],
+      "summary": "Thường đăng ký các nền tảng học tập và chia sẻ thành tích học tập."
+    },
+    "digitalFootprint": [
+      "Đăng ảnh giấy khen mô phỏng.",
+      "Chia sẻ lịch học và lịch thi.",
+      "Tham gia nhiều nền tảng học trực tuyến.",
+      "Email học tập được sử dụng trên nhiều dịch vụ."
+    ],
+    "riskFactors": [
+      "Tài liệu chia sẻ có thể chứa thông tin cá nhân.",
+      "Lịch học công khai có thể tiết lộ lịch trình.",
+      "Có nguy cơ gặp biểu mẫu giả mạo học bổng."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-008",
+    "characterName": "Ngô Khánh Linh",
+    "age": 15,
+    "gender": "Nữ",
+    "className": "9B2 (hư cấu)",
+    "school": "Trường THCS Ánh Sao (hư cấu)",
+    "address": "Số 52, đường Bạch Vân, Khu phố Cloud-03, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng tại Cloud Garden",
+    "contact": {
+      "phone": "09xx-xxx-087",
+      "email": "khanhlinh.cloud@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 280000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "linh.cloudlife.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE CLOUD USER",
+    "lifestyle": {
+      "hobbies": [
+        "Lưu trữ ảnh",
+        "Nghe nhạc",
+        "Chơi ứng dụng giải trí"
+      ],
+      "habits": [
+        "Đồng bộ dữ liệu",
+        "Chia sẻ file",
+        "Đăng nhập trên nhiều thiết bị"
+      ],
+      "frequentPlaces": [
+        "Cloud Library",
+        "Công viên Ánh Sáng"
+      ],
+      "summary": "Sử dụng nhiều dịch vụ lưu trữ và đồng bộ dữ liệu trực tuyến."
+    },
+    "digitalFootprint": [
+      "Có nhiều album ảnh trên dịch vụ lưu trữ mô phỏng.",
+      "Chia sẻ liên kết tài liệu trong nhóm.",
+      "Đăng nhập tài khoản trên nhiều thiết bị.",
+      "Một số file được đặt chế độ chia sẻ công khai."
+    ],
+    "riskFactors": [
+      "File chia sẻ công khai có thể bị người ngoài truy cập.",
+      "Không kiểm soát được quyền truy cập của liên kết cũ.",
+      "Dữ liệu đồng bộ có thể xuất hiện trên thiết bị không còn sử dụng."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-009",
+    "characterName": "Phan Nhật Quang",
+    "age": 17,
+    "gender": "Nam",
+    "className": "11C3 (hư cấu)",
+    "school": "Trường THPT Sáng Tạo (hư cấu)",
+    "address": "Số 16, đường Sao Mai, Khu phố Orbit-01, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Orbit Residence",
+    "contact": {
+      "phone": "08xx-xxx-098",
+      "email": "nhatquang.tech@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Anh trai — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 1450000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "quang.techlab.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE TECH ENTHUSIAST",
+    "lifestyle": {
+      "hobbies": [
+        "Lập trình",
+        "Thử nghiệm ứng dụng",
+        "Công nghệ"
+      ],
+      "habits": [
+        "Đăng bài hỏi đáp",
+        "Tải phần mềm",
+        "Tham gia diễn đàn"
+      ],
+      "frequentPlaces": [
+        "Tech Hub",
+        "Thư viện Số"
+      ],
+      "summary": "Thích trải nghiệm ứng dụng mới và tham gia cộng đồng công nghệ."
+    },
+    "digitalFootprint": [
+      "Công khai một số dự án cá nhân.",
+      "Thường đăng ảnh màn hình thiết bị.",
+      "Tham gia diễn đàn bằng cùng một nickname.",
+      "Từng chia sẻ thông tin cấu hình thiết bị."
+    ],
+    "riskFactors": [
+      "Ảnh màn hình có thể chứa thông tin không mong muốn.",
+      "Nickname dùng xuyên suốt nhiều nền tảng giúp liên kết danh tính.",
+      "Có nguy cơ tải ứng dụng từ nguồn không đáng tin cậy."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-010",
+    "characterName": "Đỗ Mỹ Duyên",
+    "age": 16,
+    "gender": "Nữ",
+    "className": "10D2 (hư cấu)",
+    "school": "Trường THPT Hướng Dương (hư cấu)",
+    "address": "Số 28, đường Cẩm Tú, Khu phố Blossom-04, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Blossom Home",
+    "contact": {
+      "phone": "09xx-xxx-109",
+      "email": "myduyen.beauty@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Mẹ — nhân vật mô phỏng",
+      "Chị gái — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 650000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "duyen.beauty.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE BEAUTY REVIEWER",
+    "lifestyle": {
+      "hobbies": [
+        "Chăm sóc da",
+        "Đánh giá sản phẩm",
+        "Xem livestream"
+      ],
+      "habits": [
+        "Tham gia khảo sát",
+        "Đăng ảnh sản phẩm",
+        "Đăng ký nhận mẫu thử"
+      ],
+      "frequentPlaces": [
+        "Beauty Square",
+        "Cửa hàng Pixel Care"
+      ],
+      "summary": "Quan tâm đến làm đẹp và thường tham gia chương trình nhận sản phẩm dùng thử."
+    },
+    "digitalFootprint": [
+      "Đăng bài đánh giá sản phẩm.",
+      "Tham gia khảo sát sở thích cá nhân.",
+      "Để lại bình luận về sản phẩm thường dùng.",
+      "Từng công khai ảnh đơn hàng mô phỏng."
+    ],
+    "riskFactors": [
+      "Khảo sát có thể thu thập nhiều thông tin hơn mục đích cần thiết.",
+      "Dữ liệu sở thích có thể được sử dụng cho quảng cáo không mong muốn.",
+      "Có thể gặp chương trình nhận quà giả mạo."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-011",
+    "characterName": "Hoàng Tuấn Kiệt",
+    "age": 18,
+    "gender": "Nam",
+    "className": "12C2 (hư cấu)",
+    "school": "Trường THPT Đông Phương (hư cấu)",
+    "address": "Số 84, đường Đại Dương, Khu dân cư Ocean-02, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng tại Ocean Park",
+    "contact": {
+      "phone": "08xx-xxx-110",
+      "email": "tuankiet.sport@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng",
+      "Em trai — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 2100000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "kiet.sports.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Đang trong mối quan hệ (nhân vật mô phỏng)",
+    "persona": "THE SPORTY STUDENT",
+    "lifestyle": {
+      "hobbies": [
+        "Bóng đá",
+        "Chạy bộ",
+        "Thể thao điện tử"
+      ],
+      "habits": [
+        "Đăng thành tích luyện tập",
+        "Check-in sân thể thao",
+        "Chia sẻ lịch thi đấu"
+      ],
+      "frequentPlaces": [
+        "Sân vận động Pixel",
+        "Công viên Bình Minh"
+      ],
+      "summary": "Thường chia sẻ lịch tập luyện và các địa điểm hoạt động thể thao."
+    },
+    "digitalFootprint": [
+      "Đăng lịch chạy bộ định kỳ.",
+      "Chia sẻ vị trí sân tập.",
+      "Đăng ảnh đội nhóm có nhiều người.",
+      "Công khai lịch thi đấu cuối tuần."
+    ],
+    "riskFactors": [
+      "Lịch tập công khai có thể tiết lộ thời gian vắng nhà.",
+      "Ảnh nhóm có thể tiết lộ dữ liệu của những người khác.",
+      "Vị trí hoạt động có thể bị theo dõi qua nhiều bài đăng."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-012",
+    "characterName": "Vũ Thanh Trúc",
+    "age": 17,
+    "gender": "Nữ",
+    "className": "11A5 (hư cấu)",
+    "school": "Trường THPT Minh Châu (hư cấu)",
+    "address": "Số 09, đường Ánh Dương, Khu phố Sun-05, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Sun Residence",
+    "contact": {
+      "phone": "09xx-xxx-121",
+      "email": "thanhtruc.music@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Mẹ — nhân vật mô phỏng",
+      "Em gái — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 540000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "truc.musicroom.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE MUSIC LOVER",
+    "lifestyle": {
+      "hobbies": [
+        "Ca hát",
+        "Chơi nhạc cụ",
+        "Nghe podcast"
+      ],
+      "habits": [
+        "Chia sẻ playlist",
+        "Đăng video biểu diễn",
+        "Tham gia cộng đồng âm nhạc"
+      ],
+      "frequentPlaces": [
+        "Music Studio",
+        "Quảng trường Giai Điệu"
+      ],
+      "summary": "Thường đăng tải video biểu diễn và tham gia các cộng đồng âm nhạc trực tuyến."
+    },
+    "digitalFootprint": [
+      "Video biểu diễn có thể để lộ hình ảnh người khác.",
+      "Playlist công khai phản ánh sở thích.",
+      "Thường đăng thông tin về lịch biểu diễn.",
+      "Từng đăng ảnh hậu trường tại địa điểm sinh hoạt."
+    ],
+    "riskFactors": [
+      "Nội dung video có thể để lộ thông tin của người xung quanh.",
+      "Lịch biểu diễn công khai có thể tiết lộ lịch trình.",
+      "Có thể bị giả mạo tài khoản trong cộng đồng người hâm mộ."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-013",
+    "characterName": "Mai Đức Anh",
+    "age": 16,
+    "gender": "Nam",
+    "className": "10B4 (hư cấu)",
+    "school": "Trường THPT Trí Việt (hư cấu)",
+    "address": "Số 71, đường Hồng Hà, Khu dân cư River-03, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng tại River Garden",
+    "contact": {
+      "phone": "08xx-xxx-132",
+      "email": "ducanh.delivery@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 890000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "ducanh.daily.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE DELIVERY ADDICT",
+    "lifestyle": {
+      "hobbies": [
+        "Đặt đồ ăn",
+        "Mua sắm",
+        "Khám phá quán mới"
+      ],
+      "habits": [
+        "Lưu nhiều địa chỉ",
+        "Theo dõi đơn hàng",
+        "Đăng ảnh món ăn"
+      ],
+      "frequentPlaces": [
+        "Food Street",
+        "Khu ẩm thực Pixel"
+      ],
+      "summary": "Thường sử dụng dịch vụ giao hàng và lưu nhiều địa chỉ nhận hàng."
+    },
+    "digitalFootprint": [
+      "Đăng ảnh hóa đơn mô phỏng.",
+      "Chia sẻ trải nghiệm giao hàng.",
+      "Lưu nhiều địa điểm nhận hàng.",
+      "Thường đăng bài vào giờ ăn."
+    ],
+    "riskFactors": [
+      "Thông tin đơn hàng có thể tiết lộ thói quen sinh hoạt.",
+      "Địa chỉ giao hàng cần được bảo vệ.",
+      "Dễ gặp tin nhắn giả danh đơn vị giao hàng."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-014",
+    "characterName": "Lý Bảo Ngọc",
+    "age": 15,
+    "gender": "Nữ",
+    "className": "9A6 (hư cấu)",
+    "school": "Trường THCS Bình An (hư cấu)",
+    "address": "Số 34, đường Cỏ May, Khu phố Meadow-01, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Meadow Home",
+    "contact": {
+      "phone": "09xx-xxx-143",
+      "email": "baongoc.reader@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng",
+      "Chị gái — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 310000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "ngoc.reading.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Không công khai (nhân vật mô phỏng)",
+    "persona": "THE BOOKWORM",
+    "lifestyle": {
+      "hobbies": [
+        "Đọc truyện",
+        "Viết nhật ký",
+        "Sưu tầm sách"
+      ],
+      "habits": [
+        "Đánh giá sách",
+        "Đăng ký diễn đàn đọc sách",
+        "Chia sẻ trích dẫn"
+      ],
+      "frequentPlaces": [
+        "Thư viện Tri Thức",
+        "Nhà sách Mây"
+      ],
+      "summary": "Thường tham gia các cộng đồng đọc sách và chia sẻ sở thích cá nhân."
+    },
+    "digitalFootprint": [
+      "Công khai danh sách sách yêu thích.",
+      "Tham gia nhiều diễn đàn đọc sách.",
+      "Đăng bài về thói quen đọc vào ban đêm.",
+      "Từng điền biểu mẫu nhận sách tặng."
+    ],
+    "riskFactors": [
+      "Biểu mẫu nhận quà có thể yêu cầu dữ liệu vượt quá nhu cầu.",
+      "Các thông tin sở thích có thể được tổng hợp để xây dựng hồ sơ.",
+      "Bài đăng về thói quen có thể tiết lộ lịch sinh hoạt."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-015",
+    "characterName": "Đinh Thành Long",
+    "age": 17,
+    "gender": "Nam",
+    "className": "11D1 (hư cấu)",
+    "school": "Trường THPT Số Hóa (hư cấu)",
+    "address": "Số 56, đường Điện Tử, Khu phố Matrix-07, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng tại Matrix Residence",
+    "contact": {
+      "phone": "08xx-xxx-154",
+      "email": "thanhlong.gadget@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 3200000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "long.gadgetlab.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE GADGET COLLECTOR",
+    "lifestyle": {
+      "hobbies": [
+        "Sưu tầm thiết bị",
+        "Đánh giá công nghệ",
+        "Chụp ảnh"
+      ],
+      "habits": [
+        "Đăng cấu hình thiết bị",
+        "Tham gia hội nhóm",
+        "Mua bán đồ công nghệ"
+      ],
+      "frequentPlaces": [
+        "Gadget Center",
+        "Tech Market"
+      ],
+      "summary": "Thường chia sẻ thông tin về thiết bị và tham gia cộng đồng mua bán công nghệ."
+    },
+    "digitalFootprint": [
+      "Đăng ảnh thiết bị cá nhân.",
+      "Công khai lịch sử mua bán mô phỏng.",
+      "Chia sẻ số hiệu thiết bị trong bài đánh giá.",
+      "Thường xuyên tham gia nhóm trao đổi."
+    ],
+    "riskFactors": [
+      "Ảnh thiết bị có thể chứa thông tin định danh.",
+      "Thông tin mua bán có thể bị lợi dụng để giả mạo giao dịch.",
+      "Người lạ có thể khai thác sở thích và khả năng chi tiêu."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-016",
+    "characterName": "Nguyễn Khánh An",
+    "age": 16,
+    "gender": "Nữ",
+    "className": "10A1 (hư cấu)",
+    "school": "Trường THPT Hải Đăng (hư cấu)",
+    "address": "Số 13, đường Bờ Biển, Khu dân cư Seaside-02, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Seaside Tower",
+    "contact": {
+      "phone": "09xx-xxx-165",
+      "email": "khanhan.travel@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Mẹ — nhân vật mô phỏng",
+      "Anh trai — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 1850000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "an.travelnotes.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE LITTLE TRAVELER",
+    "lifestyle": {
+      "hobbies": [
+        "Du lịch",
+        "Chụp ảnh phong cảnh",
+        "Khám phá địa điểm"
+      ],
+      "habits": [
+        "Đăng lịch trình",
+        "Check-in",
+        "Chia sẻ ảnh chuyến đi"
+      ],
+      "frequentPlaces": [
+        "Bến tàu Pixel",
+        "Công viên Biển Xanh"
+      ],
+      "summary": "Thường chia sẻ kế hoạch và hình ảnh các chuyến đi."
+    },
+    "digitalFootprint": [
+      "Đăng kế hoạch chuyến đi trước ngày khởi hành.",
+      "Chia sẻ ảnh vé tham quan mô phỏng.",
+      "Check-in tại nhiều địa điểm.",
+      "Công khai thời gian vắng nhà."
+    ],
+    "riskFactors": [
+      "Lịch trình công khai có thể tiết lộ thời gian vắng nhà.",
+      "Ảnh vé có thể chứa mã hoặc thông tin định danh.",
+      "Dữ liệu vị trí từ nhiều bài đăng có thể tạo thành lịch sử di chuyển."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-017",
+    "characterName": "Trương Minh Khang",
+    "age": 18,
+    "gender": "Nam",
+    "className": "12B3 (hư cấu)",
+    "school": "Trường THPT Tương Lai (hư cấu)",
+    "address": "Số 91, đường Thành Công, Khu phố Victory-08, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng tại Victory Garden",
+    "contact": {
+      "phone": "08xx-xxx-176",
+      "email": "minhkhang.freelance@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 4750000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "khang.freelance.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Đang tìm hiểu (nhân vật mô phỏng)",
+    "persona": "THE YOUNG FREELANCER",
+    "lifestyle": {
+      "hobbies": [
+        "Thiết kế đồ họa",
+        "Làm việc tự do",
+        "Chỉnh sửa video"
+      ],
+      "habits": [
+        "Nhận dự án trực tuyến",
+        "Gửi portfolio",
+        "Trao đổi công việc qua tin nhắn"
+      ],
+      "frequentPlaces": [
+        "Creative Hub",
+        "Studio Pixel"
+      ],
+      "summary": "Nhận các dự án thiết kế giả lập và thường trao đổi thông tin với khách hàng trực tuyến."
+    },
+    "digitalFootprint": [
+      "Portfolio công khai có thông tin liên hệ mô phỏng.",
+      "Chia sẻ hình ảnh dự án.",
+      "Đăng bài tìm kiếm khách hàng.",
+      "Có nhiều cuộc trò chuyện công việc lưu trữ."
+    ],
+    "riskFactors": [
+      "Có thể gặp khách hàng giả mạo.",
+      "Tài liệu dự án có thể chứa thông tin của bên khác.",
+      "Có nguy cơ chia sẻ thông tin liên hệ quá rộng."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-018",
+    "characterName": "Phan Hải Yến",
+    "age": 16,
+    "gender": "Nữ",
+    "className": "10C1 (hư cấu)",
+    "school": "Trường THPT Đại Ngàn (hư cấu)",
+    "address": "Số 22, đường Rừng Xanh, Khu phố Forest-04, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Forest Residence",
+    "contact": {
+      "phone": "09xx-xxx-187",
+      "email": "haiyen.green@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng",
+      "Em gái — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 470000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "yen.greenlife.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE GREEN ACTIVIST",
+    "lifestyle": {
+      "hobbies": [
+        "Bảo vệ môi trường",
+        "Trồng cây",
+        "Hoạt động cộng đồng"
+      ],
+      "habits": [
+        "Đăng ký sự kiện",
+        "Tham gia nhóm cộng đồng",
+        "Chia sẻ hoạt động thiện nguyện"
+      ],
+      "frequentPlaces": [
+        "Vườn Sinh Thái",
+        "Trung tâm Cộng đồng Xanh"
+      ],
+      "summary": "Thường tham gia hoạt động cộng đồng và chia sẻ thông tin sự kiện."
+    },
+    "digitalFootprint": [
+      "Đăng ký nhiều sự kiện bằng biểu mẫu trực tuyến.",
+      "Chia sẻ ảnh hoạt động nhóm.",
+      "Tham gia các nhóm cộng đồng công khai.",
+      "Công khai lịch tham gia sự kiện."
+    ],
+    "riskFactors": [
+      "Biểu mẫu sự kiện có thể yêu cầu dữ liệu không cần thiết.",
+      "Ảnh nhóm có thể tiết lộ thông tin của người khác.",
+      "Thông tin tham gia sự kiện có thể bị khai thác."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-019",
+    "characterName": "Đoàn Phúc Thịnh",
+    "age": 17,
+    "gender": "Nam",
+    "className": "11A7 (hư cấu)",
+    "school": "Trường THPT Sao Bắc Đẩu (hư cấu)",
+    "address": "Số 47, đường Bắc Đẩu, Khu phố Galaxy-06, Thành phố Hư Cấu",
+    "housing": "Nhà phố mô phỏng tại Galaxy Home",
+    "contact": {
+      "phone": "08xx-xxx-198",
+      "email": "phucthinh.stream@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Mẹ — nhân vật mô phỏng",
+      "Chị gái — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 2680000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "thinh.streamer.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE LIVE STREAMER",
+    "lifestyle": {
+      "hobbies": [
+        "Livestream",
+        "Chơi game",
+        "Giao lưu trực tuyến"
+      ],
+      "habits": [
+        "Phát sóng thường xuyên",
+        "Trả lời bình luận",
+        "Chia sẻ lịch phát sóng"
+      ],
+      "frequentPlaces": [
+        "Streaming Studio",
+        "Game Hub"
+      ],
+      "summary": "Thường livestream và tương tác trực tiếp với người xem."
+    },
+    "digitalFootprint": [
+      "Lịch phát sóng được công khai.",
+      "Một số buổi livestream để lộ không gian sinh hoạt.",
+      "Có nhiều bình luận chứa thông tin cá nhân.",
+      "Từng hiển thị thông báo trên màn hình khi phát sóng."
+    ],
+    "riskFactors": [
+      "Livestream có thể vô tình tiết lộ thông tin riêng tư.",
+      "Thông báo hiển thị có thể chứa dữ liệu cá nhân.",
+      "Người xem có thể tổng hợp lịch phát sóng để suy đoán thói quen."
+    ],
+    "isActive": true,
+    "isDemoOnly": true
+  },
+  {
+    "characterCode": "CHAR-020",
+    "characterName": "Lâm Gia Bảo",
+    "age": 16,
+    "gender": "Nam",
+    "className": "10B7 (hư cấu)",
+    "school": "Trường THPT Thành Phố Mới (hư cấu)",
+    "address": "Số 68, đường Tân Thế Giới, Khu phố Future-09, Thành phố Hư Cấu",
+    "housing": "Căn hộ mô phỏng tại Future City",
+    "contact": {
+      "phone": "09xx-xxx-209",
+      "email": "giabao.quiz@example.invalid",
+      "demoOnly": true
+    },
+    "familyMembers": [
+      "Bố — nhân vật mô phỏng",
+      "Mẹ — nhân vật mô phỏng"
+    ],
+    "financialInfo": {
+      "simulatedBalance": 1120000,
+      "currencyLabel": "PIXEL COINS — SIMULATED",
+      "demoOnly": true
+    },
+    "socialAccounts": {
+      "facebookUsername": "bao.quizmaster.demo.invalid",
+      "simulatedPassword": "DEMO ONLY — NOT A CREDENTIAL",
+      "demoOnly": true
+    },
+    "relationshipStatus": "Độc thân (nhân vật mô phỏng)",
+    "persona": "THE QUIZ ENTHUSIAST",
+    "lifestyle": {
+      "hobbies": [
+        "Trắc nghiệm trực tuyến",
+        "Giải đố",
+        "Khám phá ứng dụng"
+      ],
+      "habits": [
+        "Tham gia quiz",
+        "Đăng kết quả",
+        "Chia sẻ liên kết trò chơi"
+      ],
+      "frequentPlaces": [
+        "Digital Park",
+        "Trung tâm Giải Trí Pixel"
+      ],
+      "summary": "Thường tham gia các trò chơi, bài kiểm tra tính cách và khảo sát trực tuyến."
+    },
+    "digitalFootprint": [
+      "Đăng công khai kết quả bài kiểm tra tính cách.",
+      "Tham gia nhiều khảo sát trực tuyến.",
+      "Chia sẻ liên kết trò chơi với bạn bè.",
+      "Từng cung cấp ngày sinh trong một bài kiểm tra mô phỏng."
+    ],
+    "riskFactors": [
+      "Bài kiểm tra có thể thu thập dữ liệu không liên quan đến mục đích trò chơi.",
+      "Kết quả tính cách có thể tiết lộ sở thích và đặc điểm cá nhân.",
+      "Liên kết trò chơi không rõ nguồn gốc có thể dẫn đến trang thu thập dữ liệu."
     ],
     "isActive": true,
     "isDemoOnly": true

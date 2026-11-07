@@ -1,0 +1,562 @@
+{
+  "CHAR-001": {
+    "opening": "Sau khi đăng ảnh ở Quảng trường Pixel, Minh Anh nhận lời mời dùng app chỉnh ảnh để tạo bộ lọc mới cho album cuối tuần.",
+    "stage01": {
+      "serviceName": "Pixel Retouch",
+      "scene": "App xin quyền camera và thư viện ảnh ngay khi Minh Anh muốn chỉnh một tấm ảnh.",
+      "limitedAction": "Chỉ chọn một ảnh và cho phép dùng camera khi đang chụp.",
+      "broadAction": "Cho phép truy cập toàn bộ thư viện ảnh và camera mọi lúc."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "public-album", "title": "Album ảnh công khai", "body": "Album có ảnh đồng phục làm lộ tên trường và các lần check-in cuối tuần.", "evidenceId": "album-location-trail", "condition": "always" },
+        { "id": "permission-log", "title": "Nhật ký Pixel Retouch", "body": "Nhật ký cho thấy app chỉ nhận ảnh đã chọn.", "evidenceId": "limited-photo-access", "condition": "limited-permission" },
+        { "id": "permission-log-wide", "title": "Nhật ký Pixel Retouch", "body": "Nhật ký cho thấy app đã quét cả thư viện, gồm ảnh đồng phục và ảnh có vị trí.", "evidenceId": "full-library-access", "condition": "broad-permission" },
+        { "id": "school-story", "title": "Story giờ tan học", "body": "Nhiều story được đăng ngay sau giờ tan học, giúp người lạ suy đoán lịch trình.", "evidenceId": "school-time-pattern", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Một tài khoản giả danh hỗ trợ Pixel Retouch gửi liên kết xác minh, nhắc đúng tên trường và hỏi Minh Anh gửi mã đăng nhập.",
+      "safeEnding": "Minh Anh xác minh qua trang chính thức, thu hồi quyền không cần thiết, ẩn vị trí và báo người lớn; dấu vết còn lại được xử lý.",
+      "exposedEnding": "Nếu tiếp tục nhắn tin hoặc gửi mã, kẻ giả danh có thể nối ảnh, trường học và lịch tan học thành một hồ sơ rủi ro."
+    },
+    "guardian": {
+      "opening": "Ảnh đẹp không cần đổi lấy quyền truy cập cả thư viện. Hãy xem app thực sự cần gì.",
+      "stage01": "Một ảnh được chọn là đủ để thử bộ lọc; quyền rộng có thể làm lộ ảnh ngoài mục đích.",
+      "stage02": "Ghép thời gian đăng với địa điểm trong ảnh. Hai dấu vết riêng lẻ có thể tiết lộ lịch trình khi kết hợp.",
+      "stage03": "Đừng dùng liên kết trong tin nhắn. Mở kênh chính thức độc lập và nhờ người tin cậy hỗ trợ."
+    }
+  },
+  "CHAR-002": {
+    "opening": "Gia Huy vừa đăng ảnh hộp hàng mới thì nhận voucher giao hàng miễn phí từ một cửa hàng lạ.",
+    "stage01": {
+      "serviceName": "Nova Voucher",
+      "scene": "Biểu mẫu nhận voucher xin vị trí chính xác, danh bạ và lịch sử đơn hàng.",
+      "limitedAction": "Chỉ nhập mã voucher và chọn địa chỉ nhận cho đơn hàng hiện tại.",
+      "broadAction": "Cho phép vị trí nền, danh bạ và lưu mọi địa chỉ giao hàng."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "order-post", "title": "Ảnh hộp hàng", "body": "Bài đăng để lộ tên dịch vụ giao hàng và khung giờ nhận đơn.", "evidenceId": "delivery-routine", "condition": "always" },
+        { "id": "voucher-log", "title": "Nhật ký Nova Voucher", "body": "Voucher chỉ lưu địa chỉ của đơn đang xử lý.", "evidenceId": "single-order-address", "condition": "limited-permission" },
+        { "id": "address-log", "title": "Nhật ký Nova Voucher", "body": "Ứng dụng đã lưu nhiều địa chỉ và vị trí nền dù voucher chỉ cần một điểm giao.", "evidenceId": "stored-address-history", "condition": "broad-permission" },
+        { "id": "delivery-message", "title": "Tin nhắn giao hàng", "body": "Tin nhắn thúc giục trả phí qua liên kết ngoài, nhưng mã đơn không khớp lịch sử.", "evidenceId": "fake-delivery-message", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Người gửi tự xưng là shipper, biết Gia Huy hay nhận hàng buổi chiều và yêu cầu phí phát sinh qua liên kết lạ.",
+      "safeEnding": "Gia Huy kiểm tra mã đơn trong ứng dụng chính thức, không mở liên kết, xóa địa chỉ không cần thiết và báo cáo tin nhắn.",
+      "exposedEnding": "Nếu thanh toán hoặc cung cấp mã xác nhận, thông tin đơn hàng và địa chỉ có thể bị dùng để tiếp tục mạo danh."
+    },
+    "guardian": {
+      "opening": "Voucher thật không cần cả danh bạ hay vị trí nền. Kiểm tra mục đích từng dữ liệu trước khi đồng ý.",
+      "stage01": "Chỉ cung cấp địa chỉ cho đơn đang giao; không bật lưu trữ vị trí liên tục.",
+      "stage02": "So sánh mã đơn trong ứng dụng với tin nhắn. Tên người gửi không đủ để xác thực.",
+      "stage03": "Mở ứng dụng giao hàng đã cài sẵn để kiểm tra, rồi báo cáo kênh giả mạo."
+    }
+  },
+  "CHAR-003": {
+    "opening": "Trong lúc chơi Game Hub Pixel, Hoàng Nam thấy lời mời nhận vật phẩm hiếm nếu cài một tiện ích bổ trợ.",
+    "stage01": {
+      "serviceName": "Pixel Loot Booster",
+      "scene": "Tiện ích xin quyền ảnh chụp màn hình, danh bạ và truy cập tệp để nhận vật phẩm.",
+      "limitedAction": "Không cài tiện ích; kiểm tra vật phẩm trong cửa hàng chính thức của trò chơi.",
+      "broadAction": "Cài tệp từ liên kết và cấp quyền tệp, ảnh chụp màn hình cùng danh bạ."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "gamer-handle", "title": "Hồ sơ diễn đàn", "body": "Cùng một nickname xuất hiện ở diễn đàn và nhóm trao đổi vật phẩm.", "evidenceId": "reused-gamer-handle", "condition": "always" },
+        { "id": "official-check", "title": "Cửa hàng trò chơi", "body": "Cửa hàng chính thức không có tiện ích hay chương trình vật phẩm này.", "evidenceId": "unlisted-game-addon", "condition": "limited-permission" },
+        { "id": "screenshot-scan", "title": "Nhật ký tiện ích", "body": "Tệp đã tìm ảnh giao dịch và ảnh màn hình trong thiết bị.", "evidenceId": "transaction-screenshot-exposure", "condition": "broad-permission" },
+        { "id": "guild-chat", "title": "Tin nhắn nhóm game", "body": "Tài khoản mới thúc giục đăng nhập ngoài game để giữ vật phẩm.", "evidenceId": "off-platform-login-request", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Một thành viên nhóm gửi trang đăng nhập giống cổng game và nói vật phẩm sẽ biến mất trong vài phút.",
+      "safeEnding": "Hoàng Nam bỏ qua trang ngoài, đổi mật khẩu qua ứng dụng chính thức nếu cần, bật xác thực bổ sung và cảnh báo nhóm.",
+      "exposedEnding": "Nếu đăng nhập ngoài nền tảng, tài khoản và lịch sử giao dịch có thể bị chiếm dụng hoặc mạo danh."
+    },
+    "guardian": {
+      "opening": "Phần thưởng hiếm thường tạo cảm giác gấp gáp. Kiểm tra thông báo trong chính trò chơi trước.",
+      "stage01": "Không cài tệp không rõ nguồn và không cấp quyền danh bạ để nhận vật phẩm.",
+      "stage02": "Nickname dùng lại giúp người khác nối các tài khoản; hãy đối chiếu lời mời với kênh chính thức.",
+      "stage03": "Không nhập mật khẩu qua liên kết nhóm. Cảnh báo quản trị viên và bảo vệ tài khoản từ ứng dụng chính thức."
+    }
+  },
+  "CHAR-004": {
+    "opening": "Hà ít đăng bài công khai, nhưng một app học tập mới bất ngờ xin vị trí chính xác và quyền nền.",
+    "stage01": {
+      "serviceName": "Study Map",
+      "scene": "App hứa gợi ý thư viện gần nhất nhưng xin theo dõi vị trí cả khi không sử dụng.",
+      "limitedAction": "Từ chối vị trí nền và tự chọn thư viện hoặc nhập khu vực gần đúng.",
+      "broadAction": "Cho phép vị trí chính xác liên tục và đồng bộ hồ sơ biểu mẫu cũ."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "app-settings", "title": "Cài đặt quyền ứng dụng", "body": "Một số app cũ vẫn có quyền vị trí dù Hà hiếm khi mở chúng.", "evidenceId": "stale-location-permissions", "condition": "always" },
+        { "id": "study-map-log", "title": "Nhật ký Study Map", "body": "App chỉ nhận khu vực gần đúng khi được cấp quyền tối thiểu.", "evidenceId": "approximate-location-only", "condition": "limited-permission" },
+        { "id": "background-log", "title": "Nhật ký Study Map", "body": "App ghi lại nhiều lần vị trí nền ngoài thời gian tìm thư viện.", "evidenceId": "continuous-location-history", "condition": "broad-permission" },
+        { "id": "old-form", "title": "Biểu mẫu cũ", "body": "Một bài kiểm tra tính cách lưu trường học và sở thích mà không giải thích thời hạn lưu.", "evidenceId": "unclear-retention-form", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Một người lạ tự nhận là nhân viên Study Map hỏi Hà xác nhận lịch đến thư viện dựa trên vị trí gần đây.",
+      "safeEnding": "Hà tắt quyền nền, xóa quyền app không dùng, không xác nhận lịch trình và nhờ người lớn kiểm tra cài đặt.",
+      "exposedEnding": "Nếu xác nhận lịch trình, dữ liệu vị trí liên tục có thể cho người lạ biết thói quen dù Hà ít đăng mạng."
+    },
+    "guardian": {
+      "opening": "Ít chia sẻ công khai không có nghĩa là ứng dụng không thu thập dữ liệu. Kiểm tra quyền đang bật.",
+      "stage01": "Chọn khu vực gần đúng hoặc nhập thủ công; app tra thư viện không cần vị trí nền.",
+      "stage02": "Xem quyền của cả app cũ và biểu mẫu. Kiểm tra mục đích và thời hạn lưu trước khi gửi.",
+      "stage03": "Không xác nhận thói quen cho người gọi/nhắn tin. Thu hồi quyền và nhờ người lớn hỗ trợ."
+    }
+  },
+  "CHAR-005": {
+    "opening": "Minh nhận thông báo về một cuộc khảo sát chi tiêu kèm quà tặng, ngay sau khi đăng ảnh giao dịch mô phỏng.",
+    "stage01": {
+      "serviceName": "Pixel Budget Rewards",
+      "scene": "Khảo sát xin lịch sử giao dịch, thông báo ngân hàng và số điện thoại để nhận quà.",
+      "limitedAction": "Bỏ qua biểu mẫu; xem ưu đãi qua kênh tài chính chính thức.",
+      "broadAction": "Tải ảnh giao dịch và cho phép đọc thông báo để nhận quà."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "transaction-image", "title": "Ảnh giao dịch", "body": "Ảnh mô phỏng còn lộ thời điểm và một phần thông tin giao dịch.", "evidenceId": "transaction-context-exposure", "condition": "always" },
+        { "id": "survey-not-opened", "title": "Trang ưu đãi chính thức", "body": "Không có khảo sát hoặc quà tặng tương ứng trên kênh chính thức.", "evidenceId": "unverified-financial-survey", "condition": "limited-permission" },
+        { "id": "notification-log", "title": "Nhật ký quyền thông báo", "body": "Biểu mẫu đã đọc thông báo giao dịch và ghép các mốc chi tiêu.", "evidenceId": "financial-notification-access", "condition": "broad-permission" },
+        { "id": "survey-message", "title": "Tin nhắn nhận quà", "body": "Người gửi dùng thông tin giao dịch để tạo vẻ đáng tin và yêu cầu mã xác minh.", "evidenceId": "financial-impersonation-lure", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Tài khoản giả danh tổ chức tài chính báo giao dịch bất thường và yêu cầu Minh đọc mã xác minh để khóa tài khoản.",
+      "safeEnding": "Minh không chia sẻ mã, tự gọi số trên ứng dụng/chứng từ chính thức, che ảnh giao dịch và báo người lớn.",
+      "exposedEnding": "Nếu gửi mã hoặc ảnh đầy đủ, kẻ mạo danh có thể dùng bối cảnh chi tiêu để tiếp tục lừa đảo."
+    },
+    "guardian": {
+      "opening": "Thông báo giao dịch là riêng tư. Không gửi ảnh hoặc mã xác thực để đổi lấy một món quà.",
+      "stage01": "Khảo sát không cần đọc thông báo tài chính. Kiểm tra ưu đãi trong ứng dụng chính thức.",
+      "stage02": "Che thông tin không cần thiết trước khi chia sẻ ảnh; đối chiếu người gửi qua kênh độc lập.",
+      "stage03": "Không đọc mã OTP. Tự liên hệ tổ chức tài chính qua ứng dụng hoặc số chính thức."
+    }
+  },
+  "CHAR-006": {
+    "opening": "Vy chuẩn bị đăng video hậu trường mới thì ứng dụng dựng phim đề nghị tự động gắn thẻ mọi người xuất hiện.",
+    "stage01": {
+      "serviceName": "Creator Cut",
+      "scene": "Ứng dụng xin toàn bộ video, danh bạ và vị trí để tạo hiệu ứng tự động.",
+      "limitedAction": "Chọn một video, tắt nhận diện khuôn mặt và bỏ dữ liệu vị trí.",
+      "broadAction": "Cho phép quét toàn bộ thư viện, nhận diện bạn bè và gắn vị trí tự động."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "video-background", "title": "Khung hình hậu trường", "body": "Bảng tên trường và không gian sinh hoạt xuất hiện ở nền video.", "evidenceId": "background-school-residence", "condition": "always" },
+        { "id": "selected-video", "title": "Nhật ký Creator Cut", "body": "Chỉ video đã chọn được xử lý, không bật nhận diện người khác.", "evidenceId": "single-video-processing", "condition": "limited-permission" },
+        { "id": "tag-scan", "title": "Nhật ký Creator Cut", "body": "App quét thêm video có bạn bè và vị trí đã lưu.", "evidenceId": "bulk-video-and-tag-scan", "condition": "broad-permission" },
+        { "id": "tag-notification", "title": "Thông báo gắn thẻ", "body": "Bạn bè không biết hình ảnh của mình đã được đưa vào video công khai.", "evidenceId": "friends-image-exposure", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Một tài khoản tuyển cộng tác viên gửi tin nhắn dùng tên trường trong video và đề nghị Vy cung cấp lịch quay cùng thông tin liên hệ.",
+      "safeEnding": "Vy rà soát khung hình, gỡ vị trí/gắn thẻ khi chưa có đồng ý, xác minh lời mời và báo người lớn.",
+      "exposedEnding": "Nếu gửi lịch quay hoặc tiếp tục để lộ bối cảnh, người lạ có thể suy đoán nơi sinh hoạt của Vy và bạn bè."
+    },
+    "guardian": {
+      "opening": "Video có thể tiết lộ nhiều hơn phần Vy định chia sẻ, kể cả dữ liệu của bạn bè.",
+      "stage01": "Chỉ xử lý video được chọn; việc dựng phim không cần quét toàn bộ thư viện.",
+      "stage02": "Xem cả hậu cảnh và thông báo trước khi đăng. Hỏi ý kiến người xuất hiện trong video.",
+      "stage03": "Ẩn thông tin vị trí, kiểm tra lời mời qua kênh chính thức và nhờ người lớn xem cùng."
+    }
+  },
+  "CHAR-007": {
+    "opening": "Bảo nhận thông báo học bổng sau khi đăng ảnh giấy khen và lịch thi lên nhóm học tập.",
+    "stage01": {
+      "serviceName": "Scholarship Finder",
+      "scene": "Trang tìm học bổng xin quyền đọc email, lịch học và tài liệu trên đám mây.",
+      "limitedAction": "Tự kiểm tra thông báo trên trang của trường; không cấp quyền hộp thư.",
+      "broadAction": "Cho phép app quét email, lịch thi và toàn bộ tài liệu học tập."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "award-post", "title": "Bài đăng giấy khen", "body": "Ảnh có tên trường và lớp; bài đăng khác công khai ngày thi.", "evidenceId": "school-and-exam-schedule", "condition": "always" },
+        { "id": "official-scholarship", "title": "Bảng tin học bổng", "body": "Trường chưa đăng chương trình có tên trong thông báo.", "evidenceId": "unlisted-scholarship", "condition": "limited-permission" },
+        { "id": "mail-scan", "title": "Nhật ký Scholarship Finder", "body": "App đã đọc email học tập và tài liệu không liên quan đến hồ sơ.", "evidenceId": "bulk-study-data-access", "condition": "broad-permission" },
+        { "id": "scholarship-form", "title": "Biểu mẫu học bổng", "body": "Biểu mẫu yêu cầu phí xử lý và thông tin gia đình trước khi nêu đơn vị cấp.", "evidenceId": "excessive-scholarship-form", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Người gửi tự xưng là ban học bổng, thúc Bảo chuyển phí và gửi ảnh giấy tờ trước hạn chót giả.",
+      "safeEnding": "Bảo đối chiếu với trường, không trả phí qua tin nhắn, gỡ lịch thi công khai và hỏi người lớn.",
+      "exposedEnding": "Nếu gửi hồ sơ hoặc lịch học, thông tin có thể bị dùng để giả danh nhà trường trong những lần liên hệ sau."
+    },
+    "guardian": {
+      "opening": "Thành tích học tập không phải bằng chứng rằng một lời mời học bổng là thật.",
+      "stage01": "Tìm chương trình qua trang trường; không cấp quyền email và tài liệu cho trang chưa xác minh.",
+      "stage02": "Đối chiếu tên đơn vị, điều kiện và phí với thông báo chính thức.",
+      "stage03": "Không gửi giấy tờ hoặc chuyển phí dưới áp lực thời gian; nhờ giáo viên/người lớn xác minh."
+    }
+  },
+  "CHAR-008": {
+    "opening": "Linh nhận cảnh báo một thư mục ảnh trên đám mây đang được chia sẻ với bất kỳ ai có liên kết.",
+    "stage01": {
+      "serviceName": "Cloud Album Helper",
+      "scene": "Tiện ích dọn ảnh xin quyền đọc toàn bộ album và các liên kết chia sẻ.",
+      "limitedAction": "Mở cài đặt dịch vụ chính thức và chọn riêng thư mục cần kiểm tra.",
+      "broadAction": "Cho tiện ích quét mọi album, tệp và thiết bị đã đăng nhập."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "public-link", "title": "Liên kết thư mục", "body": "Một liên kết cũ vẫn cho phép người ngoài xem tệp trong album.", "evidenceId": "public-cloud-link", "condition": "always" },
+        { "id": "single-folder", "title": "Nhật ký Cloud Album Helper", "body": "Chỉ thư mục được chọn được kiểm tra.", "evidenceId": "scoped-folder-check", "condition": "limited-permission" },
+        { "id": "device-sync", "title": "Nhật ký Cloud Album Helper", "body": "Tiện ích phát hiện album đồng bộ trên thiết bị Linh không còn sử dụng.", "evidenceId": "stale-device-sync", "condition": "broad-permission" },
+        { "id": "share-history", "title": "Lịch sử chia sẻ", "body": "Một số tài liệu từng chia sẻ trong nhóm nhưng chưa thu hồi liên kết.", "evidenceId": "unrevoked-shared-files", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Một người lạ gửi ảnh chụp tệp trong thư mục và yêu cầu Linh xác nhận quyền truy cập qua trang đăng nhập.",
+      "safeEnding": "Linh thu hồi liên kết công khai trong dịch vụ chính thức, đăng xuất thiết bị cũ và báo người lớn.",
+      "exposedEnding": "Nếu đăng nhập qua liên kết, người lạ có thể tiếp tục truy cập tài liệu đồng bộ trên nhiều thiết bị."
+    },
+    "guardian": {
+      "opening": "Liên kết cũ có thể còn quyền truy cập dù Linh đã quên mình từng chia sẻ nó.",
+      "stage01": "Kiểm tra quyền ngay trong dịch vụ lưu trữ chính thức, không cần tiện ích quét toàn bộ dữ liệu.",
+      "stage02": "Rà soát từng liên kết, thiết bị và người được chia sẻ; thu hồi quyền không còn cần.",
+      "stage03": "Không đăng nhập từ liên kết trong tin nhắn. Tự mở dịch vụ và thu hồi phiên lạ."
+    }
+  },
+  "CHAR-009": {
+    "opening": "Quang thấy một diễn đàn công nghệ chia sẻ công cụ thử nghiệm mới, giống chủ đề dự án cá nhân của mình.",
+    "stage01": {
+      "serviceName": "Device Lab Beta",
+      "scene": "Công cụ xin quyền cài ứng dụng không rõ nguồn, đọc ảnh màn hình và mã nhận dạng thiết bị.",
+      "limitedAction": "Xem tài liệu và đánh giá độc lập trước; không cài công cụ trên thiết bị chính.",
+      "broadAction": "Cài gói thử nghiệm và cho phép đọc tệp, ảnh màn hình, thông tin thiết bị."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "nickname-links", "title": "Tìm kiếm nickname", "body": "Nickname của Quang nối diễn đàn, dự án và bài đăng cấu hình thiết bị.", "evidenceId": "cross-platform-identity-link", "condition": "always" },
+        { "id": "vendor-page", "title": "Trang dự án chính thức", "body": "Nhóm phát triển không liệt kê công cụ beta này.", "evidenceId": "unverified-device-tool", "condition": "limited-permission" },
+        { "id": "device-report", "title": "Nhật ký Device Lab Beta", "body": "Gói thử nghiệm đã đọc thông tin thiết bị và ảnh màn hình ngoài mục đích thử.", "evidenceId": "device-and-screen-scan", "condition": "broad-permission" },
+        { "id": "forum-message", "title": "Tin nhắn diễn đàn", "body": "Người gửi yêu cầu Quang đăng ảnh cấu hình đầy đủ để nhận quyền truy cập sớm.", "evidenceId": "oversharing-device-details", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Tài khoản diễn đàn giả danh nhà phát triển báo lỗi thiết bị và xin mã chẩn đoán cùng ảnh màn hình.",
+      "safeEnding": "Quang dừng cài đặt, kiểm tra nguồn phát hành, gỡ công cụ chưa xác minh và che thông tin trước khi chia sẻ.",
+      "exposedEnding": "Nếu gửi báo cáo đầy đủ, mã thiết bị và nickname dùng chung có thể nối hoạt động của Quang trên nhiều nền tảng."
+    },
+    "guardian": {
+      "opening": "Một công cụ mang nhãn beta vẫn cần nguồn phát hành đáng tin và quyền phù hợp.",
+      "stage01": "Đừng cài gói lạ trên thiết bị chính; đọc đánh giá độc lập trước.",
+      "stage02": "Nickname dùng lại và ảnh cấu hình có thể kết hợp để nhận diện thiết bị/người dùng.",
+      "stage03": "Chỉ gửi báo cáo đã che dữ liệu nhạy cảm qua kênh hỗ trợ chính thức."
+    }
+  },
+  "CHAR-010": {
+    "opening": "Duyên nhận lời mời thử sản phẩm làm đẹp miễn phí sau khi đăng bài đánh giá gần đây.",
+    "stage01": {
+      "serviceName": "Glow Survey",
+      "scene": "Khảo sát quà tặng xin thói quen mua sắm, ảnh đơn hàng và ngày sinh.",
+      "limitedAction": "Kiểm tra thể lệ trên kênh thương hiệu chính thức và bỏ qua câu hỏi không cần thiết.",
+      "broadAction": "Gửi ảnh đơn hàng, ngày sinh và lịch sử sở thích để nhận quà."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "review-trail", "title": "Bài đánh giá sản phẩm", "body": "Bình luận cho biết sản phẩm Duyên hay dùng và thời điểm mua.", "evidenceId": "beauty-preference-profile", "condition": "always" },
+        { "id": "brand-page", "title": "Kênh thương hiệu", "body": "Kênh chính thức không có chương trình khảo sát này.", "evidenceId": "unlisted-product-giveaway", "condition": "limited-permission" },
+        { "id": "survey-copy", "title": "Bản sao khảo sát", "body": "Biểu mẫu đã lưu ngày sinh, đơn hàng và sở thích vượt mục đích nhận quà.", "evidenceId": "excessive-survey-data", "condition": "broad-permission" },
+        { "id": "gift-message", "title": "Tin nhắn nhận quà", "body": "Người gửi yêu cầu phí giao hàng qua liên kết rút gọn.", "evidenceId": "fake-giveaway-fee", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Tài khoản giả danh thương hiệu dùng sở thích của Duyên để mời nhận quà và xin thông tin thanh toán.",
+      "safeEnding": "Duyên xác minh chương trình, không gửi thông tin thanh toán, gỡ ảnh đơn hàng và báo cáo tài khoản.",
+      "exposedEnding": "Nếu cung cấp thông tin, hồ sơ sở thích và đơn hàng có thể dẫn tới các lời mời giả mạo cá nhân hóa hơn."
+    },
+    "guardian": {
+      "opening": "Quà tặng không nên đòi ngày sinh hay lịch sử mua hàng nếu không có lý do rõ ràng.",
+      "stage01": "Xác minh chương trình trên trang thương hiệu; bỏ qua trường dữ liệu không cần.",
+      "stage02": "Sở thích tưởng như vô hại có thể được ghép thành hồ sơ tiêu dùng.",
+      "stage03": "Không trả phí qua liên kết lạ; báo cáo và xóa ảnh đơn hàng có chi tiết riêng."
+    }
+  },
+  "CHAR-011": {
+    "opening": "Kiệt muốn chia sẻ lịch chạy cuối tuần để rủ bạn tham gia, nhưng app thể thao đề xuất đăng lịch tự động.",
+    "stage01": {
+      "serviceName": "RunTogether",
+      "scene": "Ứng dụng xin vị trí liên tục, lịch tập và quyền đăng công khai.",
+      "limitedAction": "Chỉ ghi buổi chạy khi mở app và chia sẻ với nhóm bạn đã chọn.",
+      "broadAction": "Bật theo dõi nền và tự động công khai mọi đường chạy, thời gian."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "running-calendar", "title": "Lịch chạy công khai", "body": "Các buổi chạy lặp lại cùng một khung giờ và địa điểm sân tập.", "evidenceId": "repeating-training-pattern", "condition": "always" },
+        { "id": "session-only", "title": "Nhật ký RunTogether", "body": "Ứng dụng chỉ ghi tuyến đường khi Kiệt chủ động bắt đầu buổi chạy.", "evidenceId": "foreground-run-tracking", "condition": "limited-permission" },
+        { "id": "background-routes", "title": "Nhật ký RunTogether", "body": "Vị trí nền ghi lại các điểm đi qua ngoài buổi tập.", "evidenceId": "continuous-route-history", "condition": "broad-permission" },
+        { "id": "team-photo", "title": "Ảnh đội nhóm", "body": "Ảnh công khai nhận diện các thành viên khác và sân tập quen thuộc.", "evidenceId": "team-member-location-exposure", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Một tài khoản lạ nhắn sẽ đến cổ vũ, nhắc đúng sân tập và giờ Kiệt thường chạy.",
+      "safeEnding": "Kiệt ẩn lịch công khai, tắt vị trí nền, báo người lớn/đội nhóm và tránh gặp người lạ một mình.",
+      "exposedEnding": "Nếu xác nhận lịch, người lạ có thể dự đoán thời gian Kiệt vắng nhà và vị trí hoạt động."
+    },
+    "guardian": {
+      "opening": "Chia sẻ buổi tập với bạn bè khác với đăng lịch trình cho mọi người.",
+      "stage01": "Ghi tuyến đường trong lúc tập là đủ; không cần theo dõi vị trí cả ngày.",
+      "stage02": "Kiểm tra cả lịch lặp lại và người khác xuất hiện trong ảnh.",
+      "stage03": "Không gặp người lạ theo lời nhắn. Báo người lớn và điều chỉnh quyền riêng tư."
+    }
+  },
+  "CHAR-012": {
+    "opening": "Trúc chuẩn bị đăng video biểu diễn thì nhận tin nhắn mời biểu diễn từ một tài khoản người hâm mộ mới.",
+    "stage01": {
+      "serviceName": "StageLight Effects",
+      "scene": "App hiệu ứng xin toàn bộ video, micro và vị trí để đồng bộ lịch biểu diễn.",
+      "limitedAction": "Chọn một video, chỉ bật micro khi thu âm và không đính kèm vị trí.",
+      "broadAction": "Cho phép quét toàn bộ video, micro nền và lịch địa điểm."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "performance-post", "title": "Bài đăng biểu diễn", "body": "Lịch biểu diễn và địa điểm hậu trường được đăng công khai.", "evidenceId": "performance-schedule-location", "condition": "always" },
+        { "id": "clip-process", "title": "Nhật ký StageLight", "body": "Chỉ clip đã chọn được xử lý, không đồng bộ vị trí.", "evidenceId": "selected-performance-clip", "condition": "limited-permission" },
+        { "id": "backstage-scan", "title": "Nhật ký StageLight", "body": "App quét video hậu trường và ghi lịch địa điểm biểu diễn.", "evidenceId": "backstage-and-location-scan", "condition": "broad-permission" },
+        { "id": "fan-account", "title": "Tin nhắn người hâm mộ", "body": "Tài khoản mới xin lịch riêng và bản ghi chưa công bố.", "evidenceId": "unverified-fan-request", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Người nhắn tự nhận là ban tổ chức, yêu cầu Trúc gửi lịch di chuyển và đăng nhập để nhận thù lao.",
+      "safeEnding": "Trúc xác minh đơn vị tổ chức, gỡ lịch chi tiết, không gửi bản ghi riêng và báo người lớn.",
+      "exposedEnding": "Nếu chia sẻ lịch/bản ghi, người lạ có thể mạo danh trong cộng đồng người hâm mộ hoặc lộ người xung quanh."
+    },
+    "guardian": {
+      "opening": "Cộng đồng người hâm mộ có thể thân thiện, nhưng tài khoản mới vẫn cần được xác minh.",
+      "stage01": "Dùng clip được chọn và chỉ bật micro khi cần; hiệu ứng không cần vị trí.",
+      "stage02": "Rà soát người xuất hiện, địa điểm hậu trường và lịch biểu diễn trước khi đăng.",
+      "stage03": "Xác minh ban tổ chức qua kênh đã biết; không gửi thông tin đăng nhập."
+    }
+  },
+  "CHAR-013": {
+    "opening": "Đức Anh vừa chia sẻ hóa đơn mô phỏng thì nhận tin nhắn báo đơn hàng cần xác nhận lại địa chỉ.",
+    "stage01": {
+      "serviceName": "Food Street Rewards",
+      "scene": "Ứng dụng tích điểm xin lưu tất cả địa chỉ, lịch sử món ăn và vị trí nền.",
+      "limitedAction": "Chỉ dùng mã đơn hiện tại và nhập địa chỉ khi cần giao.",
+      "broadAction": "Đồng bộ mọi địa chỉ, lịch sử đơn và vị trí thường xuyên."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "receipt-post", "title": "Hóa đơn mô phỏng", "body": "Bài đăng để lộ giờ đặt món và một phần thông tin điểm nhận.", "evidenceId": "meal-time-address-clue", "condition": "always" },
+        { "id": "single-order", "title": "Nhật ký Rewards", "body": "Chỉ mã đơn hiện tại được dùng để tích điểm.", "evidenceId": "current-order-only", "condition": "limited-permission" },
+        { "id": "address-history", "title": "Nhật ký Rewards", "body": "Nhiều địa chỉ và giờ đặt món được lưu thành thói quen.", "evidenceId": "delivery-address-routine", "condition": "broad-permission" },
+        { "id": "fake-support", "title": "Tin nhắn xác nhận đơn", "body": "Liên kết ngoài ứng dụng yêu cầu nhập lại địa chỉ và mã xác nhận.", "evidenceId": "fake-delivery-confirmation", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Người gửi giả danh đơn vị giao hàng nói món sắp bị trả về nếu Đức Anh không xác nhận địa chỉ qua liên kết.",
+      "safeEnding": "Đức Anh kiểm tra đơn trong app chính thức, xóa địa chỉ cũ, không nhập mã và báo người lớn.",
+      "exposedEnding": "Nếu nhập thông tin, lịch ăn uống và địa chỉ quen thuộc có thể bị dùng cho các tin nhắn giả tiếp theo."
+    },
+    "guardian": {
+      "opening": "Hóa đơn và giờ đặt món có thể tiết lộ lịch sinh hoạt; hãy che chi tiết trước khi đăng.",
+      "stage01": "Một đơn hàng chỉ cần dữ liệu của đơn đó, không cần lịch sử vị trí.",
+      "stage02": "Đối chiếu mã đơn ở ứng dụng; không xác nhận địa chỉ từ liên kết trong tin nhắn.",
+      "stage03": "Không nhập mã xác nhận. Mở app giao hàng đã cài và báo cáo tin giả."
+    }
+  },
+  "CHAR-014": {
+    "opening": "Ngọc nhận lời mời nhận sách miễn phí từ một diễn đàn đọc sách cô thường tham gia.",
+    "stage01": {
+      "serviceName": "Cloud Library Club",
+      "scene": "Biểu mẫu xin ngày sinh, lịch đọc ban đêm và danh sách sách yêu thích.",
+      "limitedAction": "Kiểm tra thể lệ và chỉ dùng tên hiển thị nếu chương trình được xác minh.",
+      "broadAction": "Gửi ngày sinh, thói quen đọc và danh sách sở thích để nhận quà."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "reading-profile", "title": "Hồ sơ diễn đàn", "body": "Danh sách sách và bài đăng ban đêm tạo thành mẫu sở thích và thời gian hoạt động.", "evidenceId": "reading-habit-profile", "condition": "always" },
+        { "id": "library-notice", "title": "Thông báo thư viện", "body": "Thư viện không xác nhận chương trình tặng sách trong tin nhắn.", "evidenceId": "unverified-book-giveaway", "condition": "limited-permission" },
+        { "id": "gift-form", "title": "Biểu mẫu nhận sách", "body": "Biểu mẫu gom ngày sinh, danh sách sách và thời gian hoạt động.", "evidenceId": "excessive-reading-profile", "condition": "broad-permission" },
+        { "id": "forum-dm", "title": "Tin nhắn diễn đàn", "body": "Người gửi đề nghị phí vận chuyển và yêu cầu địa chỉ nhà đầy đủ.", "evidenceId": "book-gift-address-request", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Tài khoản diễn đàn hứa giữ sách nếu Ngọc gửi địa chỉ và xác nhận mã giao hàng ngay trong đêm.",
+      "safeEnding": "Ngọc xác minh chương trình với nhà sách, không gửi địa chỉ qua tin nhắn và nhờ gia đình kiểm tra.",
+      "exposedEnding": "Nếu gửi địa chỉ/lịch sinh hoạt, người lạ có thể dùng sở thích và thời gian hoạt động để tiếp tục tiếp cận."
+    },
+    "guardian": {
+      "opening": "Sở thích đọc sách không phải lý do để công khai ngày sinh hay địa chỉ.",
+      "stage01": "Xác minh chương trình trước, chỉ cung cấp dữ liệu cần để nhận quà.",
+      "stage02": "Thói quen đăng bài ban đêm cũng là một dấu vết thời gian.",
+      "stage03": "Không chia sẻ địa chỉ hay mã nhận hàng khi chưa xác minh với gia đình/nhà sách."
+    }
+  },
+  "CHAR-015": {
+    "opening": "Long đăng bài đánh giá thiết bị mới và nhận đề nghị đổi máy từ một thành viên nhóm công nghệ.",
+    "stage01": {
+      "serviceName": "GadgetTrade Check",
+      "scene": "Ứng dụng kiểm tra giao dịch xin ảnh thiết bị, số hiệu và hồ sơ mua bán.",
+      "limitedAction": "Tra cứu thông tin công khai; che số hiệu thiết bị và không kết nối tài khoản.",
+      "broadAction": "Tải ảnh đầy đủ, số hiệu thiết bị và lịch sử giao dịch lên dịch vụ."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "device-review", "title": "Bài đánh giá thiết bị", "body": "Ảnh sản phẩm còn hiển thị một phần số hiệu và vật dụng xung quanh.", "evidenceId": "device-identifier-exposure", "condition": "always" },
+        { "id": "trade-check", "title": "Trang kiểm tra giao dịch", "body": "Người mua và đề nghị đổi máy chưa xuất hiện trong kênh giao dịch đáng tin.", "evidenceId": "unverified-device-trade", "condition": "limited-permission" },
+        { "id": "inventory-upload", "title": "Nhật ký GadgetTrade", "body": "Dịch vụ lưu số hiệu, ảnh thiết bị và mức giá dự kiến.", "evidenceId": "device-value-profile", "condition": "broad-permission" },
+        { "id": "trade-chat", "title": "Tin nhắn đổi máy", "body": "Người mua yêu cầu gửi mã xác nhận trước khi gặp.", "evidenceId": "trade-verification-code-request", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Người mua tự xưng cửa hàng uy tín gửi trang thanh toán/đổi máy và yêu cầu Long đọc mã xác nhận.",
+      "safeEnding": "Long dừng giao dịch, xác minh cửa hàng bằng kênh độc lập, che số hiệu và nhờ người lớn đi cùng nếu gặp.",
+      "exposedEnding": "Nếu gửi mã hoặc thông tin thiết bị đầy đủ, kẻ giả mạo có thể chiếm phiên giao dịch và nhắm vào tài sản giá trị."
+    },
+    "guardian": {
+      "opening": "Ảnh thiết bị có thể chứa số hiệu, bối cảnh và dấu hiệu về giá trị tài sản.",
+      "stage01": "Tra cứu không cần tải toàn bộ lịch sử mua bán lên app lạ.",
+      "stage02": "Kiểm tra người bán và che mã định danh trước khi đăng ảnh.",
+      "stage03": "Không đọc mã xác nhận; xác minh đề nghị qua cửa hàng chính thức và báo người lớn."
+    }
+  },
+  "CHAR-016": {
+    "opening": "An đăng kế hoạch chuyến đi sắp tới, rồi nhận tin nhắn đề nghị đổi vé kèm đường dẫn thanh toán.",
+    "stage01": {
+      "serviceName": "TripMap Memories",
+      "scene": "Ứng dụng album chuyến đi xin vị trí nền, ảnh vé và ngày đi/về.",
+      "limitedAction": "Thêm ảnh đã che mã vé và chia sẻ album sau chuyến đi với người thân.",
+      "broadAction": "Tự đồng bộ vé, lịch trình và vị trí trực tiếp cho mọi người xem."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "travel-plan", "title": "Bài đăng kế hoạch", "body": "Ngày đi/về được công khai trước chuyến đi cùng thời gian vắng nhà.", "evidenceId": "public-away-dates", "condition": "always" },
+        { "id": "ticket-redacted", "title": "Album chuyến đi", "body": "Ảnh vé đã che mã và vị trí chỉ bật khi cần.", "evidenceId": "redacted-travel-ticket", "condition": "limited-permission" },
+        { "id": "live-location", "title": "Nhật ký TripMap", "body": "Vị trí trực tiếp và ảnh vé còn nguyên mã được đồng bộ.", "evidenceId": "live-travel-and-ticket-data", "condition": "broad-permission" },
+        { "id": "ticket-message", "title": "Tin nhắn đổi vé", "body": "Trang thanh toán không trùng tên đơn vị trên vé gốc.", "evidenceId": "fake-ticket-change-link", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Người gửi biết An đang đi xa và báo vé có lỗi, yêu cầu gửi mã vé cùng vị trí để hỗ trợ.",
+      "safeEnding": "An xác minh với đơn vị vận chuyển qua kênh chính thức, tắt chia sẻ vị trí và báo gia đình.",
+      "exposedEnding": "Nếu xác nhận ngày vắng nhà hoặc chia sẻ mã vé, người lạ có thể khai thác lịch trình và thông tin định danh."
+    },
+    "guardian": {
+      "opening": "Đăng kế hoạch trước chuyến đi có thể tiết lộ nhà đang vắng người.",
+      "stage01": "Chia sẻ album riêng với gia đình sau chuyến đi; che mã trên vé.",
+      "stage02": "Ghép check-in và lịch trình để nhận ra lượng thông tin vị trí bị lộ.",
+      "stage03": "Tự gọi đơn vị vận chuyển từ nguồn chính thức và báo người thân."
+    }
+  },
+  "CHAR-017": {
+    "opening": "Khang nhận một dự án thiết kế mới, nhưng khách hàng yêu cầu portfolio kèm ảnh giấy tờ và tài khoản nhận tiền.",
+    "stage01": {
+      "serviceName": "Creative Brief Portal",
+      "scene": "Cổng dự án xin quyền đọc toàn bộ thư viện, danh bạ khách hàng và tài liệu công việc.",
+      "limitedAction": "Chia sẻ riêng portfolio đã lược thông tin khách hàng và chỉ dùng kênh làm việc chính thức.",
+      "broadAction": "Cho phép quét thư viện, danh bạ và tải toàn bộ cuộc trò chuyện dự án."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "portfolio-contact", "title": "Portfolio công khai", "body": "Trang giới thiệu để lộ thông tin liên hệ mô phỏng và dự án của bên thứ ba.", "evidenceId": "public-client-contact", "condition": "always" },
+        { "id": "client-check", "title": "Hồ sơ khách hàng", "body": "Tên miền liên hệ không khớp với công ty tự giới thiệu.", "evidenceId": "mismatched-client-domain", "condition": "limited-permission" },
+        { "id": "project-scan", "title": "Nhật ký Creative Brief", "body": "Cổng đã tải cả cuộc trò chuyện và tài liệu chưa được chọn.", "evidenceId": "bulk-client-document-access", "condition": "broad-permission" },
+        { "id": "urgent-brief", "title": "Tin nhắn dự án", "body": "Khách hàng yêu cầu gửi bản gốc và thông tin thanh toán trước khi ký thỏa thuận.", "evidenceId": "unverified-client-document-request", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Một khách hàng giả danh thúc Khang gửi tệp nguồn có dữ liệu khách khác và thông tin liên hệ cá nhân.",
+      "safeEnding": "Khang dừng chia sẻ, xác minh khách hàng, tách portfolio khỏi dữ liệu khách và nhờ người lớn xem hợp đồng.",
+      "exposedEnding": "Nếu gửi tệp gốc, thông tin của Khang và bên thứ ba có thể bị lộ hoặc bị dùng để giả mạo dự án."
+    },
+    "guardian": {
+      "opening": "Portfolio nên thể hiện năng lực, không chứa dữ liệu của khách hàng khác.",
+      "stage01": "Chia sẻ bản đã lược thông tin và không kết nối danh bạ cá nhân.",
+      "stage02": "Kiểm tra tên miền, thỏa thuận và quyền sử dụng tài liệu trước khi gửi.",
+      "stage03": "Dừng trao đổi qua kênh lạ; nhờ người lớn hỗ trợ xác minh khách hàng."
+    }
+  },
+  "CHAR-018": {
+    "opening": "Yến đăng ký một sự kiện xanh và phát hiện biểu mẫu yêu cầu thông tin của mọi thành viên trong nhóm.",
+    "stage01": {
+      "serviceName": "Green Event Pass",
+      "scene": "Biểu mẫu sự kiện xin vị trí liên tục, ảnh nhóm và thông tin liên hệ từng người.",
+      "limitedAction": "Xác minh ban tổ chức; chỉ đăng ký dữ liệu cần cho người tham dự.",
+      "broadAction": "Tải ảnh nhóm và cấp quyền vị trí/danh bạ để hoàn tất đăng ký."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "event-calendar", "title": "Lịch sự kiện công khai", "body": "Lịch tham gia và ảnh nhóm cho biết ai sẽ có mặt ở đâu.", "evidenceId": "public-group-event-schedule", "condition": "always" },
+        { "id": "organizer-check", "title": "Trang ban tổ chức", "body": "Tên miền biểu mẫu khác trang chính thức của sự kiện.", "evidenceId": "unverified-event-organizer", "condition": "limited-permission" },
+        { "id": "group-upload", "title": "Nhật ký Green Event Pass", "body": "Ảnh và danh bạ thành viên đã được tải dù họ chưa đồng ý.", "evidenceId": "group-contact-data-upload", "condition": "broad-permission" },
+        { "id": "volunteer-message", "title": "Tin nhắn tình nguyện", "body": "Người gửi yêu cầu danh sách thành viên và giờ tập trung riêng.", "evidenceId": "volunteer-roster-request", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Tài khoản giả danh ban tổ chức yêu cầu Yến gửi danh sách nhóm và thời gian có mặt để nhận vật phẩm.",
+      "safeEnding": "Yến xác minh sự kiện, xóa dữ liệu nhóm đã tải lên, không chia sẻ lịch riêng và báo người lớn.",
+      "exposedEnding": "Nếu gửi danh sách/lịch trình, dữ liệu của các thành viên khác cũng có thể bị khai thác."
+    },
+    "guardian": {
+      "opening": "Đăng ký cho bản thân không đồng nghĩa có quyền gửi dữ liệu của cả nhóm.",
+      "stage01": "Xác minh ban tổ chức và chỉ cung cấp thông tin bắt buộc cho sự kiện.",
+      "stage02": "Hỏi ý kiến mọi người trước khi đăng ảnh hoặc gửi danh sách thành viên.",
+      "stage03": "Không gửi lịch tập trung riêng; báo người lớn và quản trị viên sự kiện."
+    }
+  },
+  "CHAR-019": {
+    "opening": "Thịnh chuẩn bị livestream thì một thông báo riêng tư bất ngờ hiện trên màn hình xem trước.",
+    "stage01": {
+      "serviceName": "Stream Overlay Studio",
+      "scene": "Tiện ích overlay xin quyền đọc thông báo, micro và cửa sổ thiết bị.",
+      "limitedAction": "Tắt hiển thị thông báo, chỉ dùng cảnh quay thử và kiểm tra màn hình trước khi phát.",
+      "broadAction": "Cho overlay đọc thông báo và tự động hiển thị mọi cửa sổ trong livestream."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "stream-calendar", "title": "Lịch phát sóng", "body": "Lịch phát cố định và góc quay quen thuộc giúp suy đoán thời gian sinh hoạt.", "evidenceId": "public-stream-routine", "condition": "always" },
+        { "id": "preview-check", "title": "Màn hình xem trước", "body": "Thông báo bị ẩn và địa điểm trong nền đã được che.", "evidenceId": "notification-hidden-preview", "condition": "limited-permission" },
+        { "id": "overlay-log", "title": "Nhật ký Overlay Studio", "body": "Overlay đọc thông báo và hiển thị một phần nội dung riêng trong buổi thử.", "evidenceId": "private-notification-on-stream", "condition": "broad-permission" },
+        { "id": "viewer-comment", "title": "Bình luận người xem", "body": "Một tài khoản lạ hỏi giờ phát và chi tiết về không gian sinh hoạt.", "evidenceId": "routine-probing-comment", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Người xem gửi ảnh chụp màn hình thông báo và hỏi Thịnh xác nhận địa điểm quay.",
+      "safeEnding": "Thịnh dừng phát để kiểm tra, ẩn thông báo/lịch chi tiết, báo quản trị nền tảng và người lớn.",
+      "exposedEnding": "Nếu tiếp tục phát hoặc trả lời câu hỏi địa điểm, người xem có thể ghép lịch phát với không gian sinh hoạt."
+    },
+    "guardian": {
+      "opening": "Trước khi phát trực tiếp, hãy xem lại cả thông báo bật lên và phần nền phía sau.",
+      "stage01": "Overlay không cần đọc mọi thông báo riêng tư để hiển thị đồ họa.",
+      "stage02": "Lịch phát và bình luận có thể tiết lộ nếp sinh hoạt; ẩn thông tin trước khi phát.",
+      "stage03": "Dừng phát khi lộ dữ liệu; không xác nhận địa điểm và báo người lớn/nền tảng."
+    }
+  },
+  "CHAR-020": {
+    "opening": "Bảo nhận liên kết một bài kiểm tra tính cách mới từ bạn trong nhóm giải đố.",
+    "stage01": {
+      "serviceName": "Pixel Quiz Challenge",
+      "scene": "Trò chơi xin ngày sinh, danh bạ và quyền chia sẻ kết quả tự động.",
+      "limitedAction": "Chơi bằng biệt danh, bỏ câu hỏi không liên quan và không kết nối mạng xã hội.",
+      "broadAction": "Nhập ngày sinh, đồng bộ danh bạ và tự đăng kết quả lên hồ sơ."
+    },
+    "stage02": {
+      "artifacts": [
+        { "id": "quiz-results", "title": "Kết quả bài kiểm tra", "body": "Các kết quả công khai tiết lộ sở thích và ngày sinh gần đúng.", "evidenceId": "public-personality-and-birthday", "condition": "always" },
+        { "id": "quiz-preview", "title": "Trang trò chơi chính thức", "body": "Trò chơi vẫn hoạt động với biệt danh và không cần quyền danh bạ.", "evidenceId": "unneeded-quiz-permissions", "condition": "limited-permission" },
+        { "id": "contact-sync", "title": "Nhật ký Pixel Quiz", "body": "Danh bạ và ngày sinh được đồng bộ trước khi hiển thị kết quả.", "evidenceId": "quiz-contact-data-sync", "condition": "broad-permission" },
+        { "id": "shared-link", "title": "Liên kết trò chơi", "body": "Liên kết chuyển qua một tên miền khác với trang trò chơi được giới thiệu.", "evidenceId": "redirected-quiz-link", "condition": "always" }
+      ]
+    },
+    "stage03": {
+      "incident": "Một tài khoản giả danh bạn gửi kết quả mới, yêu cầu Bảo đăng nhập lại và chia sẻ liên kết với cả nhóm.",
+      "safeEnding": "Bảo không đăng nhập qua liên kết, kiểm tra tên miền, gỡ kết quả có ngày sinh và cảnh báo bạn bè.",
+      "exposedEnding": "Nếu đăng nhập/chia sẻ tiếp, dữ liệu quiz và danh bạ có thể tạo thêm hồ sơ cho cả Bảo lẫn bạn bè."
+    },
+    "guardian": {
+      "opening": "Một bài quiz vui không cần ngày sinh đầy đủ hay quyền truy cập danh bạ.",
+      "stage01": "Dùng biệt danh, từ chối quyền không cần và kiểm tra trang trước khi chơi.",
+      "stage02": "Kết quả tính cách vẫn là dữ liệu cá nhân; xem kỹ tên miền và trường thông tin.",
+      "stage03": "Không đăng nhập lại qua liên kết được gửi bất ngờ; cảnh báo nhóm nếu liên kết đáng ngờ."
+    }
+  }
+}
