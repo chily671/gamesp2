@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import {
   ArrowLeft,
+  ArrowRight,
   Banknote,
   Fingerprint,
   Heart,
@@ -348,6 +349,13 @@ export default function CharacterReveal() {
               PROFILE REVEAL COMPLETE <span className="text-cyan-200/50">/</span>{" "}
               NEXT: MISSION BRIEFING
             </p>
+            <Link
+              className="mt-4 flex min-h-14 w-full items-center justify-center gap-3 bg-cyan-300 px-6 font-mono text-xs font-bold tracking-[0.12em] text-[#06101b] transition hover:bg-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-100"
+              href="/briefing"
+            >
+              TIẾP TỤC: XEM NHIỆM VỤ
+              <ArrowRight aria-hidden="true" size={16} />
+            </Link>
           </div>
         </div>
       </section>

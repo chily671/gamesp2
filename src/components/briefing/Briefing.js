@@ -124,7 +124,7 @@ export default function Briefing() {
             onClick={startMission}
             type="button"
           >
-            {isStarting ? "ĐANG MỞ CỔNG..." : "START YOUR MISSION"}
+            {isStarting ? "ĐANG BẮT ĐẦU..." : "BẮT ĐẦU CHƠI"}
             {!isStarting && <ArrowRight aria-hidden="true" className="transition-transform group-hover:translate-x-1" size={16} />}
           </button>
         )}
